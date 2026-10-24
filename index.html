@@ -6,24 +6,23 @@
 <meta name="description" content="Масликов Михаил Михайлович — учитель информатики ЧОУ «Точка будущего». Курсы, тренажёры и проектные лаборатории: веб-разработка, Python, ЕГЭ и ОГЭ, Turtle, ТПГ «ГенИИ».">
 <title>Михаил Масликов — учитель информатики · Точка будущего</title>
 <!--
-  ═══ ПАМЯТКА ПО ФАЙЛАМ (папка images/ рядом с index.html), всё PNG ═══
-  photo-hero.png — 4:5 · 1200×1500 · ВЫРЕЗАННЫЙ без фона (transparent): встанет в «арку» в hero
-  ГАЛЕРЕЯ — 6 кадров, все строго 4:5 · 1200×1500 (object-fit: cover, ничего не тянется):
-    photo-gallery-bw.png     (2.JPG) · «Ночь перед дедлайном модуля»
-    photo-teach.png          (6.JPG) · «С учениками за компьютерами»
-    photo-gallery-code.png   (9.JPG) · «Код на проекции во время занятия»
-    photo-school.png         (4.JPG) · «Команда Точки будущего»
-    photo-gallery-lesson.png (8.JPG) · «Теория без слайдов»
-    photo-speak.png          (3.JPG) · «Выступление на интенсиве»
-  (photo-about.png и photo-contact.png сейчас не используются)
-  СКРИНШОТЫ — PNG, 16:10 · 2880×1800 (или 1440×900):
+  ═══ ПАМЯТКА ПО ФАЙЛАМ (папка images/ рядом с index.html) ═══
+  PNG: photo-hero.png — 4:5 · 1200×1500 · вырезанный без фона (transparent)
+  PNG: скриншоты, 16:10 · 2880×1800 (или 1440×900):
     scr-webdev-01-hero.png, scr-webdev-02-catalog.png, scr-webdev-03-lesson.png,
     scr-python-01-hero.png, scr-python-02-catalog.png, scr-python-03-task.png,
     scr-ege-01-overview.png, scr-ege-02-catalog.png, scr-ege-03-task.png,
     scr-oge-01-overview.png, scr-oge-02-catalog.png, scr-oge-03-task.png,
     scr-turtle-01-hero.png, scr-turtle-02-lessons.png, scr-turtle-03-worksheet.png,
     scr-tpg-01-hero.png, scr-tpg-02-stages.png, scr-tpg-03-team.png
-  ДОСТУП: описания и скриншоты открыты всем; код нужен только для перехода на сам ресурс.
+  JPG: галерея, 6 кадров, все строго 4:5 · 1200×1500:
+    photo-gallery-bw.jpg     (2.JPG) · «Ночь перед дедлайном модуля»
+    photo-teach.jpg          (6.JPG) · «С учениками за компьютерами»
+    photo-gallery-code.jpg   (9.JPG) · «Код на проекции во время занятия»
+    photo-school.jpg         (4.JPG) · «Команда Точки будущего»
+    photo-gallery-lesson.jpg (8.JPG) · «Теория без слайдов»
+    photo-speak.jpg          (3.JPG) · «Выступление на интенсиве»
+  КОДЫ ДОСТУПА хранятся только в памяти вкладки (без localStorage): после перезагрузки страницы всё снова под кодом.
 -->
 <style>
 /* ============ ПЕРЕМЕННЫЕ ============ */
@@ -31,64 +30,63 @@
   --bg:#f5f5f7; --surface:#ffffff; --surface-2:#fbfbfd; --text:#1d1d1f; --muted:#6e6e73;
   --line:rgba(0,0,0,.09); --accent:#0071e3; --accent-soft:rgba(0,113,227,.10);
   --radius:24px; --radius-s:16px; --shadow:0 12px 34px rgba(0,0,0,.09);
-  --nav-h:60px; --ok:#34c759; --err:#ff3b30;
+  --nav-h:64px; --ok:#34c759; --err:#ff3b30;
   --pad:clamp(20px,4vw,48px);
-  --wrap:1320px;   /* контейнер: сайт больше не растягивается до краёв экрана */
+  --wrap:1320px;
 }
 [data-theme="dark"]{
   --bg:#0b0b0f; --surface:#17171c; --surface-2:#1e1e24; --text:#f5f5f7; --muted:#9b9ba1;
   --line:rgba(255,255,255,.11); --accent:#2997ff; --accent-soft:rgba(41,151,255,.16);
   --shadow:0 14px 40px rgba(0,0,0,.55);
 }
-/* цвета проектов (иконки и акценты карточек) */
+/* цвета проектов */
 .acc-webdev{--acc:#ff9f0a;--acc-soft:rgba(255,159,10,.15)}  [data-theme="dark"] .acc-webdev{--acc:#ff9f0a;--acc-soft:rgba(255,159,10,.24)}
 .acc-python{--acc:#0071e3;--acc-soft:rgba(0,113,227,.12)}   [data-theme="dark"] .acc-python{--acc:#0a84ff;--acc-soft:rgba(10,132,255,.24)}
 .acc-ege{--acc:#ff3b30;--acc-soft:rgba(255,59,48,.12)}      [data-theme="dark"] .acc-ege{--acc:#ff453a;--acc-soft:rgba(255,69,58,.24)}
 .acc-oge{--acc:#ff2d55;--acc-soft:rgba(255,45,85,.12)}      [data-theme="dark"] .acc-oge{--acc:#ff375f;--acc-soft:rgba(255,55,95,.24)}
 .acc-turtle{--acc:#34c759;--acc-soft:rgba(52,199,89,.15)}   [data-theme="dark"] .acc-turtle{--acc:#30d158;--acc-soft:rgba(48,209,88,.24)}
 .acc-tpg{--acc:#af52de;--acc-soft:rgba(175,82,222,.15)}     [data-theme="dark"] .acc-tpg{--acc:#bf5af2;--acc-soft:rgba(191,90,242,.24)}
-/* насыщенные фоны секций: каждый блок читается отдельной «комнатой» */
-.sec--blue{background:color-mix(in srgb,#0071e3 11%,var(--bg))}
-.sec--green{background:color-mix(in srgb,#34c759 12%,var(--bg))}
-.sec--amber{background:color-mix(in srgb,#ff9f0a 12%,var(--bg))}
-.sec--purple{background:color-mix(in srgb,#af52de 10%,var(--bg))}
-.sec--cyan{background:color-mix(in srgb,#5ac8fa 12%,var(--bg))}
+/* приглушённая палитра фонов секций */
+.sec--blue{background:color-mix(in srgb,#0071e3 9%,var(--bg))}
+.sec--slate{background:color-mix(in srgb,#334155 9%,var(--bg))}
+.sec--teal{background:color-mix(in srgb,#0d9488 9%,var(--bg))}
+.sec--terra{background:color-mix(in srgb,#b45309 8%,var(--bg))}
 
 /* ============ БАЗА ============ */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);
-  font:17px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font:17.5px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   -webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 body.lock{overflow:hidden}
 img{max-width:100%;display:block}
 h1,h2,h3{letter-spacing:-.02em;line-height:1.12;margin:0}
-h1{font-size:clamp(30px,5.2vw,72px);font-weight:700}
+h1{font-size:clamp(32px,5.2vw,76px);font-weight:700}
 h1 .h-line{display:block;white-space:nowrap}
 h1 .h-line.acc{color:var(--accent)}
-h2{font-size:clamp(26px,3.4vw,46px);font-weight:700}
-h3{font-size:20px;font-weight:600}
+h2{font-size:clamp(28px,3.4vw,50px);font-weight:700}
+h3{font-size:21px;font-weight:600}
 p{margin:0}
 a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
-.sec{padding:clamp(56px,7vw,104px) 0}
-.sec-head{margin-bottom:clamp(26px,3vw,44px)}
-.sec-head.center{text-align:center;max-width:820px;margin-inline:auto}
+.sec{padding:clamp(60px,7vw,110px) 0}
+.sec-head{margin-bottom:clamp(28px,3vw,48px)}
+.sec-head.center{text-align:center;max-width:860px;margin-inline:auto}
 .sec-head.center .sec-lead{margin-inline:auto}
-.sec-kicker{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-.sec-lead{color:var(--muted);margin-top:12px;max-width:680px;font-size:clamp(16px,1.4vw,19px)}
-.j{text-align:justify;hyphens:auto}   /* большие тексты — по ширине */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 24px;
-  border-radius:980px;border:1px solid transparent;background:var(--accent);color:#fff;font:inherit;font-weight:600;
+.sec-kicker{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.sec-lead{color:var(--muted);margin-top:12px;max-width:720px;font-size:clamp(17px,1.5vw,20px)}
+.j{text-align:justify;hyphens:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 26px;
+  border-radius:980px;border:1px solid transparent;background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:16px;
   cursor:pointer;text-decoration:none;transition:transform .18s,opacity .18s}
 .btn:hover{opacity:.88;transform:translateY(-1px)}
 .btn:active{transform:scale(.98)}
 .btn.secondary{background:var(--accent-soft);color:var(--acc,var(--accent))}
 .btn.ghost{background:transparent;color:var(--text);border-color:var(--line)}
 .btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:980px;background:var(--surface);
-  border:1px solid var(--line);font-size:13px;color:var(--muted);font-weight:500}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:980px;background:var(--surface);
+  border:1px solid var(--line);font-size:14px;color:var(--muted);font-weight:500}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
@@ -103,11 +101,11 @@ a{color:var(--accent)}
   background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
 .nav-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad);height:var(--nav-h);display:flex;align-items:center;gap:14px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;text-decoration:none;color:var(--text);min-height:44px}
-.logo-m{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#5ac8fa);
-  color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;text-decoration:none;color:var(--text);min-height:44px}
+.logo-m{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#5ac8fa);
+  color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700}
 .nav-links{display:none;gap:4px;margin-left:auto}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:10px 12px;border-radius:980px;min-height:44px;display:inline-flex;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;padding:10px 14px;border-radius:980px;min-height:44px;display:inline-flex;align-items:center}
 .nav-links a:hover{color:var(--text);background:var(--accent-soft)}
 .nav-links a.active{color:var(--text);background:var(--accent-soft)}
 .nav-actions{margin-left:auto;display:flex;gap:8px;align-items:center}
@@ -120,96 +118,111 @@ a{color:var(--accent)}
 .menu{position:fixed;inset:var(--nav-h) 0 auto 0;z-index:49;background:var(--bg);border-bottom:1px solid var(--line);
   padding:12px var(--pad) 20px;display:grid;gap:4px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:.25s}
 .menu.open{transform:none;opacity:1;pointer-events:auto}
-.menu a{color:var(--text);text-decoration:none;font-size:17px;font-weight:600;padding:12px 14px;border-radius:14px;min-height:44px;display:flex;align-items:center}
+.menu a{color:var(--text);text-decoration:none;font-size:18px;font-weight:600;padding:12px 14px;border-radius:14px;min-height:48px;display:flex;align-items:center}
 .menu a:hover{background:var(--accent-soft)}
 
-/* ============ HERO (белый фон под фото) ============ */
+/* ============ HERO: белый фон на весь блок, фото без подложки и обводки ============ */
 .hero{background:var(--surface);
   min-height:calc(100vh - var(--nav-h));min-height:calc(100svh - var(--nav-h));
   display:flex;flex-direction:column;justify-content:center;padding:clamp(36px,5vw,72px) 0 clamp(28px,3vw,48px)}
 .hero-grid{display:grid;gap:clamp(28px,3vw,48px);align-items:center}
 @media (min-width:960px){.hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)}}
-.hero-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:980px;
-  border:1px solid var(--line);background:var(--surface-2);font-size:12px;font-weight:600;letter-spacing:.1em;
+.hero-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:980px;
+  border:1px solid var(--line);background:var(--surface-2);font-size:13px;font-weight:700;letter-spacing:.1em;
   text-transform:uppercase;color:var(--muted)}
 .hero-pill i{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
 .hero h1{margin:18px 0 20px}
-.hero-role{font-size:clamp(16px,1.5vw,21px);color:var(--muted);max-width:560px}
+.hero-role{font-size:clamp(17px,1.6vw,22px);color:var(--muted);max-width:580px}
 .hero-school{font-weight:600;color:var(--text)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.hero-proof{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px;margin-top:22px}
-.hero-proof svg{color:var(--ok);flex:none}
-/* арка под вырезанное фото: фиксированная пропорция 4:5, ничего не тянется */
-.hero-stage{position:relative;max-width:460px;margin-inline:auto;width:100%}
-.hero-photo{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;
-  border-radius:220px 220px 28px 28px;border:1px solid var(--line);
-  background:radial-gradient(120% 90% at 50% 8%,var(--accent-soft),transparent 60%),var(--surface-2)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.hero-proof{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:16px;margin-top:24px}
+.hero-proof svg{color:var(--ok);flex:none;width:22px;height:22px}
+.hero-stage{position:relative;max-width:480px;margin-inline:auto;width:100%}
+.hero-photo{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:220px 220px 28px 28px}
 .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;
-  opacity:0;transition:opacity .6s;filter:drop-shadow(0 26px 44px rgba(0,0,0,.18))}
+  opacity:0;transition:opacity .6s}
 .hero-photo.is-loaded img{opacity:1}
 .hero-photo.is-missing img{display:none}
 .photo-ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-  padding:20px;text-align:center;color:var(--muted);background:var(--surface-2)}
+  padding:20px;text-align:center;color:var(--muted);background:var(--surface-2);border:1.5px dashed var(--line);border-radius:24px}
 .is-missing .photo-ph{display:flex}
 .photo-ph svg{opacity:.55}
-.ph-file{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;opacity:.8;word-break:break-all}
-/* полоса wordmark */
-.strip{margin-top:clamp(30px,4vw,56px);padding:22px clamp(18px,2.4vw,32px);border-radius:20px;
+.ph-file{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;opacity:.8;word-break:break-all}
+.strip{margin-top:clamp(30px,4vw,56px);padding:24px clamp(18px,2.4vw,32px);border-radius:20px;
   background:color-mix(in srgb,var(--accent) 6%,var(--surface));border:1px solid var(--line)}
-.strip>p{text-align:center;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.strip>p{text-align:center;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .marks{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;margin-top:12px}
 @media (min-width:960px){.marks{justify-content:space-between}}
-.mark{display:flex;align-items:center;gap:8px;font:inherit;font-size:15px;font-weight:700;color:var(--muted);
-  background:none;border:0;cursor:pointer;padding:8px 12px;border-radius:12px;min-height:44px;transition:color .2s,background .2s}
-.mark svg{width:18px;height:18px;color:var(--acc,var(--accent))}
+.mark{display:flex;align-items:center;gap:9px;font:inherit;font-size:16px;font-weight:700;color:var(--muted);
+  background:none;border:0;cursor:pointer;padding:8px 14px;border-radius:12px;min-height:48px;transition:color .2s,background .2s}
+.mark svg{width:22px;height:22px;color:var(--acc,var(--accent))}
 .mark:hover{color:var(--acc,var(--accent));background:var(--acc-soft,var(--accent-soft))}
 
-/* ============ ОБО МНЕ ============ */
-.about-cols{display:grid;gap:20px;max-width:1060px;margin-inline:auto}
-@media (min-width:900px){.about-cols{grid-template-columns:1fr 1fr}}
-.about-cols p{color:var(--muted)}
-.chip-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:26px}
+/* ============ ОБО МНЕ: карточки-подложки ============ */
+.about-grid{display:grid;gap:16px;max-width:1120px;margin-inline:auto}
+@media (min-width:900px){.about-grid{grid-template-columns:1fr 1fr}}
+.about-card{padding:clamp(20px,2.4vw,30px);border-radius:20px;background:var(--surface);border:1px solid var(--line);
+  display:grid;gap:14px;justify-items:start;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
+.about-card:hover{transform:translateY(-3px)}
+.about-card .ai{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;
+  background:color-mix(in srgb,var(--aic) 15%,transparent);color:var(--aic)}
+.about-card .ai svg{width:26px;height:26px}
+.a-blue{--aic:#0071e3}.a-slate{--aic:#334155}.a-teal{--aic:#0d9488}.a-terra{--aic:#b45309}
+[data-theme="dark"] .a-blue{--aic:#0a84ff}[data-theme="dark"] .a-slate{--aic:#94a3b8}
+[data-theme="dark"] .a-teal{--aic:#14b8a6}[data-theme="dark"] .a-terra{--aic:#d97706}
+.about-card h3{font-size:19px}
+.about-card p{color:var(--muted);font-size:16px}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
 
-/* ============ РАЗРАБОТКИ: строго 3 + 3 ============ */
+/* ============ РАЗРАБОТКИ: 3 + 3 ============ */
 .cards{display:grid;gap:18px;grid-template-columns:1fr}
 @media (min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
 @media (min-width:1000px){.cards{grid-template-columns:repeat(3,1fr)}}
-.pcard{padding:24px;display:flex;flex-direction:column;gap:14px;cursor:pointer;position:relative;
+.pcard{padding:26px;display:flex;flex-direction:column;gap:14px;cursor:pointer;position:relative;
   transition:transform .25s,box-shadow .25s,border-color .25s}
 .pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--acc)}
 .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.pcard-ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--acc-soft);color:var(--acc)}
-.lock-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:6px 10px;border-radius:980px;
+.pcard-ico{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:var(--acc-soft);color:var(--acc)}
+.pcard-ico svg{width:28px;height:28px}
+.lock-badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:7px 12px;border-radius:980px;
   background:var(--surface-2);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
 .lock-badge.open{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent)}
-.pcard h3{font-size:19px}
-.pcard .tag{color:var(--muted);font-size:14px;flex:1}
+.pcard h3{font-size:21px}
+.pcard .tag{color:var(--muted);font-size:15.5px;flex:1}
 .pcard-meta{display:flex;flex-wrap:wrap;gap:6px}
-.pcard-cta{align-self:flex-start;min-height:44px}
+.pcard-cta{align-self:flex-start;min-height:48px}
 
-/* ============ ПРИНЦИПЫ: строго 3 + 3, иконки разноцветные ============ */
-.benefits{display:grid;gap:14px;grid-template-columns:1fr}
+/* ============ ПРИНЦИПЫ: 3 + 3 ============ */
+.benefits{display:grid;gap:16px;grid-template-columns:1fr}
 @media (min-width:700px){.benefits{grid-template-columns:repeat(2,1fr)}}
 @media (min-width:1000px){.benefits{grid-template-columns:repeat(3,1fr)}}
-.benefit{display:flex;gap:16px;align-items:flex-start;padding:22px;border-radius:20px;
+.benefit{display:flex;gap:16px;align-items:flex-start;padding:24px;border-radius:20px;
   background:var(--surface);border:1px solid var(--line);transition:transform .25s,box-shadow .25s}
 .benefit:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.benefit .bi{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;flex:none;
+.benefit .bi{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex:none;
   background:color-mix(in srgb,var(--bic) 15%,transparent);color:var(--bic)}
-.b-blue{--bic:#0071e3}.b-green{--bic:#34c759}.b-orange{--bic:#ff9f0a}.b-purple{--bic:#af52de}
-[data-theme="dark"] .b-blue{--bic:#0a84ff}[data-theme="dark"] .b-green{--bic:#30d158}
-[data-theme="dark"] .b-orange{--bic:#ff9f0a}[data-theme="dark"] .b-purple{--bic:#bf5af2}
-.benefit h3{font-size:17px;margin-bottom:6px}
-.benefit p{font-size:14px;color:var(--muted)}
+.benefit .bi svg{width:26px;height:26px}
+.b-blue{--bic:#0071e3}.b-teal{--bic:#0d9488}.b-terra{--bic:#b45309}.b-slate{--bic:#334155}
+[data-theme="dark"] .b-blue{--bic:#0a84ff}[data-theme="dark"] .b-teal{--bic:#14b8a6}
+[data-theme="dark"] .b-terra{--bic:#d97706}[data-theme="dark"] .b-slate{--bic:#94a3b8}
+.benefit h3{font-size:19px;margin-bottom:6px}
+.benefit p{font-size:15.5px;color:var(--muted)}
 
 /* ============ ШКОЛА / ТПГ ============ */
 .school-cols{max-width:1060px;margin-inline:auto}
-.tpg{padding:clamp(20px,2.4vw,32px);border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);margin-top:22px}
-.tpg ul{margin:14px 0 0;padding-left:20px;color:var(--muted);font-size:15px;display:grid;gap:8px}
-.tpg-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.tpg{padding:clamp(22px,2.6vw,34px);border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);margin-top:24px;box-shadow:var(--shadow)}
+.tpg-head{display:flex;align-items:center;gap:16px}
+.tpg-ico{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;flex:none;
+  background:rgba(175,82,222,.15);color:#af52de}
+[data-theme="dark"] .tpg-ico{background:rgba(191,90,242,.22);color:#bf5af2}
+.tpg-ico svg{width:28px;height:28px}
+.tpg ul{margin:16px 0 0;padding:0;list-style:none;color:var(--muted);font-size:16px;display:grid;gap:10px}
+.tpg ul li{display:flex;gap:10px;align-items:flex-start}
+.tpg ul li svg{flex:none;width:19px;height:19px;color:var(--accent);margin-top:4px}
+.tpg-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 
-/* ============ ГАЛЕРЕЯ: строго 3 + 3 ============ */
-.gal-grid{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+/* ============ ГАЛЕРЕЯ: 3 + 3, JPG ============ */
+.gal-grid{display:grid;gap:16px;grid-template-columns:repeat(2,1fr)}
 @media (min-width:760px){.gal-grid{grid-template-columns:repeat(3,1fr)}}
 .gal-item{margin:0;display:grid;gap:10px}
 .gal-photo{margin:0;position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;
@@ -219,29 +232,31 @@ a{color:var(--accent)}
 .gal-photo.is-loaded img{opacity:1}
 .gal-photo.is-missing img{display:none}
 .gal-item:hover .gal-photo img{transform:scale(1.04)}
-.gal-item figcaption{font-size:13px;color:var(--muted);text-align:center;padding:0 6px}
+.gal-item figcaption{font-size:14.5px;color:var(--muted);text-align:center;padding:0 6px}
 
-/* ============ КОНТАКТЫ: только прямые ссылки ============ */
-.contact-list{display:grid;gap:12px;margin:18px 0 0;max-width:560px}
+/* ============ FOOTER: контакты и копи по центру ============ */
+.footer{border-top:1px solid var(--line);padding:clamp(40px,5vw,64px) 0;background:var(--surface-2)}
+.footer-in{display:grid;justify-items:center;gap:22px;text-align:center}
+.f-title{font-size:clamp(20px,2.4vw,28px);font-weight:700;letter-spacing:-.02em}
+.f-contacts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;width:100%}
 .crow{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:16px;background:var(--surface);
-  overflow:hidden;transition:border-color .2s,transform .2s}
+  overflow:hidden;transition:border-color .2s,transform .2s;flex:0 1 340px;min-width:280px}
 .crow:hover{border-color:var(--cic,var(--accent));transform:translateY(-2px)}
-.crow-a{flex:1;display:flex;align-items:center;gap:14px;padding:12px 16px;min-height:56px;text-decoration:none;color:var(--text)}
-.ci{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none;font-weight:800;font-size:13px;
+.crow-a{flex:1;display:flex;align-items:center;gap:14px;padding:12px 16px;min-height:60px;text-decoration:none;color:var(--text)}
+.ci{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;flex:none;font-weight:800;font-size:14px;
   background:color-mix(in srgb,var(--cic) 15%,transparent);color:var(--cic)}
-.ci-mail{--cic:#ff9f0a}.ci-tg{--cic:#0071e3}.ci-vk{--cic:#af52de}
-[data-theme="dark"] .ci-mail{--cic:#ff9f0a}[data-theme="dark"] .ci-tg{--cic:#0a84ff}[data-theme="dark"] .ci-vk{--cic:#bf5af2}
-.ct{display:grid;line-height:1.3;min-width:0}
-.ct small{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.ct b{font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ci svg{width:21px;height:21px}
+.ci-mail{--cic:#b45309}.ci-tg{--cic:#0071e3}.ci-vk{--cic:#334155}
+[data-theme="dark"] .ci-mail{--cic:#d97706}[data-theme="dark"] .ci-tg{--cic:#0a84ff}[data-theme="dark"] .ci-vk{--cic:#94a3b8}
+.ct{display:grid;line-height:1.3;min-width:0;text-align:left}
+.ct small{font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.ct b{font-size:16px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cext{color:var(--muted);margin-left:auto;flex:none}
-.copy-mini{width:52px;flex:none;border:0;border-left:1px solid var(--line);background:transparent;color:var(--muted);
+.copy-mini{width:54px;flex:none;border:0;border-left:1px solid var(--line);background:transparent;color:var(--muted);
   cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s}
+.copy-mini svg{width:19px;height:19px}
 .copy-mini:hover{color:var(--cic,var(--accent));background:color-mix(in srgb,var(--cic,#0071e3) 12%,transparent)}
-
-/* ============ FOOTER ============ */
-.footer{border-top:1px solid var(--line);padding:34px 0 44px;background:var(--surface-2)}
-.footer p{color:var(--muted);font-size:14px}
+.f-copy{color:var(--muted);font-size:15.5px}
 
 /* ============ SHEET ============ */
 .sheet{position:fixed;inset:0;z-index:80;background:var(--bg);overflow-y:auto;
@@ -250,52 +265,60 @@ a{color:var(--accent)}
 .sheet-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;height:var(--nav-h);padding:0 16px;
   background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--line)}
-.sheet-body{max-width:960px;margin:0 auto;padding:34px 20px 90px}
-.sheet-hero{display:grid;gap:8px;margin-bottom:26px}
+.sheet-body{max-width:1040px;margin:0 auto;padding:36px 20px 90px}
+.sheet-hero{display:grid;gap:8px;margin-bottom:28px}
 .sheet-hero .chip-row{justify-content:flex-start;margin-top:10px}
-.sheet-sec{margin-top:34px}
-.sheet-sec h3{font-size:22px;margin-bottom:14px}
-.shots{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.sheet-sec{margin-top:36px}
+.sheet-sec h3{font-size:24px;margin-bottom:14px}
+.shots{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
 .shot{margin:0;display:grid;gap:10px}
 .shot-frame{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface-2);aspect-ratio:16/10}
 .shot-frame img{width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .5s;cursor:zoom-in}
 .shot-frame.is-loaded img{opacity:1}
 .shot-frame.is-missing img{display:none}
 .shot-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;
-  padding:12px;text-align:center;color:var(--muted);background:var(--surface-2)}
+  padding:12px;text-align:center;color:var(--muted);background:var(--surface-2);border:0}
 .shot-frame.is-missing .photo-ph{display:flex}
-.shot figcaption{font-size:13px;color:var(--muted)}
-.sheet-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.note{padding:16px 18px;border-radius:14px;background:var(--acc-soft,var(--accent-soft));font-size:14px;color:var(--text)}
+.shot figcaption{font-size:14.5px;color:var(--muted)}
+.sheet-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+.note{padding:18px 20px;border-radius:14px;background:var(--acc-soft,var(--accent-soft));font-size:15.5px;color:var(--text)}
 
 /* ============ МОДАЛКИ ============ */
 .modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;
   background:rgba(0,0,0,.42);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   opacity:0;pointer-events:none;transition:opacity .28s}
 .modal.open{opacity:1;pointer-events:auto}
-.modal-card{width:min(440px,100%);padding:28px;border-radius:28px;background:var(--surface);border:1px solid var(--line);
-  box-shadow:var(--shadow);display:grid;gap:16px;transform:scale(.96);transition:transform .28s}
+.modal-card{width:min(480px,100%);padding:30px;border-radius:28px;background:var(--surface);border:1px solid var(--line);
+  box-shadow:var(--shadow);display:grid;gap:18px;transform:scale(.96);transition:transform .28s}
 .modal.open .modal-card{transform:none}
 .modal-card.shake{animation:shake .4s}
 @keyframes shake{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
-.gate-ico{width:56px;height:56px;border-radius:18px;background:var(--acc-soft,var(--accent-soft));color:var(--acc,var(--accent));display:grid;place-items:center}
+.gate-ico{width:64px;height:64px;border-radius:20px;background:var(--acc-soft,var(--accent-soft));color:var(--acc,var(--accent));display:grid;place-items:center}
+.gate-ico svg{width:26px;height:26px}
 .gate-ico.unlocked{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
-.gate-err{font-size:13.5px;color:var(--err);min-height:20px}
-.gate-hint{font-size:13.5px;color:var(--muted)}
+.gate-err{font-size:14px;color:var(--err);min-height:20px}
+.gate-hint{font-size:15px;color:var(--muted)}
+/* поля ввода (восстановлены для окна кода) */
+.field{display:grid;gap:7px}
+.field label{font-size:14px;font-weight:700;color:var(--muted)}
+.field input{font:inherit;font-size:16px;color:var(--text);background:var(--surface-2);border:1px solid var(--line);
+  border-radius:12px;padding:12px 16px;min-height:50px;width:100%}
+.field input:focus{outline:3px solid var(--accent);outline-offset:2px}
+/* лайтбокс: крупнее, чтобы разглядеть скриншот */
 .lb{z-index:95}
-.lb-card{width:min(1040px,100%);padding:14px;border-radius:20px;background:rgba(20,20,24,.86);border:1px solid rgba(255,255,255,.14)}
-.lb-frame{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/10;background:#111}
+.lb-card{width:min(1440px,100%);padding:16px;border-radius:22px;background:rgba(20,20,24,.9);border:1px solid rgba(255,255,255,.14)}
+.lb-frame{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;max-height:78vh;background:#111}
 .lb-frame img{width:100%;height:100%;object-fit:contain}
-.lb-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#bbb}
+.lb-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#bbb;border:0;background:transparent}
 .lb-frame.is-missing img{display:none}
 .lb-frame.is-missing .photo-ph{display:flex}
-.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 4px 2px;color:#eee;font-size:14px}
+.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 4px 2px;color:#eee;font-size:15px}
 .lb-nav{display:flex;gap:8px}
 .lb .icon-btn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#fff}
 
 /* ============ TOAST ============ */
-.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,16px);z-index:100;padding:12px 20px;border-radius:980px;
-  background:var(--text);color:var(--bg);font-size:14px;font-weight:600;box-shadow:var(--shadow);
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,16px);z-index:100;padding:13px 22px;border-radius:980px;
+  background:var(--text);color:var(--bg);font-size:15px;font-weight:600;box-shadow:var(--shadow);
   opacity:0;pointer-events:none;transition:.3s}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 </style>
@@ -307,7 +330,7 @@ a{color:var(--accent)}
 "use strict";
 /* ================= КОНСТАНТЫ ================= */
 const IMG = "images/";
-const CODE_HASHES = { // коды только как хеши; код нужен лишь для перехода на ресурс
+const CODE_HASHES = { // только хеши; коды живут в памяти вкладки, без localStorage
   webdev: { sha: "aa13e98223d87d87ab54cdca89e8a6bccad5ec44a4d5d0472866f02ae0667612", djb2: "5fa8c326" },
   python: { sha: "e8b08498829a8ae2ee3154a41bf0bdf59b8a92c34936ced0c319f210ac0970ce", djb2: "fe278c4f" },
   ege:    { sha: "aabf620886006f4b5293c4da7a11338a18b45f8e6b937fd4fca016cf2254dd81", djb2: "580aacea" },
@@ -316,7 +339,7 @@ const CODE_HASHES = { // коды только как хеши; код нуже�
   tpg:    { sha: "9290729915a110d0b9a681e2f683f388aac394ecef0c0e67f9509fa2529b9d07", djb2: "8292b370" },
   master: { sha: "b84fc84fc849baee524d95187a72b545e01222477c2a69438f4ee27ca5b24353", djb2: "dc761796" }
 };
-const LS_UNLOCK = "mm_site_unlocked_v1", LS_THEME = "mm_site_theme_v1";
+const LS_THEME = "mm_site_theme_v1";
 const PROJECTS = [
   { id:"webdev", title:"Веб-разработка", tagline:"Курс дополнительного образования: от первой страницы в блокноте до публичной защиты собственного Dashboard.",
     audience:"10–11 класс", volume:"24 занятия × 90 мин", status:"Готов", url:"https://mmmaslikov.github.io/webdev/",
@@ -350,19 +373,18 @@ const PROJECTS = [
     shots:[["scr-tpg-01-hero.png","Титул проекта и команда"],["scr-tpg-02-stages.png","Этапы, цели и метрики"],["scr-tpg-03-team.png","Состав группы и график года"]]}
 ];
 const HERO_PHOTO = ["photo-hero.png","Михаил Масликов, портрет без фона"];
-/* галерея: 6 кадров, две строки по три */
-const GALLERY = [
-  ["photo-gallery-bw.png","Ночь перед дедлайном модуля: тренажёр должен работать"],
-  ["photo-teach.png","С учениками за компьютерами: консультация по проекту"],
-  ["photo-gallery-code.png","Код на проекции: объясняю fetch на живом примере"],
-  ["photo-school.png","Команда Точки будущего — среда, где возможно всё"],
-  ["photo-gallery-lesson.png","Теория без слайдов: разбор задания у экрана"],
-  ["photo-speak.png","Выступление на интенсиве для учителей"]
+const GALLERY = [ // JPG, 4:5
+  ["photo-gallery-bw.jpg","Ночь перед дедлайном модуля: тренажёр должен работать"],
+  ["photo-teach.jpg","С учениками за компьютерами: консультация по проекту"],
+  ["photo-gallery-code.jpg","Код на проекции: объясняю fetch на живом примере"],
+  ["photo-school.jpg","Команда Точки будущего — среда, где возможно всё"],
+  ["photo-gallery-lesson.jpg","Теория без слайдов: разбор задания у экрана"],
+  ["photo-speak.jpg","Выступление на интенсиве для учителей"]
 ];
 const ICONS = {
   lock:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
   check:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
-  okc:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.2 2.4 2.4 4.6-4.8"/></svg>',
+  okc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.2 2.4 2.4 4.6-4.8"/></svg>',
   cam:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg>',
   sun:'<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M19.4 4.6l-1.7 1.7M6.3 17.7l-1.7 1.7"/></svg>',
   moon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 14.2A8.6 8.6 0 0 1 9.8 3.4a8.6 8.6 0 1 0 10.8 10.8z"/></svg>',
@@ -370,26 +392,28 @@ const ICONS = {
   close:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
   left:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
   right:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>',
-  ext:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5"/></svg>',
-  mail:'<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
-  send:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4z"/></svg>',
-  copy:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',
+  ext:'<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
+  send:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4z"/></svg>',
+  copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',
   dev:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>',
   py:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10M7 12h6M7 16h10"/></svg>',
   target:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1"/></svg>',
   turtle:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="6"/><path d="M12 7V4M6.5 9.5 4 8M17.5 9.5 20 8M8 18.5 6.6 21M16 18.5 17.4 21"/></svg>',
-  team:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.4"/><path d="M2.6 20a6.4 6.4 0 0 1 12.8 0"/><circle cx="17.4" cy="9.4" r="2.8"/><path d="M15.6 14.6a5.4 5.4 0 0 1 6 5.4"/></svg>',
-  layers:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>',
-  eye:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>',
-  route:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2.6"/><circle cx="18" cy="5" r="2.6"/><path d="M8.6 19H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.4"/></svg>',
-  bot:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V4.5M9 13h.01M15 13h.01M9.5 16h5"/></svg>',
-  scale:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M8 20h8M12 6l6 2-6-2-6 2 6-2z"/><path d="M6 8l-3 6a3.2 3.2 0 0 0 6 0zM18 8l-3 6a3.2 3.2 0 0 0 6 0z"/></svg>'
+  team:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.4"/><path d="M2.6 20a6.4 6.4 0 0 1 12.8 0"/><circle cx="17.4" cy="9.4" r="2.8"/><path d="M15.6 14.6a5.4 5.4 0 0 1 6 5.4"/></svg>',
+  layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>',
+  eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>',
+  route:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="2.6"/><circle cx="18" cy="5" r="2.6"/><path d="M8.6 19H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.4"/></svg>',
+  bot:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="11" rx="3"/><path d="M12 8V4.5M9 13h.01M15 13h.01M9.5 16h5"/></svg>',
+  scale:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M8 20h8M12 6l6 2-6-2-6 2 6-2z"/><path d="M6 8l-3 6a3.2 3.2 0 0 0 6 0zM18 8l-3 6a3.2 3.2 0 0 0 6 0z"/></svg>',
+  spark:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/></svg>'
 };
 const P_ICON = { webdev:ICONS.dev, python:ICONS.py, ege:ICONS.target, oge:ICONS.target, turtle:ICONS.turtle, tpg:ICONS.team };
 
 /* ================= STATE ================= */
 const state = {
-  unlocked: new Set(), sheetId: null, gateFor: null,
+  unlocked: new Set(),   // только в памяти вкладки: перезагрузил страницу — снова под кодом
+  sheetId: null, gateFor: null,
   attempts: 0, cooldown: 0, cooldownTimer: null,
   lb: null, menu: false, theme: "auto", lastFocus: null
 };
@@ -406,8 +430,6 @@ async function sha256(s){
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
 }
 const normCode = s => s.trim().toUpperCase().replace(/\s+/g,"");
-function loadUnlocked(){ try{ (JSON.parse(localStorage.getItem(LS_UNLOCK))||[]).forEach(id=>state.unlocked.add(id)); }catch(e){ state.unlocked.clear(); } }
-function saveUnlocked(){ try{ localStorage.setItem(LS_UNLOCK, JSON.stringify([...state.unlocked])); }catch(e){} }
 function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),2600); }
 function bindImages(root){
   $$("img[data-file]", root).forEach(img=>{
@@ -435,8 +457,8 @@ function renderApp(){
   <header class="nav"><div class="nav-in">
     <a class="logo" href="#top" aria-label="На главную"><span class="logo-m">ММ</span><span>mmmaslikov</span></a>
     <nav class="nav-links" aria-label="Разделы сайта">
-      <a href="#about" data-spy="about">Обо мне</a><a href="#principles" data-spy="principles">Принципы</a>
-      <a href="#works" data-spy="works">Разработки</a><a href="#school" data-spy="school">Школа и ТПГ</a>
+      <a href="#about" data-spy="about">Обо мне</a><a href="#works" data-spy="works">Разработки</a>
+      <a href="#principles" data-spy="principles">Принципы</a><a href="#school" data-spy="school">Школа и ТПГ</a>
       <a href="#gallery" data-spy="gallery">Галерея</a><a href="#contacts" data-spy="contacts">Контакты</a>
     </nav>
     <div class="nav-actions">
@@ -445,7 +467,7 @@ function renderApp(){
     </div>
   </div></header>
   <nav class="menu" id="menu" aria-label="Мобильное меню">
-    <a href="#about">Обо мне</a><a href="#principles">Принципы</a><a href="#works">Разработки</a>
+    <a href="#about">Обо мне</a><a href="#works">Разработки</a><a href="#principles">Принципы</a>
     <a href="#school">Школа и ТПГ</a><a href="#gallery">Галерея</a><a href="#contacts">Контакты</a>
   </nav>
   <main id="top">
@@ -476,11 +498,11 @@ function renderApp(){
 
     <section class="sec sec--blue" id="about"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Обо мне</span><h2>Учитель, который строит продукты вместе с учениками</h2></div>
-      <div class="about-cols rv">
-        <p class="j">Я преподаю информатику в ЧОУ «Точка будущего» и верю в простую вещь: программирование и веб-разработка осваиваются только руками. Поэтому вместо пересказа параграфов мои ученики с первого занятия получают видимый результат — страницу, тренажёр, коммит, публичную ссылку.</p>
-        <p class="j">Мои разработки — это не презентации, а рабочие среды: курс веб-разработки с защитой проекта, Python-тренажёр на 186 задач, кабинеты подготовки к ЕГЭ и ОГЭ, курс черепашки для младших классов и проектная лаборатория для сотрудников школы.</p>
-        <p class="j">Каждый ресурс живёт по тем же правилам, по которым я учу: адаптивность, тёмная тема, честные критерии оценки и возможность объяснить каждую строку кода.</p>
-        <p class="j">А ещё я куратор ТПГ «ГенИИ» — группы сотрудников, которая превращает ИИ из «дальнего знакомого» в штатный инструмент учителя: от банка промптов до собственных образовательных сайтов.</p>
+      <div class="about-grid rv">
+        <article class="about-card a-blue"><span class="ai">${ICONS.dev}</span><h3>Практика руками</h3><p class="j">Я преподаю информатику в ЧОУ «Точка будущего» и верю в простую вещь: программирование и веб-разработка осваиваются только руками. Поэтому вместо пересказа параграфов ученики с первого занятия получают видимый результат — страницу, тренажёр, коммит, публичную ссылку.</p></article>
+        <article class="about-card a-slate"><span class="ai">${ICONS.layers}</span><h3>Рабочие среды, а не презентации</h3><p class="j">Мои разработки — это не слайды, а рабочие среды: курс веб-разработки с защитой проекта, Python-тренажёр на 186 задач, кабинеты подготовки к ЕГЭ и ОГЭ, курс черепашки для младших классов и проектная лаборатория для сотрудников школы.</p></article>
+        <article class="about-card a-teal"><span class="ai">${ICONS.scale}</span><h3>Одинаковые правила для всех продуктов</h3><p class="j">Каждый ресурс живёт по тем же правилам, по которым я учу: адаптивность, тёмная тема, честные критерии оценки и возможность объяснить каждую строку кода — своего и учеников.</p></article>
+        <article class="about-card a-terra"><span class="ai">${ICONS.team}</span><h3>ТПГ «ГенИИ» и коллеги</h3><p class="j">Я куратор ТПГ «ГенИИ» — группы сотрудников, которая превращает ИИ из «дальнего знакомого» в штатный инструмент учителя: от банка промптов до собственных образовательных сайтов и методических конструкторов.</p></article>
       </div>
       <div class="chip-row rv">
         <span class="chip">Информатика и программирование</span><span class="chip">Дополнительное образование</span>
@@ -488,71 +510,69 @@ function renderApp(){
       </div>
     </div></section>
 
-    <section class="sec sec--green" id="works"><div class="wrap">
+    <section class="sec sec--slate" id="works"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Разработки</span><h2>Каталог образовательных ресурсов</h2><p class="sec-lead">Описания и скриншоты открыты всем; переход на рабочие ресурсы — по коду доступа, код выдаю лично ученикам и сотрудникам.</p></div>
       <div class="cards" id="cards"></div>
     </div></section>
 
-    <section class="sec sec--amber" id="principles"><div class="wrap">
+    <section class="sec sec--teal" id="principles"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Принципы</span><h2>Как я учу</h2><p class="sec-lead">Шесть правил, на которых держится каждый ресурс — от первого занятия до защиты проекта.</p></div>
       <div class="benefits rv">
         <article class="benefit b-blue"><span class="bi">${ICONS.eye}</span><div><h3>Видимый результат</h3><p>Каждое занятие заканчивается артефактом: рабочая страница, решённая задача, рисунок кодом, рабочий лист. Знания превращаются в продукт, а не в пересказ.</p></div></article>
-        <article class="benefit b-green"><span class="bi">${ICONS.route}</span><div><h3>Единый маршрут обучения</h3><p>Все ресурсы устроены одинаково: короткая теория, сразу практика, проверки и видимый прогресс. Ученик всегда понимает, где он и какой следующий шаг.</p></div></article>
-        <article class="benefit b-orange"><span class="bi">${ICONS.bot}</span><div><h3>ИИ — штатный инструмент</h3><p>Нейросети — легальный инструмент учёбы и работы. Правило одно: любой результат, который ты сдаёшь как свой, ты обязан уметь объяснить.</p></div></article>
-        <article class="benefit b-purple"><span class="bi">${ICONS.scale}</span><div><h3>Честные критерии</h3><p>Критерии оценки известны заранее и подтверждаются показом: засчитывается то, что работает и объясняется. Публичная защита — самая честная проверка.</p></div></article>
-        <article class="benefit b-green"><span class="bi">${ICONS.dev}</span><div><h3>Инструменты, а не параграфы</h3><p>Тренажёры, рабочие листы и среды вместо конспектов: ошибка в коде видна сразу и становится учебным материалом, а не приговором.</p></div></article>
+        <article class="benefit b-teal"><span class="bi">${ICONS.route}</span><div><h3>Единый маршрут обучения</h3><p>Все ресурсы устроены одинаково: короткая теория, сразу практика, проверки и видимый прогресс. Ученик всегда понимает, где он и какой следующий шаг.</p></div></article>
+        <article class="benefit b-terra"><span class="bi">${ICONS.bot}</span><div><h3>ИИ — штатный инструмент</h3><p>Нейросети — легальный инструмент учёбы и работы. Правило одно: любой результат, который ты сдаёшь как свой, ты обязан уметь объяснить.</p></div></article>
+        <article class="benefit b-slate"><span class="bi">${ICONS.scale}</span><div><h3>Честные критерии</h3><p>Критерии оценки известны заранее и подтверждаются показом: засчитывается то, что работает и объясняется. Публичная защита — самая честная проверка.</p></div></article>
+        <article class="benefit b-teal"><span class="bi">${ICONS.dev}</span><div><h3>Инструменты, а не параграфы</h3><p>Тренажёры, рабочие листы и среды вместо конспектов: ошибка в коде видна сразу и становится учебным материалом, а не приговором.</p></div></article>
         <article class="benefit b-blue"><span class="bi">${ICONS.team}</span><div><h3>Команда и взаимное ревью</h3><p>Пары, код-ревью и командные доски: ученики и сотрудники учатся давать и принимать обратную связь по строкам кода и по продукту в целом.</p></div></article>
       </div>
     </div></section>
 
-    <section class="sec sec--purple" id="school"><div class="wrap school-cols">
+    <section class="sec sec--terra" id="school"><div class="wrap school-cols">
       <div class="sec-head center rv"><span class="sec-kicker">Школа и ТПГ</span><h2>Точка будущего: среда, где это возможно</h2><p class="sec-lead">ЧОУ «Точка будущего» — школа со статусом инновационной площадки: здесь преподаватель может запустить курс-симулятор профессии, тренажёр на сотню задач или проектную лабораторию для сотрудников — и получить поддержку, а не согласование на полгода.</p></div>
       <div class="tpg rv">
-        <h3>ТПГ «ГенИИ» · 2026/2027</h3>
-        <p class="j" style="color:var(--muted);font-size:15px;margin-top:8px">Творческая проектировочная группа сотрудников: исследование сервисов ИИ и создание современных образовательных продуктов. Куратор группы — М. М. Масликов, заказчик — руководитель старшей школы.</p>
+        <div class="tpg-head"><span class="tpg-ico">${ICONS.team}</span><h3>ТПГ «ГенИИ» · 2026/2027</h3></div>
+        <p class="j" style="color:var(--muted);font-size:16px;margin-top:14px">Творческая проектировочная группа сотрудников: исследование сервисов ИИ и создание современных образовательных продуктов. Куратор группы — М. М. Масликов, заказчик — руководитель старшей школы.</p>
         <ul>
-          <li>12 участников из 10 методических объединений и служб</li>
-          <li>7 этапов: от анализа проблемы до защиты и масштабирования</li>
-          <li>Продукты: банк промптов, ИИ-методички, конструктор персонализации</li>
+          <li>${ICONS.spark}12 участников из 10 методических объединений и служб</li>
+          <li>${ICONS.route}7 этапов: от анализа проблемы до защиты и масштабирования</li>
+          <li>${ICONS.layers}Продукты: банк промптов, ИИ-методички, конструктор персонализации</li>
         </ul>
         <div class="tpg-stats"><span class="chip">−40% времени на рутину</span><span class="chip">50+ продуктов за год</span><span class="chip">80% сотрудников с ИИ</span></div>
       </div>
     </div></section>
 
-    <section class="sec" id="gallery"><div class="wrap">
+    <section class="sec" id="gallery" style="background:var(--surface)"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Галерея</span><h2>За кадром</h2><p class="sec-lead">Шесть кадров 4:5 в две строки: уроки, выступления и команда. Ничего не растягивается и не обрезается случайно.</p></div>
       <div class="gal-grid rv" id="gal"></div>
     </div></section>
-
-    <section class="sec sec--cyan" id="contacts"><div class="wrap">
-      <div class="sec-head rv"><span class="sec-kicker">Контакты</span><h2>Написать мне</h2><p class="sec-lead">Ученикам — по вопросам кодов доступа и курсов. Коллегам — по поводу ТПГ, мастер-классов и совместных продуктов.</p></div>
-      <div class="contact-list rv">
-        <div class="crow ci-mail">
-          <a class="crow-a" href="mailto:mmmaslikov@gmail.com">
-            <span class="ci">${ICONS.mail}</span>
-            <span class="ct"><small>Email</small><b>mmmaslikov@gmail.com</b></span>
-          </a>
-          <button class="copy-mini" id="copy-mail" type="button" aria-label="Скопировать email">${ICONS.copy}</button>
-        </div>
-        <div class="crow ci-tg">
-          <a class="crow-a" href="https://t.me/mmaslikov" target="_blank" rel="noopener">
-            <span class="ci">${ICONS.send}</span>
-            <span class="ct"><small>Telegram</small><b>t.me/mmaslikov</b></span>
-            <span class="cext">${ICONS.ext}</span>
-          </a>
-        </div>
-        <div class="crow ci-vk">
-          <a class="crow-a" href="https://vk.ru/mmaslikov" target="_blank" rel="noopener">
-            <span class="ci">VK</span>
-            <span class="ct"><small>ВКонтакте</small><b>vk.ru/mmaslikov</b></span>
-            <span class="cext">${ICONS.ext}</span>
-          </a>
-        </div>
-      </div>
-    </div></section>
   </main>
-  <footer class="footer"><div class="wrap">
-    <p>© 2026 Масликов Михаил Михайлович · ЧОУ «Точка будущего»<br>Код доступа для перехода на ресурс выдаёт лично учитель.</p>
+
+  <footer class="footer" id="contacts"><div class="wrap footer-in">
+    <div class="f-title">Написать мне</div>
+    <div class="f-contacts">
+      <div class="crow ci-mail">
+        <a class="crow-a" href="mailto:mmmaslikov@gmail.com">
+          <span class="ci">${ICONS.mail}</span>
+          <span class="ct"><small>Email</small><b>mmmaslikov@gmail.com</b></span>
+        </a>
+        <button class="copy-mini" id="copy-mail" type="button" aria-label="Скопировать email">${ICONS.copy}</button>
+      </div>
+      <div class="crow ci-tg">
+        <a class="crow-a" href="https://t.me/mmaslikov" target="_blank" rel="noopener">
+          <span class="ci">${ICONS.send}</span>
+          <span class="ct"><small>Telegram</small><b>t.me/mmaslikov</b></span>
+          <span class="cext">${ICONS.ext}</span>
+        </a>
+      </div>
+      <div class="crow ci-vk">
+        <a class="crow-a" href="https://vk.ru/mmaslikov" target="_blank" rel="noopener">
+          <span class="ci">VK</span>
+          <span class="ct"><small>ВКонтакте</small><b>vk.ru/mmaslikov</b></span>
+          <span class="cext">${ICONS.ext}</span>
+        </a>
+      </div>
+    </div>
+    <p class="f-copy">© 2026 Масликов Михаил Михайлович · ЧОУ «Точка будущего»<br>Код доступа для перехода на ресурс выдаёт лично учитель.</p>
   </div></footer>
 
   <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"></div>
@@ -681,7 +701,7 @@ async function submitGate(){
   const isMaster = res.key==="master";
   if (isMaster) PROJECTS.forEach(p=>state.unlocked.add(p.id));
   else state.unlocked.add(res.key);
-  saveUnlocked(); syncLockUI();
+  syncLockUI();
   if (state.sheetId) renderSheetActions(PROJECTS.find(p=>p.id===state.sheetId));
   const p = PROJECTS.find(x=>x.id===res.key);
   $("#gate-card").innerHTML = gateSuccessHTML(p, isMaster);
@@ -721,7 +741,7 @@ function openSheet(id){
   sheet.innerHTML = `
     <div class="sheet-bar">
       <button class="icon-btn" id="sheet-close" type="button" aria-label="Закрыть">${ICONS.close}</button>
-      <strong style="font-size:15px">${esc(p.title)}</strong>
+      <strong style="font-size:16px">${esc(p.title)}</strong>
       <span class="lock-badge" id="sheet-linkbadge" style="margin-left:auto"></span>
     </div>
     <div class="sheet-body">
@@ -731,9 +751,9 @@ function openSheet(id){
         <p class="sec-lead">${esc(p.tagline)}</p>
         <div class="chip-row"><span class="chip">${esc(p.audience)}</span><span class="chip">${esc(p.volume)}</span><span class="chip">Автор: Масликов М. М.</span></div>
       </div>
-      <div class="sheet-sec"><h3>Что это</h3>${p.about.map(t=>`<p class="j" style="color:var(--muted);margin-bottom:12px">${esc(t)}</p>`).join("")}</div>
+      <div class="sheet-sec"><h3>Что это</h3>${p.about.map(t=>`<p class="j" style="color:var(--muted);margin-bottom:12px;font-size:16.5px">${esc(t)}</p>`).join("")}</div>
       <div class="sheet-sec"><h3>Что внутри</h3>
-        <ul style="margin:0;padding-left:20px;color:var(--muted);display:grid;gap:8px">${p.inside.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+        <ul style="margin:0;padding-left:22px;color:var(--muted);display:grid;gap:9px;font-size:16px">${p.inside.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
       </div>
       <div class="sheet-sec"><h3>Скриншоты</h3>
         <div class="shots">${p.shots.map((s,i)=>`
@@ -799,7 +819,7 @@ function initSpy(){
   const io = new IntersectionObserver(es=>es.forEach(en=>{
     if (en.isIntersecting){ $$(".nav-links a").forEach(a=>a.classList.toggle("active", a.dataset.spy===en.target.id)); }
   }), {rootMargin:"-40% 0px -55% 0px"});
-  ["about","principles","works","school","gallery","contacts"].forEach(id=>{ const el=document.getElementById(id); if(el) io.observe(el); });
+  ["about","works","principles","school","gallery","contacts"].forEach(id=>{ const el=document.getElementById(id); if(el) io.observe(el); });
 }
 function initReveal(){
   const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }), {threshold:.12});
@@ -853,7 +873,6 @@ function bindHandlers(){
 /* ================= INIT ================= */
 function init(){
   try{ const t = localStorage.getItem(LS_THEME); if (t==="light"||t==="dark") state.theme = t; }catch(e){}
-  loadUnlocked();
   renderApp();
   bindHandlers();
   applyTheme();
