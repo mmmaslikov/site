@@ -15,29 +15,32 @@
     scr-oge-01-overview.png, scr-oge-02-catalog.png, scr-oge-03-task.png,
     scr-turtle-01-hero.png, scr-turtle-02-lessons.png, scr-turtle-03-worksheet.png,
     scr-tpg-01-hero.png, scr-tpg-02-stages.png, scr-tpg-03-team.png
-  JPG: галерея, 6 кадров, все строго 4:5 · 1200×1500:
-    photo-gallery-bw.jpg     (2.JPG) · «Ночь перед дедлайном модуля»
-    photo-teach.jpg          (6.JPG) · «С учениками за компьютерами»
-    photo-gallery-code.jpg   (9.JPG) · «Код на проекции во время занятия»
-    photo-school.jpg         (4.JPG) · «Команда Точки будущего»
-    photo-gallery-lesson.jpg (8.JPG) · «Теория без слайдов»
-    photo-speak.jpg          (3.JPG) · «Выступление на интенсиве»
-  КОДЫ ДОСТУПА хранятся только в памяти вкладки (без localStorage): после перезагрузки страницы всё снова под кодом.
+  JPG: галерея, 6 квадратных кадров 1:1 · 1400×1400:
+    photo-gallery-bw.jpg (2.JPG) · photo-teach.jpg (6.JPG) · photo-gallery-code.jpg (9.JPG)
+    photo-school.jpg (4.JPG) · photo-gallery-lesson.jpg (8.JPG) · photo-speak.jpg (3.JPG)
+  КОДЫ ДОСТУПА живут только в памяти вкладки: перезагрузил страницу — снова под кодом.
 -->
 <style>
-/* ============ ПЕРЕМЕННЫЕ ============ */
+/* ============ ПЕРЕМЕННЫЕ: синяя палитра, без белых фонов ============ */
 :root{
-  --bg:#f5f5f7; --surface:#ffffff; --surface-2:#fbfbfd; --text:#1d1d1f; --muted:#6e6e73;
-  --line:rgba(0,0,0,.09); --accent:#0071e3; --accent-soft:rgba(0,113,227,.10);
-  --radius:24px; --radius-s:16px; --shadow:0 12px 34px rgba(0,0,0,.09);
+  --bg:#e9f0fa;            /* бледно-синий: фон страницы и «светлых» секций */
+  --steel:#d8e3f2;         /* стальной синий */
+  --navy:#0d2b57;          /* глубокий синий для акцентных секций и футера */
+  --surface:#ffffff;       /* только карточки */
+  --surface-2:#f2f6fc;
+  --text:#1d1d1f; --muted:#5d6b80;
+  --line:rgba(13,43,87,.12);
+  --accent:#0071e3; --accent-soft:rgba(0,113,227,.10);
+  --radius:24px; --radius-s:16px; --shadow:0 12px 34px rgba(13,43,87,.10);
   --nav-h:64px; --ok:#34c759; --err:#ff3b30;
   --pad:clamp(20px,4vw,48px);
   --wrap:1320px;
 }
 [data-theme="dark"]{
-  --bg:#0b0b0f; --surface:#17171c; --surface-2:#1e1e24; --text:#f5f5f7; --muted:#9b9ba1;
-  --line:rgba(255,255,255,.11); --accent:#2997ff; --accent-soft:rgba(41,151,255,.16);
-  --shadow:0 14px 40px rgba(0,0,0,.55);
+  --bg:#0f1520; --steel:#182231; --navy:#0a1f3c;
+  --surface:#171c26; --surface-2:#1d2430; --text:#f5f5f7; --muted:#9aa7ba;
+  --line:rgba(255,255,255,.12); --accent:#2997ff; --accent-soft:rgba(41,151,255,.16);
+  --shadow:0 14px 40px rgba(0,0,0,.5);
 }
 /* цвета проектов */
 .acc-webdev{--acc:#ff9f0a;--acc-soft:rgba(255,159,10,.15)}  [data-theme="dark"] .acc-webdev{--acc:#ff9f0a;--acc-soft:rgba(255,159,10,.24)}
@@ -46,36 +49,36 @@
 .acc-oge{--acc:#ff2d55;--acc-soft:rgba(255,45,85,.12)}      [data-theme="dark"] .acc-oge{--acc:#ff375f;--acc-soft:rgba(255,55,95,.24)}
 .acc-turtle{--acc:#34c759;--acc-soft:rgba(52,199,89,.15)}   [data-theme="dark"] .acc-turtle{--acc:#30d158;--acc-soft:rgba(48,209,88,.24)}
 .acc-tpg{--acc:#af52de;--acc-soft:rgba(175,82,222,.15)}     [data-theme="dark"] .acc-tpg{--acc:#bf5af2;--acc-soft:rgba(191,90,242,.24)}
-/* приглушённая палитра фонов секций */
-.sec--blue{background:color-mix(in srgb,#0071e3 9%,var(--bg))}
-.sec--slate{background:color-mix(in srgb,#334155 9%,var(--bg))}
-.sec--teal{background:color-mix(in srgb,#0d9488 9%,var(--bg))}
-.sec--terra{background:color-mix(in srgb,#b45309 8%,var(--bg))}
+.sec--steel{background:var(--steel)}
+.sec--navy{background:var(--navy)}
+.sec--navy .sec-kicker{color:#8ec2ff}
+.sec--navy h2{color:#fff}
+.sec--navy .sec-lead{color:rgba(255,255,255,.8)}
 
 /* ============ БАЗА ============ */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);
-  font:17.5px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font:17px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   -webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 body.lock{overflow:hidden}
 img{max-width:100%;display:block}
 h1,h2,h3{letter-spacing:-.02em;line-height:1.12;margin:0}
-h1{font-size:clamp(32px,5.2vw,76px);font-weight:700}
+h1{font-size:clamp(26px,8.4vw,76px);font-weight:700}   /* мобильная граница 26px: слоган не переносится */
 h1 .h-line{display:block;white-space:nowrap}
-h1 .h-line.acc{color:var(--accent)}
-h2{font-size:clamp(28px,3.4vw,50px);font-weight:700}
-h3{font-size:21px;font-weight:600}
+h1 .h-line.acc{color:#cfe6ff}
+h2{font-size:clamp(26px,3.4vw,50px);font-weight:700}
+h3{font-size:20px;font-weight:600}
 p{margin:0}
 a{color:var(--accent)}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
-.sec{padding:clamp(60px,7vw,110px) 0}
-.sec-head{margin-bottom:clamp(28px,3vw,48px)}
+.sec{padding:clamp(52px,7vw,110px) 0}
+.sec-head{margin-bottom:clamp(26px,3vw,48px)}
 .sec-head.center{text-align:center;max-width:860px;margin-inline:auto}
 .sec-head.center .sec-lead{margin-inline:auto}
 .sec-kicker{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
-.sec-lead{color:var(--muted);margin-top:12px;max-width:720px;font-size:clamp(17px,1.5vw,20px)}
+.sec-lead{color:var(--muted);margin-top:12px;max-width:720px;font-size:clamp(16px,1.5vw,20px)}
 .j{text-align:justify;hyphens:auto}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 26px;
   border-radius:980px;border:1px solid transparent;background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:16px;
@@ -93,17 +96,17 @@ a{color:var(--accent)}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;transition:none}
-  *{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  *{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
 
 /* ============ NAV ============ */
 .nav{position:sticky;top:0;z-index:50;height:var(--nav-h);
-  background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(180%) blur(20px);
+  background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:saturate(180%) blur(20px);
   -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
 .nav-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad);height:var(--nav-h);display:flex;align-items:center;gap:14px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;text-decoration:none;color:var(--text);min-height:44px}
-.logo-m{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#5ac8fa);
-  color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700}
+.logo-m{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#0b3ea8,#3f97f0);
+  color:#fff;display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
 .nav-links{display:none;gap:4px;margin-left:auto}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;padding:10px 14px;border-radius:980px;min-height:44px;display:inline-flex;align-items:center}
 .nav-links a:hover{color:var(--text);background:var(--accent-soft)}
@@ -121,64 +124,88 @@ a{color:var(--accent)}
 .menu a{color:var(--text);text-decoration:none;font-size:18px;font-weight:600;padding:12px 14px;border-radius:14px;min-height:48px;display:flex;align-items:center}
 .menu a:hover{background:var(--accent-soft)}
 
-/* ============ HERO: белый фон на весь блок, фото без подложки и обводки ============ */
-.hero{background:var(--surface);
+/* ============ HERO: синий градиент + живые блики ============ */
+.hero{position:relative;overflow:hidden;color:#fff;
+  background:linear-gradient(160deg,#0b3ea8 0%,#0071e3 58%,#3f97f0 100%);
   min-height:calc(100vh - var(--nav-h));min-height:calc(100svh - var(--nav-h));
-  display:flex;flex-direction:column;justify-content:center;padding:clamp(36px,5vw,72px) 0 clamp(28px,3vw,48px)}
-.hero-grid{display:grid;gap:clamp(28px,3vw,48px);align-items:center}
+  display:flex;flex-direction:column;justify-content:center;padding:clamp(32px,5vw,72px) 0 clamp(26px,3vw,48px)}
+[data-theme="dark"] .hero{background:linear-gradient(160deg,#062a6b 0%,#0a55c4 60%,#1e6ef0 100%)}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none;filter:blur(72px);opacity:.4}
+.hero::before{width:56vw;height:56vw;max-width:760px;max-height:760px;top:-20%;right:-12%;
+  background:radial-gradient(circle at 32% 32%,rgba(255,255,255,.5),transparent 66%);
+  animation:drift1 16s ease-in-out infinite alternate}
+.hero::after{width:44vw;height:44vw;max-width:600px;max-height:600px;bottom:-24%;left:-10%;
+  background:radial-gradient(circle at 60% 60%,rgba(127,240,255,.45),transparent 66%);
+  animation:drift2 21s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate3d(-7%,5%,0) scale(1.1)}}
+@keyframes drift2{to{transform:translate3d(6%,-6%,0) scale(1.14)}}
+.hero .wrap{position:relative;z-index:1}
+.hero-grid{display:grid;gap:clamp(24px,3vw,48px);align-items:center}
 @media (min-width:960px){.hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)}}
 .hero-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:980px;
-  border:1px solid var(--line);background:var(--surface-2);font-size:13px;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--muted)}
-.hero-pill i{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
-.hero h1{margin:18px 0 20px}
-.hero-role{font-size:clamp(17px,1.6vw,22px);color:var(--muted);max-width:580px}
-.hero-school{font-weight:600;color:var(--text)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.hero-proof{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:16px;margin-top:24px}
-.hero-proof svg{color:var(--ok);flex:none;width:22px;height:22px}
-.hero-stage{position:relative;max-width:480px;margin-inline:auto;width:100%}
-.hero-photo{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:220px 220px 28px 28px}
+  border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.14);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92)}
+.hero-pill i{width:8px;height:8px;border-radius:50%;background:#cfe6ff;flex:none}
+.hero h1{margin:16px 0 18px;color:#fff}
+.hero-role{font-size:clamp(16px,1.6vw,22px);color:rgba(255,255,255,.85);max-width:580px}
+.hero-school{font-weight:700;color:#fff}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero .btn{background:#fff;color:#0b3ea8}
+.hero .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.hero-proof{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.88);font-size:15.5px;margin-top:22px}
+.hero-proof svg{color:#8affb1;flex:none;width:22px;height:22px}
+.hero-stage{position:relative;width:100%;max-width:400px;margin-inline:auto}
+@media (min-width:960px){.hero-stage{max-width:480px;margin-inline:0 0 0 auto}}
+.hero-photo{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:200px 200px 24px 24px}
 .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;
   opacity:0;transition:opacity .6s}
 .hero-photo.is-loaded img{opacity:1}
 .hero-photo.is-missing img{display:none}
 .photo-ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-  padding:20px;text-align:center;color:var(--muted);background:var(--surface-2);border:1.5px dashed var(--line);border-radius:24px}
+  padding:20px;text-align:center;color:var(--muted);background:var(--surface-2);border:1.5px dashed var(--line);border-radius:20px}
+.hero-photo .photo-ph{color:rgba(255,255,255,.85);background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.45)}
 .is-missing .photo-ph{display:flex}
-.photo-ph svg{opacity:.55}
-.ph-file{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;opacity:.8;word-break:break-all}
-.strip{margin-top:clamp(30px,4vw,56px);padding:24px clamp(18px,2.4vw,32px);border-radius:20px;
-  background:color-mix(in srgb,var(--accent) 6%,var(--surface));border:1px solid var(--line)}
-.strip>p{text-align:center;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.marks{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;margin-top:12px}
+.photo-ph svg{opacity:.6}
+.ph-file{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;opacity:.85;word-break:break-all}
+.strip{margin-top:clamp(26px,4vw,56px);padding:20px clamp(16px,2.4vw,32px);border-radius:20px;
+  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.strip>p{text-align:center;font-size:13.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.88)}
+.marks{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;margin-top:10px}
 @media (min-width:960px){.marks{justify-content:space-between}}
-.mark{display:flex;align-items:center;gap:9px;font:inherit;font-size:16px;font-weight:700;color:var(--muted);
-  background:none;border:0;cursor:pointer;padding:8px 14px;border-radius:12px;min-height:48px;transition:color .2s,background .2s}
-.mark svg{width:22px;height:22px;color:var(--acc,var(--accent))}
-.mark:hover{color:var(--acc,var(--accent));background:var(--acc-soft,var(--accent-soft))}
+.mark{display:flex;align-items:center;gap:9px;font:inherit;font-size:15.5px;font-weight:700;color:rgba(255,255,255,.88);
+  background:none;border:0;cursor:pointer;padding:8px 12px;border-radius:12px;min-height:46px;transition:color .2s,background .2s}
+.mark svg{width:21px;height:21px;color:#fff}
+.mark:hover{color:#fff;background:rgba(255,255,255,.16)}
 
-/* ============ ОБО МНЕ: карточки-подложки ============ */
-.about-grid{display:grid;gap:16px;max-width:1120px;margin-inline:auto}
-@media (min-width:900px){.about-grid{grid-template-columns:1fr 1fr}}
-.about-card{padding:clamp(20px,2.4vw,30px);border-radius:20px;background:var(--surface);border:1px solid var(--line);
-  display:grid;gap:14px;justify-items:start;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s}
-.about-card:hover{transform:translateY(-3px)}
-.about-card .ai{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;
+/* ============ КАРТОЧКИ «ОБО МНЕ» И «СТАНДАРТЫ»: иконка+заголовок в строку ============ */
+.two-col{display:grid;gap:16px;max-width:1120px;margin-inline:auto}
+@media (min-width:900px){.two-col{grid-template-columns:1fr 1fr}}
+.three-col{display:grid;gap:16px;max-width:1180px;margin-inline:auto}
+@media (min-width:700px){.three-col{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1000px){.three-col{grid-template-columns:repeat(3,1fr)}}
+.tcard{padding:clamp(20px,2.4vw,30px);border-radius:20px;background:var(--surface);border:1px solid var(--line);
+  display:grid;gap:14px;justify-items:start;box-shadow:var(--shadow);transition:transform .25s}
+.tcard:hover{transform:translateY(-3px)}
+.t-head{display:flex;align-items:center;gap:14px;width:100%}
+.tcard .ai{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex:none;
   background:color-mix(in srgb,var(--aic) 15%,transparent);color:var(--aic)}
-.about-card .ai svg{width:26px;height:26px}
+.tcard .ai svg{width:24px;height:24px}
+.t-head h3{font-size:19px}
+.tcard p{color:var(--muted);font-size:15.5px}
 .a-blue{--aic:#0071e3}.a-slate{--aic:#334155}.a-teal{--aic:#0d9488}.a-terra{--aic:#b45309}
+.a-orange{--aic:#ff9f0a}.a-purple{--aic:#af52de}
 [data-theme="dark"] .a-blue{--aic:#0a84ff}[data-theme="dark"] .a-slate{--aic:#94a3b8}
 [data-theme="dark"] .a-teal{--aic:#14b8a6}[data-theme="dark"] .a-terra{--aic:#d97706}
-.about-card h3{font-size:19px}
-.about-card p{color:var(--muted);font-size:16px}
+[data-theme="dark"] .a-orange{--aic:#ff9f0a}[data-theme="dark"] .a-purple{--aic:#bf5af2}
 .chip-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
 
 /* ============ РАЗРАБОТКИ: 3 + 3 ============ */
 .cards{display:grid;gap:18px;grid-template-columns:1fr}
 @media (min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
 @media (min-width:1000px){.cards{grid-template-columns:repeat(3,1fr)}}
-.pcard{padding:26px;display:flex;flex-direction:column;gap:14px;cursor:pointer;position:relative;
+.pcard{padding:clamp(20px,2.2vw,26px);display:flex;flex-direction:column;gap:14px;cursor:pointer;position:relative;
   transition:transform .25s,box-shadow .25s,border-color .25s}
 .pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--acc)}
 .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
@@ -191,22 +218,6 @@ a{color:var(--accent)}
 .pcard .tag{color:var(--muted);font-size:15.5px;flex:1}
 .pcard-meta{display:flex;flex-wrap:wrap;gap:6px}
 .pcard-cta{align-self:flex-start;min-height:48px}
-
-/* ============ ПРИНЦИПЫ: 3 + 3 ============ */
-.benefits{display:grid;gap:16px;grid-template-columns:1fr}
-@media (min-width:700px){.benefits{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:1000px){.benefits{grid-template-columns:repeat(3,1fr)}}
-.benefit{display:flex;gap:16px;align-items:flex-start;padding:24px;border-radius:20px;
-  background:var(--surface);border:1px solid var(--line);transition:transform .25s,box-shadow .25s}
-.benefit:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
-.benefit .bi{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex:none;
-  background:color-mix(in srgb,var(--bic) 15%,transparent);color:var(--bic)}
-.benefit .bi svg{width:26px;height:26px}
-.b-blue{--bic:#0071e3}.b-teal{--bic:#0d9488}.b-terra{--bic:#b45309}.b-slate{--bic:#334155}
-[data-theme="dark"] .b-blue{--bic:#0a84ff}[data-theme="dark"] .b-teal{--bic:#14b8a6}
-[data-theme="dark"] .b-terra{--bic:#d97706}[data-theme="dark"] .b-slate{--bic:#94a3b8}
-.benefit h3{font-size:19px;margin-bottom:6px}
-.benefit p{font-size:15.5px;color:var(--muted)}
 
 /* ============ ШКОЛА / ТПГ ============ */
 .school-cols{max-width:1060px;margin-inline:auto}
@@ -221,26 +232,30 @@ a{color:var(--accent)}
 .tpg ul li svg{flex:none;width:19px;height:19px;color:var(--accent);margin-top:4px}
 .tpg-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
 
-/* ============ ГАЛЕРЕЯ: 3 + 3, JPG ============ */
-.gal-grid{display:grid;gap:16px;grid-template-columns:repeat(2,1fr)}
-@media (min-width:760px){.gal-grid{grid-template-columns:repeat(3,1fr)}}
-.gal-item{margin:0;display:grid;gap:10px}
-.gal-photo{margin:0;position:relative;aspect-ratio:4/5;border-radius:20px;overflow:hidden;
-  background:var(--surface-2);border:1px solid var(--line)}
-.gal-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;
+/* ============ ГАЛЕРЕЯ: 1 / 2 / 3 колонки ============ */
+.gal-grid{display:grid;gap:16px;grid-template-columns:1fr;max-width:520px;margin-inline:auto}
+@media (min-width:560px){.gal-grid{grid-template-columns:repeat(2,1fr);max-width:none}}
+@media (min-width:900px){.gal-grid{grid-template-columns:repeat(3,1fr)}}
+.gal-card{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:12px;
+  display:grid;box-shadow:var(--shadow);transition:transform .25s}
+.gal-card:hover{transform:translateY(-4px)}
+.gal-photo{position:relative;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:var(--surface-2)}
+.gal-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;
   opacity:0;transition:opacity .6s,transform .6s}
 .gal-photo.is-loaded img{opacity:1}
 .gal-photo.is-missing img{display:none}
-.gal-item:hover .gal-photo img{transform:scale(1.04)}
-.gal-item figcaption{font-size:14.5px;color:var(--muted);text-align:center;padding:0 6px}
+.gal-card:hover .gal-photo img{transform:scale(1.05)}
+.gal-cap{margin-top:12px;padding:12px 8px;border-top:1px solid var(--line);
+  font-size:14.5px;font-weight:500;color:var(--muted);text-align:center;
+  min-height:64px;display:flex;align-items:center;justify-content:center}
 
-/* ============ FOOTER: контакты и копи по центру ============ */
-.footer{border-top:1px solid var(--line);padding:clamp(40px,5vw,64px) 0;background:var(--surface-2)}
+/* ============ FOOTER: navy, всё по центру ============ */
+.footer{border-top:1px solid rgba(255,255,255,.14);padding:clamp(40px,5vw,64px) 0;background:var(--navy);color:#fff}
 .footer-in{display:grid;justify-items:center;gap:22px;text-align:center}
-.f-title{font-size:clamp(20px,2.4vw,28px);font-weight:700;letter-spacing:-.02em}
+.f-title{font-size:clamp(20px,2.4vw,28px);font-weight:700;letter-spacing:-.02em;color:#fff}
 .f-contacts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;width:100%}
-.crow{display:flex;align-items:stretch;border:1px solid var(--line);border-radius:16px;background:var(--surface);
-  overflow:hidden;transition:border-color .2s,transform .2s;flex:0 1 340px;min-width:280px}
+.crow{display:flex;align-items:stretch;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:var(--surface);
+  overflow:hidden;transition:border-color .2s,transform .2s;flex:0 1 340px;min-width:min(280px,100%)}
 .crow:hover{border-color:var(--cic,var(--accent));transform:translateY(-2px)}
 .crow-a{flex:1;display:flex;align-items:center;gap:14px;padding:12px 16px;min-height:60px;text-decoration:none;color:var(--text)}
 .ci{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;flex:none;font-weight:800;font-size:14px;
@@ -250,13 +265,13 @@ a{color:var(--accent)}
 [data-theme="dark"] .ci-mail{--cic:#d97706}[data-theme="dark"] .ci-tg{--cic:#0a84ff}[data-theme="dark"] .ci-vk{--cic:#94a3b8}
 .ct{display:grid;line-height:1.3;min-width:0;text-align:left}
 .ct small{font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.ct b{font-size:16px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ct b{font-size:16px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .cext{color:var(--muted);margin-left:auto;flex:none}
 .copy-mini{width:54px;flex:none;border:0;border-left:1px solid var(--line);background:transparent;color:var(--muted);
   cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s}
 .copy-mini svg{width:19px;height:19px}
 .copy-mini:hover{color:var(--cic,var(--accent));background:color-mix(in srgb,var(--cic,#0071e3) 12%,transparent)}
-.f-copy{color:var(--muted);font-size:15.5px}
+.f-copy{color:rgba(255,255,255,.78);font-size:15.5px}
 
 /* ============ SHEET ============ */
 .sheet{position:fixed;inset:0;z-index:80;background:var(--bg);overflow-y:auto;
@@ -265,61 +280,62 @@ a{color:var(--accent)}
 .sheet-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;height:var(--nav-h);padding:0 16px;
   background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--line)}
-.sheet-body{max-width:1040px;margin:0 auto;padding:36px 20px 90px}
+.sheet-body{max-width:1040px;margin:0 auto;padding:32px 18px 90px}
+@media (min-width:700px){.sheet-body{padding:36px 24px 90px}}
 .sheet-hero{display:grid;gap:8px;margin-bottom:28px}
 .sheet-hero .chip-row{justify-content:flex-start;margin-top:10px}
-.sheet-sec{margin-top:36px}
-.sheet-sec h3{font-size:24px;margin-bottom:14px}
-.shots{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.sheet-sec{margin-top:34px}
+.sheet-sec h3{font-size:23px;margin-bottom:14px}
+.shots{display:grid;gap:18px;grid-template-columns:1fr}
+@media (min-width:640px){.shots{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:960px){.shots{grid-template-columns:repeat(3,1fr)}}
 .shot{margin:0;display:grid;gap:10px}
 .shot-frame{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface-2);aspect-ratio:16/10}
 .shot-frame img{width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .5s;cursor:zoom-in}
 .shot-frame.is-loaded img{opacity:1}
 .shot-frame.is-missing img{display:none}
 .shot-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;
-  padding:12px;text-align:center;color:var(--muted);background:var(--surface-2);border:0}
+  padding:12px;text-align:center;color:var(--muted);background:var(--surface-2);border:0;border-radius:0}
 .shot-frame.is-missing .photo-ph{display:flex}
 .shot figcaption{font-size:14.5px;color:var(--muted)}
-.sheet-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:38px}
+.sheet-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
 .note{padding:18px 20px;border-radius:14px;background:var(--acc-soft,var(--accent-soft));font-size:15.5px;color:var(--text)}
 
 /* ============ МОДАЛКИ ============ */
-.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;
-  background:rgba(0,0,0,.42);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;
+  background:rgba(6,20,44,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   opacity:0;pointer-events:none;transition:opacity .28s}
 .modal.open{opacity:1;pointer-events:auto}
-.modal-card{width:min(480px,100%);padding:30px;border-radius:28px;background:var(--surface);border:1px solid var(--line);
-  box-shadow:var(--shadow);display:grid;gap:18px;transform:scale(.96);transition:transform .28s}
+.modal-card{width:min(480px,100%);padding:clamp(20px,5vw,30px);border-radius:26px;background:var(--surface);border:1px solid var(--line);
+  box-shadow:var(--shadow);display:grid;gap:16px;transform:scale(.96);transition:transform .28s}
 .modal.open .modal-card{transform:none}
 .modal-card.shake{animation:shake .4s}
 @keyframes shake{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
-.gate-ico{width:64px;height:64px;border-radius:20px;background:var(--acc-soft,var(--accent-soft));color:var(--acc,var(--accent));display:grid;place-items:center}
+.gate-ico{width:60px;height:60px;border-radius:18px;background:var(--acc-soft,var(--accent-soft));color:var(--acc,var(--accent));display:grid;place-items:center}
 .gate-ico svg{width:26px;height:26px}
 .gate-ico.unlocked{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
 .gate-err{font-size:14px;color:var(--err);min-height:20px}
 .gate-hint{font-size:15px;color:var(--muted)}
-/* поля ввода (восстановлены для окна кода) */
 .field{display:grid;gap:7px}
 .field label{font-size:14px;font-weight:700;color:var(--muted)}
 .field input{font:inherit;font-size:16px;color:var(--text);background:var(--surface-2);border:1px solid var(--line);
   border-radius:12px;padding:12px 16px;min-height:50px;width:100%}
 .field input:focus{outline:3px solid var(--accent);outline-offset:2px}
-/* лайтбокс: крупнее, чтобы разглядеть скриншот */
 .lb{z-index:95}
-.lb-card{width:min(1440px,100%);padding:16px;border-radius:22px;background:rgba(20,20,24,.9);border:1px solid rgba(255,255,255,.14)}
-.lb-frame{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;max-height:78vh;background:#111}
+.lb-card{width:min(1440px,100%);padding:14px;border-radius:22px;background:rgba(10,20,38,.92);border:1px solid rgba(255,255,255,.14)}
+.lb-frame{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;max-height:76vh;background:#0a1424}
 .lb-frame img{width:100%;height:100%;object-fit:contain}
-.lb-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#bbb;border:0;background:transparent}
+.lb-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#bcd3ee;border:0;background:transparent}
 .lb-frame.is-missing img{display:none}
 .lb-frame.is-missing .photo-ph{display:flex}
-.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 4px 2px;color:#eee;font-size:15px}
+.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 4px 2px;color:#eaf2ff;font-size:15px}
 .lb-nav{display:flex;gap:8px}
 .lb .icon-btn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#fff}
 
 /* ============ TOAST ============ */
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,16px);z-index:100;padding:13px 22px;border-radius:980px;
-  background:var(--text);color:var(--bg);font-size:15px;font-weight:600;box-shadow:var(--shadow);
-  opacity:0;pointer-events:none;transition:.3s}
+  background:var(--navy);color:#fff;font-size:15px;font-weight:600;box-shadow:var(--shadow);
+  opacity:0;pointer-events:none;transition:.3s;max-width:calc(100vw - 32px);text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
@@ -329,6 +345,7 @@ a{color:var(--accent)}
 <script>
 "use strict";
 /* ================= КОНСТАНТЫ ================= */
+const ME = "mmmaslikov";            // три «m» — единый источник правды для всех ссылок
 const IMG = "images/";
 const CODE_HASHES = { // только хеши; коды живут в памяти вкладки, без localStorage
   webdev: { sha: "aa13e98223d87d87ab54cdca89e8a6bccad5ec44a4d5d0472866f02ae0667612", djb2: "5fa8c326" },
@@ -342,38 +359,39 @@ const CODE_HASHES = { // только хеши; коды живут в памя�
 const LS_THEME = "mm_site_theme_v1";
 const PROJECTS = [
   { id:"webdev", title:"Веб-разработка", tagline:"Курс дополнительного образования: от первой страницы в блокноте до публичной защиты собственного Dashboard.",
-    audience:"10–11 класс", volume:"24 занятия × 90 мин", status:"Готов", url:"https://mmmaslikov.github.io/webdev/",
+    audience:"10–11 класс", volume:"24 занятия × 90 мин", status:"", url:"https://"+ME+".github.io/webdev/",
     about:["Курс для старшей школы, симулирующий работу Junior Frontend Developer: девять модулей от семантики HTML и CSS-сеток до Git, деплоя, промпт-инжиниринга и Agile.","Сквозной продукт: каждый модуль — шаг к собственному Dashboard, который ученик публикует по публичной ссылке и защищает перед группой. ИИ — штатный инструмент: пользоваться можно всем, сдавать — только то, что понимаешь."],
     inside:["9 модулей и 24 занятия: теория у кода, практика, мини-демо в конце","Сквозной проект Dashboard и публичная защита по 5 критериям","Git, Pull Request и ревью кода как в настоящей команде","Модуль Vibe Coding: промпт-инжиниринг и аудит ИИ-кода","Портфолио выпускника: сайт, репозиторий, README, защита"],
     shots:[["scr-webdev-01-hero.png","Главный экран курса"],["scr-webdev-02-catalog.png","Каталог модулей и занятий"],["scr-webdev-03-lesson.png","Страница урока с практикой"]]},
   { id:"python", title:"Python-тренажёр", tagline:"От первых строк до продвинутых задач: теория, тесты и 186 задач с проверкой в браузере.",
-    audience:"9–11 класс", volume:"6 блоков теории · 186 задач", status:"Готов", url:"https://mmmaslikov.github.io/python/",
+    audience:"9–11 класс", volume:"6 блоков теории · 186 задач", status:"", url:"https://"+ME+".github.io/python/",
     about:["Тренажёр Python: шесть теоретических блоков с конспектами, тестами и разобранными задачами — от переменных до функций.","Практика — восемь разделов и 186 задач по сборнику Бена Стивенсона: от разминки до рекурсии. Прогресс разделов запоминается прямо в браузере ученика."],
     inside:["6 блоков теории: основы, ветвление, циклы, массивы, строки, функции","8 разделов практики и 186 задач с автопроверкой ответа","Экран «Ваш прогресс»: тренажёр помнит открытые и пройденные разделы","Разборы типовых задач перед самостоятельной практикой"],
     shots:[["scr-python-01-hero.png","Главный экран с примером кода"],["scr-python-02-catalog.png","Каталог теории и практики"],["scr-python-03-task.png","Задача тренажёра с проверкой"]]},
   { id:"ege", title:"Подготовка к ЕГЭ", tagline:"Все 27 заданий экзамена: теория, разборы и тренажёры по каждому номеру.",
-    audience:"10–11 класс", volume:"27 заданий · шкала 2026", status:"Готов", url:"https://mmmaslikov.github.io/ege/",
+    audience:"10–11 класс", volume:"27 заданий · шкала 2026", status:"", url:"https://"+ME+".github.io/ege/",
     about:["Кабинет подготовки к ЕГЭ по информатике: каталог всех 27 заданий с уровнем сложности, максимальным баллом и рекомендуемым временем.","По каждому заданию — страница с теорией, разборами и тренажёром. Внутри шкала перевода первичного балла в тестовый (2026) и стратегии тайминга."],
     inside:["27 заданий: 10 базовых, 13 повышенных, 4 высокого уровня","Страницы заданий: теория, разбор, тренажёр, формат ответа","Шкала первичный → тестовый балл и ориентиры для вузов","Памятки по файлам *.ods, *.txt и ПО на экзамене"],
     shots:[["scr-ege-01-overview.png","Обзор экзамена и шкала"],["scr-ege-02-catalog.png","Меню из 27 заданий"],["scr-ege-03-task.png","Задание с теорией и тренажёром"]]},
   { id:"oge", title:"Подготовка к ОГЭ", tagline:"16 заданий двух частей, включая четыре практических за компьютером.",
-    audience:"8–9 класс", volume:"16 заданий · 21 балл", status:"Готов", url:"https://mmmaslikov.github.io/oge/",
+    audience:"8–9 класс", volume:"16 заданий · 21 балл", status:"", url:"https://"+ME+".github.io/oge/",
     about:["Подготовка к ОГЭ по информатике: часть 1 с кратким ответом и часть 2 с практическими заданиями на компьютере — презентации, документы, таблицы, программы.","По каждому заданию — теория, разборы и тренажёры; плюс шкала перевода первичного балла в отметку и советы по таймингу."],
     inside:["16 заданий: 12 с кратким ответом + 4 практических за ПК","Поддержка заданий 13–16: .odp, .odt, .ods, «Робот», программа","Шкала перевода балла в отметку вплоть до «5»","Чек-листы формата ответа и распределения времени"],
     shots:[["scr-oge-01-overview.png","Обзор работы и шкала отметок"],["scr-oge-02-catalog.png","Меню частей 1 и 2"],["scr-oge-03-task.png","Задание с теорией и разбором"]]},
   { id:"turtle", title:"Черепашка Python", tagline:"Курс «Я — исследователь» для 5–6 классов: рисуем кодом в браузере, без установки Python.",
-    audience:"5–6 класс", volume:"6 уроков × 40 мин", status:"Готов", url:"https://mmmaslikov.github.io/turtle/",
+    audience:"5–6 класс", volume:"6 уроков × 40 мин", status:"", url:"https://"+ME+".github.io/turtle/",
     about:["Курс для 5–6 классов: черепашка-художник, которой ученик командует на настоящем Python. Шесть уроков по четыре шага: теория, проверка, практика в тренажёре, мини-проект.","Рабочие листы работают прямо в браузере и сохраняются в PDF для учителя. Финал — собственный проект: открытка, узор, персонаж или эмблема."],
     inside:["6 уроков: от первой команды до защиты проекта","Встроенный тренажёр черепашки прямо в браузере","Рабочий лист урока с экспортом в PDF для учителя","Итоговый мини-проект «Графический рисунок в Turtle»"],
     shots:[["scr-turtle-01-hero.png","Главный экран курса"],["scr-turtle-02-lessons.png","Карточки шести уроков"],["scr-turtle-03-worksheet.png","Рабочий лист с тренажёром"]]},
   { id:"tpg", title:"ТПГ «ГенИИ»", tagline:"Творческая проектировочная группа сотрудников: исследование ИИ и создание образовательных продуктов.",
-    audience:"Сотрудники школы", volume:"12 участников · 7 этапов", status:"2026/2027", url:"https://mmmaslikov.github.io/tpg/",
+    audience:"Сотрудники школы", volume:"12 участников · 7 этапов", status:"2026/2027", url:"https://"+ME+".github.io/tpg/",
     about:["Проектная лаборатория ЧОУ «Точка будущего»: 12 участников из десяти методических объединений и служб проектируют систему использования ИИ в школе.","Семь этапов — от анализа проблемы до защиты и масштабирования: банк промптов, ИИ-методички, реестр инструментов и методический конструктор персонализированных маршрутов. Куратор группы — М. М. Масликов."],
     inside:["12 участников из 10 МО и служб комплекса","7 этапов: проблема → тема → цели → продукт → защита","Банк промптов, ИИ-методичек и шаблонов автоматизации","Карта применения ИИ для каждой сферы школы"],
     shots:[["scr-tpg-01-hero.png","Титул проекта и команда"],["scr-tpg-02-stages.png","Этапы, цели и метрики"],["scr-tpg-03-team.png","Состав группы и график года"]]}
 ];
+const MARKS = [ ["ege","ЕГЭ"], ["oge","ОГЭ"], ["webdev","Веб-разработка"], ["python","Python"], ["turtle","Turtle"], ["tpg","ГенИИ"] ];
 const HERO_PHOTO = ["photo-hero.png","Михаил Масликов, портрет без фона"];
-const GALLERY = [ // JPG, 4:5
+const GALLERY = [
   ["photo-gallery-bw.jpg","Ночь перед дедлайном модуля: тренажёр должен работать"],
   ["photo-teach.jpg","С учениками за компьютерами: консультация по проекту"],
   ["photo-gallery-code.jpg","Код на проекции: объясняю fetch на живом примере"],
@@ -412,7 +430,7 @@ const P_ICON = { webdev:ICONS.dev, python:ICONS.py, ege:ICONS.target, oge:ICONS.
 
 /* ================= STATE ================= */
 const state = {
-  unlocked: new Set(),   // только в памяти вкладки: перезагрузил страницу — снова под кодом
+  unlocked: new Set(),   // только в памяти вкладки
   sheetId: null, gateFor: null,
   attempts: 0, cooldown: 0, cooldownTimer: null,
   lb: null, menu: false, theme: "auto", lastFocus: null
@@ -455,10 +473,10 @@ function syncScrollLock(){ document.body.classList.toggle("lock", !!(state.sheet
 function renderApp(){
   $("#app").innerHTML = `
   <header class="nav"><div class="nav-in">
-    <a class="logo" href="#top" aria-label="На главную"><span class="logo-m">ММ</span><span>mmmaslikov</span></a>
+    <a class="logo" href="#top" aria-label="На главную"><span class="logo-m">МММ</span><span>Михаил Масликов</span></a>
     <nav class="nav-links" aria-label="Разделы сайта">
       <a href="#about" data-spy="about">Обо мне</a><a href="#works" data-spy="works">Разработки</a>
-      <a href="#principles" data-spy="principles">Принципы</a><a href="#school" data-spy="school">Школа и ТПГ</a>
+      <a href="#standards" data-spy="standards">Стандарты</a><a href="#school" data-spy="school">Школа и ТПГ</a>
       <a href="#gallery" data-spy="gallery">Галерея</a><a href="#contacts" data-spy="contacts">Контакты</a>
     </nav>
     <div class="nav-actions">
@@ -467,7 +485,7 @@ function renderApp(){
     </div>
   </div></header>
   <nav class="menu" id="menu" aria-label="Мобильное меню">
-    <a href="#about">Обо мне</a><a href="#works">Разработки</a><a href="#principles">Принципы</a>
+    <a href="#about">Обо мне</a><a href="#works">Разработки</a><a href="#standards">Стандарты</a>
     <a href="#school">Школа и ТПГ</a><a href="#gallery">Галерея</a><a href="#contacts">Контакты</a>
   </nav>
   <main id="top">
@@ -496,13 +514,13 @@ function renderApp(){
       </div>
     </div></section>
 
-    <section class="sec sec--blue" id="about"><div class="wrap">
+    <section class="sec" id="about"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Обо мне</span><h2>Учитель, который строит продукты вместе с учениками</h2></div>
-      <div class="about-grid rv">
-        <article class="about-card a-blue"><span class="ai">${ICONS.dev}</span><h3>Практика руками</h3><p class="j">Я преподаю информатику в ЧОУ «Точка будущего» и верю в простую вещь: программирование и веб-разработка осваиваются только руками. Поэтому вместо пересказа параграфов ученики с первого занятия получают видимый результат — страницу, тренажёр, коммит, публичную ссылку.</p></article>
-        <article class="about-card a-slate"><span class="ai">${ICONS.layers}</span><h3>Рабочие среды, а не презентации</h3><p class="j">Мои разработки — это не слайды, а рабочие среды: курс веб-разработки с защитой проекта, Python-тренажёр на 186 задач, кабинеты подготовки к ЕГЭ и ОГЭ, курс черепашки для младших классов и проектная лаборатория для сотрудников школы.</p></article>
-        <article class="about-card a-teal"><span class="ai">${ICONS.scale}</span><h3>Одинаковые правила для всех продуктов</h3><p class="j">Каждый ресурс живёт по тем же правилам, по которым я учу: адаптивность, тёмная тема, честные критерии оценки и возможность объяснить каждую строку кода — своего и учеников.</p></article>
-        <article class="about-card a-terra"><span class="ai">${ICONS.team}</span><h3>ТПГ «ГенИИ» и коллеги</h3><p class="j">Я куратор ТПГ «ГенИИ» — группы сотрудников, которая превращает ИИ из «дальнего знакомого» в штатный инструмент учителя: от банка промптов до собственных образовательных сайтов и методических конструкторов.</p></article>
+      <div class="two-col rv">
+        <article class="tcard a-blue"><div class="t-head"><span class="ai">${ICONS.dev}</span><h3>Практика руками</h3></div><p class="j">Я преподаю информатику в ЧОУ «Точка будущего» и верю в простую вещь: программирование и веб-разработка осваиваются только руками. Поэтому вместо пересказа параграфов ученики с первого занятия получают видимый результат — страницу, тренажёр, коммит, публичную ссылку.</p></article>
+        <article class="tcard a-slate"><div class="t-head"><span class="ai">${ICONS.layers}</span><h3>Рабочие среды, а не презентации</h3></div><p class="j">Мои разработки — это не слайды, а рабочие среды: курс веб-разработки с защитой проекта, Python-тренажёр на 186 задач, кабинеты подготовки к ЕГЭ и ОГЭ, курс черепашки для младших классов и проектная лаборатория для сотрудников школы.</p></article>
+        <article class="tcard a-teal"><div class="t-head"><span class="ai">${ICONS.scale}</span><h3>Одинаковые правила для всех продуктов</h3></div><p class="j">Каждый ресурс живёт по тем же правилам, по которым я учу: адаптивность, тёмная тема, честные критерии оценки и возможность объяснить каждую строку кода — своего и учеников.</p></article>
+        <article class="tcard a-terra"><div class="t-head"><span class="ai">${ICONS.team}</span><h3>ТПГ «ГенИИ» и коллеги</h3></div><p class="j">Я куратор ТПГ «ГенИИ» — группы сотрудников, которая превращает ИИ из «дальнего знакомого» в штатный инструмент учителя: от банка промптов до собственных образовательных сайтов и методических конструкторов.</p></article>
       </div>
       <div class="chip-row rv">
         <span class="chip">Информатика и программирование</span><span class="chip">Дополнительное образование</span>
@@ -510,24 +528,24 @@ function renderApp(){
       </div>
     </div></section>
 
-    <section class="sec sec--slate" id="works"><div class="wrap">
+    <section class="sec sec--navy" id="works"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Разработки</span><h2>Каталог образовательных ресурсов</h2><p class="sec-lead">Описания и скриншоты открыты всем; переход на рабочие ресурсы — по коду доступа, код выдаю лично ученикам и сотрудникам.</p></div>
       <div class="cards" id="cards"></div>
     </div></section>
 
-    <section class="sec sec--teal" id="principles"><div class="wrap">
-      <div class="sec-head center rv"><span class="sec-kicker">Принципы</span><h2>Как я учу</h2><p class="sec-lead">Шесть правил, на которых держится каждый ресурс — от первого занятия до защиты проекта.</p></div>
-      <div class="benefits rv">
-        <article class="benefit b-blue"><span class="bi">${ICONS.eye}</span><div><h3>Видимый результат</h3><p>Каждое занятие заканчивается артефактом: рабочая страница, решённая задача, рисунок кодом, рабочий лист. Знания превращаются в продукт, а не в пересказ.</p></div></article>
-        <article class="benefit b-teal"><span class="bi">${ICONS.route}</span><div><h3>Единый маршрут обучения</h3><p>Все ресурсы устроены одинаково: короткая теория, сразу практика, проверки и видимый прогресс. Ученик всегда понимает, где он и какой следующий шаг.</p></div></article>
-        <article class="benefit b-terra"><span class="bi">${ICONS.bot}</span><div><h3>ИИ — штатный инструмент</h3><p>Нейросети — легальный инструмент учёбы и работы. Правило одно: любой результат, который ты сдаёшь как свой, ты обязан уметь объяснить.</p></div></article>
-        <article class="benefit b-slate"><span class="bi">${ICONS.scale}</span><div><h3>Честные критерии</h3><p>Критерии оценки известны заранее и подтверждаются показом: засчитывается то, что работает и объясняется. Публичная защита — самая честная проверка.</p></div></article>
-        <article class="benefit b-teal"><span class="bi">${ICONS.dev}</span><div><h3>Инструменты, а не параграфы</h3><p>Тренажёры, рабочие листы и среды вместо конспектов: ошибка в коде видна сразу и становится учебным материалом, а не приговором.</p></div></article>
-        <article class="benefit b-blue"><span class="bi">${ICONS.team}</span><div><h3>Команда и взаимное ревью</h3><p>Пары, код-ревью и командные доски: ученики и сотрудники учатся давать и принимать обратную связь по строкам кода и по продукту в целом.</p></div></article>
+    <section class="sec sec--steel" id="standards"><div class="wrap">
+      <div class="sec-head center rv"><span class="sec-kicker">Стандарты</span><h2>Как я учу</h2><p class="sec-lead">Шесть правил, на которых держится каждый ресурс — от первого занятия до защиты проекта.</p></div>
+      <div class="three-col rv">
+        <article class="tcard a-blue"><div class="t-head"><span class="ai">${ICONS.eye}</span><h3>Видимый результат</h3></div><p>Каждое занятие заканчивается артефактом: рабочая страница, решённая задача, рисунок кодом, рабочий лист. Знания превращаются в продукт, а не в пересказ.</p></article>
+        <article class="tcard a-teal"><div class="t-head"><span class="ai">${ICONS.route}</span><h3>Единый маршрут обучения</h3></div><p>Все ресурсы устроены одинаково: короткая теория, сразу практика, проверки и видимый прогресс. Ученик всегда понимает, где он и какой следующий шаг.</p></article>
+        <article class="tcard a-orange"><div class="t-head"><span class="ai">${ICONS.bot}</span><h3>ИИ — штатный инструмент</h3></div><p>Нейросети — легальный инструмент учёбы и работы. Правило одно: любой результат, который ты сдаёшь как свой, ты обязан уметь объяснить.</p></article>
+        <article class="tcard a-slate"><div class="t-head"><span class="ai">${ICONS.scale}</span><h3>Честные критерии</h3></div><p>Критерии оценки известны заранее и подтверждаются показом: засчитывается то, что работает и объясняется. Публичная защита — самая честная проверка.</p></article>
+        <article class="tcard a-purple"><div class="t-head"><span class="ai">${ICONS.dev}</span><h3>Инструменты, а не параграфы</h3></div><p>Тренажёры, рабочие листы и среды вместо конспектов: ошибка в коде видна сразу и становится учебным материалом, а не приговором.</p></article>
+        <article class="tcard a-teal"><div class="t-head"><span class="ai">${ICONS.team}</span><h3>Команда и взаимное ревью</h3></div><p>Пары, код-ревью и командные доски: ученики и сотрудники учатся давать и принимать обратную связь по строкам кода и по продукту в целом.</p></article>
       </div>
     </div></section>
 
-    <section class="sec sec--terra" id="school"><div class="wrap school-cols">
+    <section class="sec" id="school"><div class="wrap school-cols">
       <div class="sec-head center rv"><span class="sec-kicker">Школа и ТПГ</span><h2>Точка будущего: среда, где это возможно</h2><p class="sec-lead">ЧОУ «Точка будущего» — школа со статусом инновационной площадки: здесь преподаватель может запустить курс-симулятор профессии, тренажёр на сотню задач или проектную лабораторию для сотрудников — и получить поддержку, а не согласование на полгода.</p></div>
       <div class="tpg rv">
         <div class="tpg-head"><span class="tpg-ico">${ICONS.team}</span><h3>ТПГ «ГенИИ» · 2026/2027</h3></div>
@@ -541,8 +559,8 @@ function renderApp(){
       </div>
     </div></section>
 
-    <section class="sec" id="gallery" style="background:var(--surface)"><div class="wrap">
-      <div class="sec-head center rv"><span class="sec-kicker">Галерея</span><h2>За кадром</h2><p class="sec-lead">Шесть кадров 4:5 в две строки: уроки, выступления и команда. Ничего не растягивается и не обрезается случайно.</p></div>
+    <section class="sec sec--steel" id="gallery"><div class="wrap">
+      <div class="sec-head center rv"><span class="sec-kicker">Галерея</span><h2>За кадром</h2><p class="sec-lead">Шесть квадратных кадров: уроки, выступления и команда. На телефоне — одна колонка, на планшете — две, на экране — три.</p></div>
       <div class="gal-grid rv" id="gal"></div>
     </div></section>
   </main>
@@ -551,23 +569,23 @@ function renderApp(){
     <div class="f-title">Написать мне</div>
     <div class="f-contacts">
       <div class="crow ci-mail">
-        <a class="crow-a" href="mailto:mmmaslikov@gmail.com">
+        <a class="crow-a" href="mailto:${ME}@gmail.com">
           <span class="ci">${ICONS.mail}</span>
-          <span class="ct"><small>Email</small><b>mmmaslikov@gmail.com</b></span>
+          <span class="ct"><small>Email</small><b>${ME}@gmail.com</b></span>
         </a>
         <button class="copy-mini" id="copy-mail" type="button" aria-label="Скопировать email">${ICONS.copy}</button>
       </div>
       <div class="crow ci-tg">
-        <a class="crow-a" href="https://t.me/mmaslikov" target="_blank" rel="noopener">
+        <a class="crow-a" href="https://t.me/${ME}" target="_blank" rel="noopener">
           <span class="ci">${ICONS.send}</span>
-          <span class="ct"><small>Telegram</small><b>t.me/mmaslikov</b></span>
+          <span class="ct"><small>Telegram</small><b>t.me/${ME}</b></span>
           <span class="cext">${ICONS.ext}</span>
         </a>
       </div>
       <div class="crow ci-vk">
-        <a class="crow-a" href="https://vk.ru/mmaslikov" target="_blank" rel="noopener">
+        <a class="crow-a" href="https://vk.ru/${ME}" target="_blank" rel="noopener">
           <span class="ci">VK</span>
-          <span class="ct"><small>ВКонтакте</small><b>vk.ru/mmaslikov</b></span>
+          <span class="ct"><small>ВКонтакте</small><b>vk.ru/${ME}</b></span>
           <span class="cext">${ICONS.ext}</span>
         </a>
       </div>
@@ -598,12 +616,14 @@ function renderApp(){
 }
 
 function renderMarks(){
-  $("#marks").innerHTML = PROJECTS.map(p=>`
-    <button class="mark acc-${p.id}" type="button" data-open="${p.id}">${P_ICON[p.id]}${esc(p.id==="tpg"?"ГенИИ":p.id)}</button>`).join("");
+  $("#marks").innerHTML = MARKS.map(([id,label])=>`
+    <button class="mark acc-${id}" type="button" data-open="${id}">${P_ICON[id]}${esc(label)}</button>`).join("");
 }
 function renderCards(){
   const box = $("#cards");
-  box.innerHTML = PROJECTS.map(p=>`
+  box.innerHTML = PROJECTS.map(p=>{
+    const statusChip = p.status ? `<span class="chip">${esc(p.status)}</span>` : "";
+    return `
     <article class="card pcard acc-${p.id} rv" data-card="${p.id}" tabindex="-1">
       <div class="pcard-top">
         <span class="pcard-ico">${P_ICON[p.id]}</span>
@@ -611,20 +631,20 @@ function renderCards(){
       </div>
       <h3>${esc(p.title)}</h3>
       <p class="tag">${esc(p.tagline)}</p>
-      <div class="pcard-meta"><span class="chip">${esc(p.audience)}</span><span class="chip">${esc(p.volume)}</span><span class="chip">${esc(p.status)}</span></div>
+      <div class="pcard-meta"><span class="chip">${esc(p.audience)}</span><span class="chip">${esc(p.volume)}</span>${statusChip}</div>
       <button class="btn secondary pcard-cta" type="button" data-cta="${p.id}">Описание и скриншоты</button>
-    </article>`).join("");
+    </article>`;}).join("");
   syncLockUI();
   $$(".pcard", box).forEach(card=>card.addEventListener("click", ()=>openSheet(card.dataset.card)));
 }
 function renderGallery(){
   $("#gal").innerHTML = GALLERY.map(([file,cap])=>`
-    <figure class="gal-item">
+    <figure class="gal-card">
       <div class="gal-photo">
         <img data-file="${file}" src="${IMG}${file}" alt="${esc(cap)}" loading="lazy" decoding="async">
         <div class="photo-ph" aria-hidden="true">${ICONS.cam}<span class="ph-file">${IMG}${file}</span></div>
       </div>
-      <figcaption>${esc(cap)}</figcaption>
+      <figcaption class="gal-cap">${esc(cap)}</figcaption>
     </figure>`).join("");
 }
 function syncLockUI(){
@@ -738,6 +758,7 @@ function openSheet(id){
   history.replaceState(null,"","#/dev/"+id);
   const sheet = $("#sheet");
   sheet.className = "sheet acc-"+p.id;
+  const kicker = p.status ? `Разработка · ${esc(p.status)}` : "Разработка";
   sheet.innerHTML = `
     <div class="sheet-bar">
       <button class="icon-btn" id="sheet-close" type="button" aria-label="Закрыть">${ICONS.close}</button>
@@ -746,7 +767,7 @@ function openSheet(id){
     </div>
     <div class="sheet-body">
       <div class="sheet-hero">
-        <span class="sec-kicker">Разработка · ${esc(p.status)}</span>
+        <span class="sec-kicker">${kicker}</span>
         <h2 id="sheet-title">${esc(p.title)}</h2>
         <p class="sec-lead">${esc(p.tagline)}</p>
         <div class="chip-row"><span class="chip">${esc(p.audience)}</span><span class="chip">${esc(p.volume)}</span><span class="chip">Автор: Масликов М. М.</span></div>
@@ -819,7 +840,7 @@ function initSpy(){
   const io = new IntersectionObserver(es=>es.forEach(en=>{
     if (en.isIntersecting){ $$(".nav-links a").forEach(a=>a.classList.toggle("active", a.dataset.spy===en.target.id)); }
   }), {rootMargin:"-40% 0px -55% 0px"});
-  ["about","works","principles","school","gallery","contacts"].forEach(id=>{ const el=document.getElementById(id); if(el) io.observe(el); });
+  ["about","works","standards","school","gallery","contacts"].forEach(id=>{ const el=document.getElementById(id); if(el) io.observe(el); });
 }
 function initReveal(){
   const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }), {threshold:.12});
@@ -848,8 +869,8 @@ function bindHandlers(){
   $("#lb-prev").addEventListener("click", ()=>stepLb(-1));
   $("#lb-next").addEventListener("click", ()=>stepLb(1));
   $("#copy-mail").addEventListener("click", async ()=>{
-    try{ await navigator.clipboard.writeText("mmmaslikov@gmail.com"); toast("Email скопирован"); }
-    catch(e){ toast("Email: mmmaslikov@gmail.com"); }
+    try{ await navigator.clipboard.writeText(ME+"@gmail.com"); toast("Email скопирован"); }
+    catch(e){ toast("Email: "+ME+"@gmail.com"); }
   });
   document.addEventListener("keydown", e=>{
     if (e.key==="Escape"){
