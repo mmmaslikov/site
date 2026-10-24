@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Масликов Михаил Михайлович — учитель информатики ЧОУ «Точка будущего». Курсы, тренажёры и проектные лаборатории: веб-разработка, Python, ЕГЭ и ОГЭ, Turtle, ТПГ «ГенИИ».">
+<title>Михаил Масликов — учитель информатики · Точка будущего</title>
+<!--
+  ПАМЯТКА ПО ФАЙЛАМ (положить рядом папку images/):
+  Фото:    photo-hero.jpg (1.JPG) · photo-about.jpg (7.JPG) · photo-teach.jpg (6.JPG) ·
+           photo-school.jpg (4.JPG) · photo-speak.jpg (3.JPG) · photo-gallery-bw.jpg (2.JPG) ·
+           photo-gallery-code.jpg (9.JPG) · photo-gallery-lesson.jpg (8.JPG) · photo-contact.jpg (5.JPG)
+  Скрины:  scr-webdev-01-hero.jpg, scr-webdev-02-catalog.jpg, scr-webdev-03-lesson.jpg,
+           scr-python-01-hero.jpg, scr-python-02-catalog.jpg, scr-python-03-task.jpg,
+           scr-ege-01-overview.jpg, scr-ege-02-catalog.jpg, scr-ege-03-task.jpg,
+           scr-oge-01-overview.jpg, scr-oge-02-catalog.jpg, scr-oge-03-task.jpg,
+           scr-turtle-01-hero.jpg, scr-turtle-02-lessons.jpg, scr-turtle-03-worksheet.jpg,
+           scr-tpg-01-hero.jpg, scr-tpg-02-stages.jpg, scr-tpg-03-team.jpg
+  ДОСТУП: описания и скриншоты открыты всем; код требуется только для перехода на сам ресурс.
+-->
+<style>
+/* ============ ПЕРЕМЕННЫЕ ============ */
+:root{
+  --bg:#f5f5f7; --surface:#ffffff; --surface-2:#fbfbfd; --text:#1d1d1f; --muted:#6e6e73;
+  --line:rgba(0,0,0,.09); --accent:#0071e3; --accent-soft:rgba(0,113,227,.10);
+  --radius:24px; --radius-s:16px; --shadow:0 12px 34px rgba(0,0,0,.09);
+  --nav-h:60px; --acc:#0071e3; --acc-soft:rgba(0,113,227,.12);
+  --ok:#34c759; --err:#ff3b30;
+}
+[data-theme="dark"]{
+  --bg:#0b0b0f; --surface:#17171c; --surface-2:#1e1e24; --text:#f5f5f7; --muted:#9b9ba1;
+  --line:rgba(255,255,255,.11); --accent:#2997ff; --accent-soft:rgba(41,151,255,.16);
+  --shadow:0 14px 40px rgba(0,0,0,.55);
+}
+/* акценты проектов */
+.acc-webdev{--acc:#ff9f0a;--acc-soft:rgba(255,159,10,.14)}   [data-theme="dark"] .acc-webdev{--acc:#ff9f0a;--acc-soft:rgba(255,159,10,.22)}
+.acc-python{--acc:#0071e3;--acc-soft:rgba(0,113,227,.12)}    [data-theme="dark"] .acc-python{--acc:#0a84ff;--acc-soft:rgba(10,132,255,.22)}
+.acc-ege{--acc:#ff3b30;--acc-soft:rgba(255,59,48,.12)}       [data-theme="dark"] .acc-ege{--acc:#ff453a;--acc-soft:rgba(255,69,58,.22)}
+.acc-oge{--acc:#ff2d55;--acc-soft:rgba(255,45,85,.12)}       [data-theme="dark"] .acc-oge{--acc:#ff375f;--acc-soft:rgba(255,55,95,.22)}
+.acc-turtle{--acc:#34c759;--acc-soft:rgba(52,199,89,.14)}    [data-theme="dark"] .acc-turtle{--acc:#30d158;--acc-soft:rgba(48,209,88,.22)}
+.acc-tpg{--acc:#af52de;--acc-soft:rgba(175,82,222,.14)}      [data-theme="dark"] .acc-tpg{--acc:#bf5af2;--acc-soft:rgba(191,90,242,.22)}
+
+/* ============ БАЗА ============ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+  font:17px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+body.lock{overflow:hidden}
+img{max-width:100%;display:block}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.15;margin:0}
+h1{font-size:clamp(28px,8.5vw,64px);font-weight:700}
+h1 .h-line{display:block;white-space:nowrap} /* слоган всегда в две строки */
+h2{font-size:clamp(26px,4.4vw,44px);font-weight:700}
+h3{font-size:20px;font-weight:600}
+p{margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.sec{padding:72px 0}
+.sec-head{margin-bottom:34px}
+.sec-kicker{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.sec-lead{color:var(--muted);margin-top:12px;max-width:640px;font-size:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 22px;
+  border-radius:980px;border:1px solid transparent;background:var(--accent);color:#fff;font:inherit;font-weight:600;
+  cursor:pointer;text-decoration:none;transition:transform .18s,opacity .18s,background .18s}
+.btn:hover{opacity:.88;transform:translateY(-1px)}
+.btn:active{transform:scale(.98)}
+.btn.secondary{background:var(--accent-soft);color:var(--accent)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:980px;background:var(--surface-2);
+  border:1px solid var(--line);font-size:13px;color:var(--muted);font-weight:500}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv{opacity:1;transform:none;transition:none}
+  *{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+
+/* ============ NAV ============ */
+.nav{position:sticky;top:0;z-index:50;height:var(--nav-h);
+  background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1120px;margin:0 auto;padding:0 20px;height:var(--nav-h);display:flex;align-items:center;gap:14px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;text-decoration:none;color:var(--text);min-height:44px}
+.logo-m{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#5ac8fa);
+  color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700;letter-spacing:0}
+.nav-links{display:none;gap:4px;margin-left:auto}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:10px 12px;border-radius:980px;min-height:44px;display:inline-flex;align-items:center}
+.nav-links a:hover{color:var(--text);background:var(--accent-soft)}
+.nav-links a.active{color:var(--text);background:var(--accent-soft)}
+.nav-actions{margin-left:auto;display:flex;gap:8px;align-items:center}
+.nav-links + .nav-actions{margin-left:8px}
+.icon-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);
+  display:grid;place-items:center;cursor:pointer;transition:transform .18s;flex:none}
+.icon-btn:hover{transform:scale(1.06)}
+.burger{display:grid}
+@media (min-width:900px){.nav-links{display:flex}.burger{display:none}}
+.menu{position:fixed;inset:var(--nav-h) 0 auto 0;z-index:49;background:var(--bg);border-bottom:1px solid var(--line);
+  padding:12px 20px 20px;display:grid;gap:4px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:.25s}
+.menu.open{transform:none;opacity:1;pointer-events:auto}
+.menu a{color:var(--text);text-decoration:none;font-size:17px;font-weight:600;padding:12px 14px;border-radius:14px;min-height:44px;display:flex;align-items:center}
+.menu a:hover{background:var(--accent-soft)}
+
+/* ============ HERO ============ */
+.hero{padding:56px 0 64px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,var(--accent-soft),transparent 65%);pointer-events:none}
+.hero-grid{display:grid;gap:36px;align-items:center}
+@media (min-width:900px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+.hero h1{margin:14px 0 18px}
+.hero-role{font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:520px}
+.hero-school{font-weight:600;color:var(--text)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:36px}
+@media (min-width:700px){.facts{grid-template-columns:repeat(4,1fr)}}
+.fact{padding:16px 18px;border-radius:var(--radius-s);background:var(--surface);border:1px solid var(--line)}
+.fact b{display:block;font-size:28px;letter-spacing:-.02em}
+.fact span{font-size:13px;color:var(--muted)}
+/* фото-фигуры с плейсхолдером */
+.photo{margin:0;position:relative;border-radius:var(--radius);overflow:hidden;background:var(--surface-2);border:1px solid var(--line)}
+.photo img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+.photo.is-loaded img{opacity:1}
+.photo.is-missing img{display:none}
+.photo-ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  padding:20px;text-align:center;color:var(--muted);
+  background:linear-gradient(140deg,var(--acc-soft),transparent 70%),var(--surface-2)}
+.photo.is-missing .photo-ph{display:flex}
+.photo-ph svg{opacity:.55}
+.ph-file{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;opacity:.75;word-break:break-all}
+.photo-hero{aspect-ratio:4/5;max-height:520px}
+@media (min-width:900px){.photo-hero{aspect-ratio:4/4.4}}
+
+/* ============ ОБО МНЕ / ПРИНЦИПЫ ============ */
+.split{display:grid;gap:32px;align-items:start}
+@media (min-width:900px){.split{grid-template-columns:.9fr 1.1fr}}
+.bio p+p{margin-top:14px}
+.bio .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.principles{display:grid;gap:16px;margin-top:8px}
+@media (min-width:760px){.principles{grid-template-columns:1fr 1fr}}
+.principle{padding:26px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);transition:transform .25s,box-shadow .25s}
+.principle:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.principle .num{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.1em}
+.principle h3{margin:8px 0 10px}
+.principle p{color:var(--muted);font-size:15px}
+
+/* ============ РАЗРАБОТКИ ============ */
+.cards{display:grid;gap:18px}
+@media (min-width:760px){.cards{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.cards{grid-template-columns:repeat(3,1fr)}}
+.pcard{padding:24px;display:flex;flex-direction:column;gap:14px;cursor:pointer;position:relative;
+  transition:transform .25s,box-shadow .25s,border-color .25s}
+.pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--acc)}
+.pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.pcard-ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--acc-soft);color:var(--acc)}
+.lock-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:6px 10px;border-radius:980px;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.lock-badge.open{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 45%,transparent)}
+.pcard h3{font-size:19px}
+.pcard .tag{color:var(--muted);font-size:14px;flex:1}
+.pcard-meta{display:flex;flex-wrap:wrap;gap:6px}
+.pcard-cta{align-self:flex-start;min-height:44px}
+
+/* ============ ШКОЛА / ТПГ ============ */
+.school-grid{display:grid;gap:24px}
+@media (min-width:900px){.school-grid{grid-template-columns:1fr 1fr}}
+.school-photo{aspect-ratio:16/10}
+.tpg{padding:26px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface)}
+.tpg ul{margin:14px 0 0;padding-left:20px;color:var(--muted);font-size:15px;display:grid;gap:8px}
+.tpg-stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+
+/* ============ ГАЛЕРЕЯ ============ */
+.gal{display:grid;grid-auto-flow:column;grid-auto-columns:min(78vw,340px);gap:16px;overflow-x:auto;
+  scroll-snap-type:x mandatory;padding:4px 20px 18px;margin:0 -20px}
+.gal figure{margin:0;scroll-snap-align:center}
+.gal .photo{aspect-ratio:3/3.4}
+.gal figcaption{font-size:13px;color:var(--muted);margin-top:10px;text-align:center}
+
+/* ============ КОНТАКТЫ ============ */
+.contact-grid{display:grid;gap:28px}
+@media (min-width:900px){.contact-grid{grid-template-columns:1fr 1fr}}
+.contact-chips{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 8px}
+.cchip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 16px;border-radius:980px;
+  background:var(--surface);border:1px solid var(--line);color:var(--text);text-decoration:none;font-size:14px;font-weight:500;cursor:pointer}
+.cchip:hover{border-color:var(--accent);color:var(--accent)}
+.form{display:grid;gap:14px;padding:26px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line)}
+.field{display:grid;gap:6px}
+.field label{font-size:13px;font-weight:600;color:var(--muted)}
+.field input,.field textarea{font:inherit;color:var(--text);background:var(--surface-2);border:1px solid var(--line);
+  border-radius:12px;padding:12px 14px;min-height:44px;width:100%}
+.field textarea{min-height:110px;resize:vertical}
+.field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{border-color:var(--err)}
+.ferr{font-size:12.5px;color:var(--err);min-height:16px}
+.thanks{padding:26px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);display:grid;gap:14px;justify-items:start}
+.thanks .ok-ico{width:52px;height:52px;border-radius:50%;background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok);display:grid;place-items:center}
+
+/* ============ FOOTER ============ */
+.footer{border-top:1px solid var(--line);padding:34px 0 44px;margin-top:40px}
+.footer-in{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.footer p{color:var(--muted);font-size:14px}
+
+/* ============ SHEET (деталка разработки) ============ */
+.sheet{position:fixed;inset:0;z-index:80;background:var(--bg);overflow-y:auto;
+  transform:translateY(100%);transition:transform .42s cubic-bezier(.32,.72,0,1);visibility:hidden}
+.sheet.open{transform:none;visibility:visible}
+.sheet-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;height:var(--nav-h);padding:0 16px;
+  background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line)}
+.sheet-body{max-width:880px;margin:0 auto;padding:34px 20px 90px}
+.sheet-hero{display:grid;gap:8px;margin-bottom:26px}
+.sheet-hero .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.sheet-sec{margin-top:34px}
+.sheet-sec h3{font-size:22px;margin-bottom:14px}
+.shots{display:grid;gap:18px}
+@media (min-width:760px){.shots{grid-template-columns:repeat(3,1fr)}}
+.shot{margin:0;display:grid;gap:10px}
+.shot-frame{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface-2);aspect-ratio:4/3}
+.shot-frame img{width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .5s;cursor:zoom-in}
+.shot-frame.is-loaded img{opacity:1}
+.shot-frame.is-missing img{display:none}
+.shot-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+  padding:12px;text-align:center;color:var(--muted);background:linear-gradient(140deg,var(--acc-soft),transparent 70%),var(--surface-2)}
+.shot-frame.is-missing .photo-ph{display:flex}
+.shot figcaption{font-size:13px;color:var(--muted)}
+.sheet-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.note{padding:16px 18px;border-radius:14px;background:var(--acc-soft);font-size:14px;color:var(--text)}
+
+/* ============ МОДАЛКИ: GATE + LIGHTBOX ============ */
+.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;
+  background:rgba(0,0,0,.42);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;transition:opacity .28s}
+.modal.open{opacity:1;pointer-events:auto}
+.modal-card{width:min(440px,100%);padding:28px;border-radius:28px;background:var(--surface);border:1px solid var(--line);
+  box-shadow:var(--shadow);display:grid;gap:16px;transform:scale(.96);transition:transform .28s}
+.modal.open .modal-card{transform:none}
+.modal-card.shake{animation:shake .4s}
+@keyframes shake{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.gate-ico{width:56px;height:56px;border-radius:18px;background:var(--acc-soft);color:var(--acc);display:grid;place-items:center}
+.gate-ico.unlocked{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+.gate-err{font-size:13.5px;color:var(--err);min-height:20px}
+.gate-hint{font-size:13.5px;color:var(--muted)}
+.lb{z-index:95}
+.lb-card{width:min(1040px,100%);padding:14px;border-radius:20px;background:rgba(20,20,24,.86);border:1px solid rgba(255,255,255,.14)}
+.lb-frame{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/10;background:#111}
+.lb-frame img{width:100%;height:100%;object-fit:contain}
+.lb-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#bbb}
+.lb-frame.is-missing img{display:none}
+.lb-frame.is-missing .photo-ph{display:flex}
+.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 4px 2px;color:#eee;font-size:14px}
+.lb-nav{display:flex;gap:8px}
+.lb .icon-btn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#fff}
+
+/* ============ TOAST ============ */
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,16px);z-index:100;padding:12px 20px;border-radius:980px;
+  background:var(--text);color:var(--bg);font-size:14px;font-weight:600;box-shadow:var(--shadow);
+  opacity:0;pointer-events:none;transition:.3s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+"use strict";
+/* ================= КОНСТАНТЫ ================= */
+const IMG = "images/";
+const CODE_HASHES = { // коды хранятся только как хеши (SHA-256 + резервный djb2); код нужен лишь для перехода на ресурс
+  webdev: { sha: "aa13e98223d87d87ab54cdca89e8a6bccad5ec44a4d5d0472866f02ae0667612", djb2: "5fa8c326" },
+  python: { sha: "e8b08498829a8ae2ee3154a41bf0bdf59b8a92c34936ced0c319f210ac0970ce", djb2: "fe278c4f" },
+  ege:    { sha: "aabf620886006f4b5293c4da7a11338a18b45f8e6b937fd4fca016cf2254dd81", djb2: "580aacea" },
+  oge:    { sha: "2ede359eb182de51a8ee235232ce74797322fa7e8cd8d1c1eb4da94d51aef67d", djb2: "dab39023" },
+  turtle: { sha: "dc07d7a62cf674647582316a304e605db0aee7cd59ee7c46f0f2ace2aeb1be76", djb2: "0289ed09" },
+  tpg:    { sha: "9290729915a110d0b9a681e2f683f388aac394ecef0c0e67f9509fa2529b9d07", djb2: "8292b370" },
+  master: { sha: "b84fc84fc849baee524d95187a72b545e01222477c2a69438f4ee27ca5b24353", djb2: "dc761796" }
+};
+const LS_UNLOCK = "mm_site_unlocked_v1", LS_THEME = "mm_site_theme_v1";
+const PROJECTS = [
+  { id:"webdev", title:"Веб-разработка", tagline:"Курс дополнительного образования: от первой страницы в блокноте до публичной защиты собственного Dashboard.",
+    audience:"10–11 класс", volume:"24 занятия × 90 мин", status:"Готов", url:"https://mmmaslikov.github.io/webdev/",
+    about:["Курс для старшей школы, симулирующий работу Junior Frontend Developer: девять модулей от семантики HTML и CSS-сеток до Git, деплоя, промпт-инжиниринга и Agile.","Сквозной продукт: каждый модуль — шаг к собственному Dashboard, который ученик публикует по публичной ссылке и защищает перед группой. ИИ — штатный инструмент: пользоваться можно всем, сдавать — только то, что понимаешь."],
+    inside:["9 модулей и 24 занятия: теория у кода, практика, мини-демо в конце","Сквозной проект Dashboard и публичная защита по 5 критериям","Git, Pull Request и ревью кода как в настоящей команде","Модуль Vibe Coding: промпт-инжиниринг и аудит ИИ-кода","Портфолио выпускника: сайт, репозиторий, README, защита"],
+    shots:[["scr-webdev-01-hero.jpg","Главный экран курса"],["scr-webdev-02-catalog.jpg","Каталог модулей и занятий"],["scr-webdev-03-lesson.jpg","Страница урока с практикой"]]},
+  { id:"python", title:"Python-тренажёр", tagline:"От первых строк до продвинутых задач: теория, тесты и 186 задач с проверкой в браузере.",
+    audience:"9–11 класс", volume:"6 блоков теории · 186 задач", status:"Готов", url:"https://mmmaslikov.github.io/python/",
+    about:["Тренажёр Python: шесть теоретических блоков с конспектами, тестами и разобранными задачами — от переменных до функций.","Практика — восемь разделов и 186 задач по сборнику Бена Стивенсона: от разминки до рекурсии. Прогресс разделов запоминается прямо в браузере ученика."],
+    inside:["6 блоков теории: основы, ветвление, циклы, массивы, строки, функции","8 разделов практики и 186 задач с автопроверкой ответа","Экран «Ваш прогресс»: тренажёр помнит открытые и пройденные разделы","Разборы типовых задач перед самостоятельной практикой"],
+    shots:[["scr-python-01-hero.jpg","Главный экран с примером кода"],["scr-python-02-catalog.jpg","Каталог теории и практики"],["scr-python-03-task.jpg","Задача тренажёра с проверкой"]]},
+  { id:"ege", title:"Подготовка к ЕГЭ", tagline:"Все 27 заданий экзамена: теория, разборы и тренажёры по каждому номеру.",
+    audience:"10–11 класс", volume:"27 заданий · шкала 2026", status:"Готов", url:"https://mmmaslikov.github.io/ege/",
+    about:["Кабинет подготовки к ЕГЭ по информатике: каталог всех 27 заданий с уровнем сложности, максимальным баллом и рекомендуемым временем.","По каждому заданию — страница с теорией, разборами и тренажёром. Внутри шкала перевода первичного балла в тестовый (2026) и стратегии тайминга."],
+    inside:["27 заданий: 10 базовых, 13 повышенных, 4 высокого уровня","Страницы заданий: теория, разбор, тренажёр, формат ответа","Шкала первичный → тестовый балл и ориентиры для вузов","Памятки по файлам *.ods, *.txt и ПО на экзамене"],
+    shots:[["scr-ege-01-overview.jpg","Обзор экзамена и шкала"],["scr-ege-02-catalog.jpg","Меню из 27 заданий"],["scr-ege-03-task.jpg","Задание с теорией и тренажёром"]]},
+  { id:"oge", title:"Подготовка к ОГЭ", tagline:"16 заданий двух частей, включая четыре практических за компьютером.",
+    audience:"8–9 класс", volume:"16 заданий · 21 балл", status:"Готов", url:"https://mmmaslikov.github.io/oge/",
+    about:["Подготовка к ОГЭ по информатике: часть 1 с кратким ответом и часть 2 с практическими заданиями на компьютере — презентации, документы, таблицы, программы.","По каждому заданию — теория, разборы и тренажёры; плюс шкала перевода первичного балла в отметку и советы по таймингу."],
+    inside:["16 заданий: 12 с кратким ответом + 4 практических за ПК","Поддержка заданий 13–16: .odp, .odt, .ods, «Робот», программа","Шкала перевода балла в отметку вплоть до «5»","Чек-листы формата ответа и распределения времени"],
+    shots:[["scr-oge-01-overview.jpg","Обзор работы и шкала отметок"],["scr-oge-02-catalog.jpg","Меню частей 1 и 2"],["scr-oge-03-task.jpg","Задание с теорией и разбором"]]},
+  { id:"turtle", title:"Черепашка Python", tagline:"Курс «Я — исследователь» для 5–6 классов: рисуем кодом в браузере, без установки Python.",
+    audience:"5–6 класс", volume:"6 уроков × 40 мин", status:"Готов", url:"https://mmmaslikov.github.io/turtle/",
+    about:["Курс для 5–6 классов: черепашка-художник, которой ученик командует на настоящем Python. Шесть уроков по четыре шага: теория, проверка, практика в тренажёре, мини-проект.","Рабочие листы работают прямо в браузере и сохраняются в PDF для учителя. Финал — собственный проект: открытка, узор, персонаж или эмблема."],
+    inside:["6 уроков: от первой команды до защиты проекта","Встроенный тренажёр черепашки прямо в браузере","Рабочий лист урока с экспортом в PDF для учителя","Итоговый мини-проект «Графический рисунок в Turtle»"],
+    shots:[["scr-turtle-01-hero.jpg","Главный экран курса"],["scr-turtle-02-lessons.jpg","Карточки шести уроков"],["scr-turtle-03-worksheet.jpg","Рабочий лист с тренажёром"]]},
+  { id:"tpg", title:"ТПГ «ГенИИ»", tagline:"Творческая проектировочная группа сотрудников: исследование ИИ и создание образовательных продуктов.",
+    audience:"Сотрудники школы", volume:"12 участников · 7 этапов", status:"2026/2027", url:"https://mmmaslikov.github.io/tpg/",
+    about:["Проектная лаборатория ЧОУ «Точка будущего»: 12 участников из десяти методических объединений и служб проектируют систему использования ИИ в школе.","Семь этапов — от анализа проблемы до защиты и масштабирования: банк промптов, ИИ-методички, реестр инструментов и методический конструктор персонализированных маршрутов. Куратор группы — М. М. Масликов."],
+    inside:["12 участников из 10 МО и служб комплекса","7 этапов: проблема → тема → цели → продукт → защита","Банк промптов, ИИ-методичек и шаблонов автоматизации","Карта применения ИИ для каждой сферы школы"],
+    shots:[["scr-tpg-01-hero.jpg","Титул проекта и команда"],["scr-tpg-02-stages.jpg","Этапы, цели и метрики"],["scr-tpg-03-team.jpg","Состав группы и график года"]]}
+];
+const PHOTOS = {
+  hero:["photo-hero.jpg","Михаил Масликов на мероприятии школы"],
+  about:["photo-about.jpg","Портрет в учебном пространстве"],
+  teach:["photo-teach.jpg","Работа с учениками за компьютерами"],
+  school:["photo-school.jpg","Команда Точки будущего"],
+  speak:["photo-speak.jpg","Выступление с микрофоном"],
+  g1:["photo-gallery-bw.jpg","За разработкой учебного тренажёра"],
+  g2:["photo-gallery-code.jpg","Код на проекции во время занятия"],
+  g3:["photo-gallery-lesson.jpg","Объяснение материала у экрана"],
+  contact:["photo-contact.jpg","Неформальный портрет на территории школы"]
+};
+const ICONS = {
+  lock:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
+  check:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+  cam:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg>',
+  sun:'<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M19.4 4.6l-1.7 1.7M6.3 17.7l-1.7 1.7"/></svg>',
+  moon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 14.2A8.6 8.6 0 0 1 9.8 3.4a8.6 8.6 0 1 0 10.8 10.8z"/></svg>',
+  burger:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
+  close:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+  left:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+  right:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>',
+  ext:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5"/></svg>',
+  dev:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>',
+  py:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10M7 12h6M7 16h10"/></svg>',
+  target:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1"/></svg>',
+  turtle:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="6"/><path d="M12 7V4M6.5 9.5 4 8M17.5 9.5 20 8M8 18.5 6.6 21M16 18.5 17.4 21"/></svg>',
+  team:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.4"/><path d="M2.6 20a6.4 6.4 0 0 1 12.8 0"/><circle cx="17.4" cy="9.4" r="2.8"/><path d="M15.6 14.6a5.4 5.4 0 0 1 6 5.4"/></svg>'
+};
+const P_ICON = { webdev:ICONS.dev, python:ICONS.py, ege:ICONS.target, oge:ICONS.target, turtle:ICONS.turtle, tpg:ICONS.team };
+
+/* ================= STATE ================= */
+const state = {
+  unlocked: new Set(),      // id ресурсов, чьи ссылки открыты (localStorage)
+  sheetId: null,            // открытая деталка (описания открыты всем)
+  gateFor: null,            // для какого проекта спрашиваем код
+  attempts: 0, cooldown: 0, cooldownTimer: null,
+  lb: null,                 // {pid, idx} лайтбокс
+  menu: false, theme: "auto",
+  lastFocus: null
+};
+const missingFiles = new Set(); // файлы изображений не найдены — рисуем плейсхолдер
+
+/* ================= УТИЛИТЫ ================= */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function djb2(s){ let h=5381; for (const ch of s){ h=((h*33)^ch.codePointAt(0))>>>0; } return h.toString(16).padStart(8,"0"); }
+async function sha256(s){
+  if (!crypto?.subtle) return null;
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+const normCode = s => s.trim().toUpperCase().replace(/\s+/g,"");
+function loadUnlocked(){ try{ (JSON.parse(localStorage.getItem(LS_UNLOCK))||[]).forEach(id=>state.unlocked.add(id)); }catch(e){ state.unlocked.clear(); } }
+function saveUnlocked(){ try{ localStorage.setItem(LS_UNLOCK, JSON.stringify([...state.unlocked])); }catch(e){} }
+function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),2600); }
+function photoFigure(key, cls=""){ // фигура фото с плейсхолдером при отсутствии файла
+  const [file, alt] = PHOTOS[key];
+  return `<figure class="photo ${cls}" data-photo>
+    <img data-file="${file}" src="${IMG}${file}" alt="${esc(alt)}" loading="lazy" decoding="async">
+    <div class="photo-ph" aria-hidden="true">${ICONS.cam}<span>Фото появится после добавления файла</span><span class="ph-file">${IMG}${file}</span></div>
+  </figure>`;
+}
+function bindImages(root){ // вешаем error/load: плейсхолдер вместо битой картинки
+  $$("img[data-file]", root).forEach(img=>{
+    const f = img.dataset.file;
+    const frame = img.closest(".photo, .shot-frame, .lb-frame");
+    if (missingFiles.has(f)){ frame?.classList.add("is-missing"); return; }
+    img.addEventListener("error", ()=>{ missingFiles.add(f); frame?.classList.add("is-missing"); });
+    img.addEventListener("load", ()=>frame?.classList.add("is-loaded"));
+    if (img.complete && img.naturalWidth>0) frame?.classList.add("is-loaded");
+  });
+}
+function trapTab(e, box){ // фокус-ловушка для модалок
+  if (e.key!=="Tab") return;
+  const f = $$('button, a[href], input, textarea, [tabindex]:not([tabindex="-1"])', box).filter(el=>!el.disabled && el.offsetParent!==null);
+  if (!f.length) return;
+  const first=f[0], last=f[f.length-1];
+  if (e.shiftKey && document.activeElement===first){ last.focus(); e.preventDefault(); }
+  else if (!e.shiftKey && document.activeElement===last){ first.focus(); e.preventDefault(); }
+}
+function syncScrollLock(){ document.body.classList.toggle("lock", !!(state.sheetId||state.gateFor||state.lb||state.menu)); }
+
+/* ================= RENDER (каркас) ================= */
+function renderApp(){
+  $("#app").innerHTML = `
+  <header class="nav"><div class="nav-in">
+    <a class="logo" href="#top" aria-label="На главную"><span class="logo-m">ММ</span><span>Масликов · информатика</span></a>
+    <nav class="nav-links" aria-label="Разделы сайта">
+      <a href="#about" data-spy="about">Обо мне</a><a href="#principles" data-spy="principles">Принципы</a>
+      <a href="#works" data-spy="works">Разработки</a><a href="#school" data-spy="school">Школа и ТПГ</a>
+      <a href="#gallery" data-spy="gallery">Галерея</a><a href="#contacts" data-spy="contacts">Контакты</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="Переключить тему"></button>
+      <button class="icon-btn burger" id="burger" type="button" aria-label="Меню" aria-expanded="false">${ICONS.burger}</button>
+    </div>
+  </div></header>
+  <nav class="menu" id="menu" aria-label="Мобильное меню">
+    <a href="#about">Обо мне</a><a href="#principles">Принципы</a><a href="#works">Разработки</a>
+    <a href="#school">Школа и ТПГ</a><a href="#gallery">Галерея</a><a href="#contacts">Контакты</a>
+  </nav>
+  <main id="top">
+    <section class="hero"><div class="wrap hero-grid">
+      <div>
+        <span class="sec-kicker">ЧОУ «Точка будущего»</span>
+        <h1><span class="h-line">Учу создавать,</span><span class="h-line">а не пересказывать</span></h1>
+        <p class="hero-role"><span class="hero-school">Масликов Михаил Михайлович</span> — учитель информатики. Курсы, тренажёры и проектные лаборатории, после которых остаются работающие продукты.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#works">Мои разработки</a>
+          <a class="btn ghost" href="#about">Обо мне</a>
+        </div>
+        <div class="facts">
+          <div class="fact rv"><b>6</b><span>учебных ресурсов</span></div>
+          <div class="fact rv"><b>24</b><span>занятия в курсе веб-разработки</span></div>
+          <div class="fact rv"><b>186</b><span>задач в Python-тренажёре</span></div>
+          <div class="fact rv"><b>43</b><span>задания ЕГЭ и ОГЭ с разборами</span></div>
+        </div>
+      </div>
+      ${photoFigure("hero","photo-hero rv")}
+    </div></section>
+
+    <section class="sec" id="about"><div class="wrap split">
+      ${photoFigure("about","rv")}
+      <div class="bio rv">
+        <div class="sec-head"><span class="sec-kicker">Обо мне</span><h2>Учитель, который строит продукты вместе с учениками</h2></div>
+        <p>Я преподаю информатику в ЧОУ «Точка будущего» и верю в простую вещь: программирование и веб-разработка осваиваются только руками. Поэтому вместо пересказа параграфов мои ученики с первого занятия получают видимый результат — страницу, тренажёр, коммит, публичную ссылку.</p>
+        <p>Мои разработки — это не презентации, а рабочие среды: курс веб-разработки с защитой проекта, Python-тренажёр на 186 задач, кабинеты подготовки к ЕГЭ и ОГЭ, курс черепашки для младших классов и проектная лаборатория для сотрудников школы.</p>
+        <p>Каждый ресурс живёт по тем же правилам, по которым я учу: адаптивность, тёмная тема, честные критерии оценки и возможность объяснить каждую строку кода.</p>
+        <div class="chip-row">
+          <span class="chip">Информатика и программирование</span><span class="chip">Дополнительное образование</span>
+          <span class="chip">Куратор ТПГ «ГенИИ»</span><span class="chip">МО математики, информатики, физики и труда</span>
+        </div>
+      </div>
+    </div></section>
+
+    <section class="sec" id="principles"><div class="wrap">
+      <div class="sec-head rv"><span class="sec-kicker">Принципы</span><h2>Как я учу</h2><p class="sec-lead">Четыре правила, на которых держится каждый ресурс — от первого занятия до защиты проекта.</p></div>
+      <div class="principles">
+        <article class="principle rv"><span class="num">01</span><h3>Видимый результат</h3><p>Каждое занятие заканчивается артефактом, который можно показать и потрогать: рабочая страница, решённая задача, рисунок кодом, рабочий лист. Знания превращаются в продукт, а не в пересказ.</p></article>
+        <article class="principle rv"><span class="num">02</span><h3>Единый маршрут обучения</h3><p>Все ресурсы устроены одинаково: короткая теория, сразу практика, проверки и видимый прогресс. Ученик всегда понимает, где он находится и какой следующий шаг.</p></article>
+        <article class="principle rv"><span class="num">03</span><h3>ИИ — штатный инструмент</h3><p>Нейросети — легальный инструмент учёбы и работы. Правило одно: любой результат, который ты сдаёшь как свой, ты обязан уметь объяснить.</p></article>
+        <article class="principle rv"><span class="num">04</span><h3>Честные критерии</h3><p>Критерии оценки известны заранее и подтверждаются показом: засчитывается то, что работает и объясняется. Публичная защита — самая честная проверка.</p></article>
+      </div>
+    </div></section>
+
+    <section class="sec" id="works"><div class="wrap">
+      <div class="sec-head rv"><span class="sec-kicker">Разработки</span><h2>Мои образовательные ресурсы</h2><p class="sec-lead">Шесть продуктов: курсы, тренажёры и проектная лаборатория. Описания и скриншоты открыты всем; переход на рабочие ресурсы — по коду доступа, код выдаю лично ученикам и сотрудникам.</p></div>
+      <div class="cards" id="cards"></div>
+    </div></section>
+
+    <section class="sec" id="school"><div class="wrap school-grid">
+      <div class="rv">
+        <div class="sec-head"><span class="sec-kicker">Школа и ТПГ</span><h2>Точка будущего: среда, где это возможно</h2></div>
+        <p class="bio" style="color:var(--muted)">ЧОУ «Точка будущего» — школа со статусом инновационной площадки: здесь преподаватель может запустить курс-симулятор профессии, тренажёр на сотню задач или проектную лабораторию для сотрудников — и получить поддержку, а не согласование на полгода.</p>
+        <div class="tpg acc-tpg" style="margin-top:20px">
+          <h3>ТПГ «ГенИИ» · 2026/2027</h3>
+          <p style="color:var(--muted);font-size:15px;margin-top:8px">Творческая проектировочная группа сотрудников: исследование сервисов ИИ и создание современных образовательных продуктов. Куратор группы — М. М. Масликов, заказчик — руководитель старшей школы.</p>
+          <ul>
+            <li>12 участников из 10 методических объединений и служб</li>
+            <li>7 этапов: от анализа проблемы до защиты и масштабирования</li>
+            <li>Продукты: банк промптов, ИИ-методички, конструктор персонализации</li>
+          </ul>
+          <div class="tpg-stats"><span class="chip">−40% времени на рутину</span><span class="chip">50+ продуктов за год</span><span class="chip">80% сотрудников с ИИ</span></div>
+        </div>
+      </div>
+      <div class="rv" style="display:grid;gap:16px">${photoFigure("school","school-photo")}${photoFigure("speak","school-photo")}</div>
+    </div></section>
+
+    <section class="sec" id="gallery"><div class="wrap">
+      <div class="sec-head rv"><span class="sec-kicker">Галерея</span><h2>За кадром</h2></div>
+    </div>
+    <div class="wrap"><div class="gal">
+      <figure class="rv">${photoFigure("g1")}<figcaption>Ночь перед дедлайном модуля: тренажёр должен работать</figcaption></figure>
+      <figure class="rv">${photoFigure("g2")}<figcaption>Код на проекции: объясняю fetch на живом примере</figcaption></figure>
+      <figure class="rv">${photoFigure("g3")}<figcaption>Разбор задания у экрана: теория без слайдов</figcaption></figure>
+    </div></div></section>
+
+    <section class="sec" id="contacts"><div class="wrap contact-grid">
+      <div class="rv">
+        <div class="sec-head"><span class="sec-kicker">Контакты</span><h2>Написать мне</h2><p class="sec-lead">Ученикам — по вопросам кодов доступа и курсов. Коллегам — по поводу ТПГ, мастер-классов и совместных продуктов.</p></div>
+        <div class="contact-chips">
+          <button class="cchip" id="copy-mail" type="button">✉ mmmaslikov@gmail.com</button>
+          <a class="cchip" href="https://t.me/mmaslikov" target="_blank" rel="noopener">Telegram · @mmaslikov</a>
+          <a class="cchip" href="https://vk.ru/mmaslikov" target="_blank" rel="noopener">ВКонтакте · mmaslikov</a>
+        </div>
+        ${photoFigure("contact","school-photo")}
+      </div>
+      <div class="rv">
+        <form class="form" id="c-form" novalidate>
+          <div class="field"><label for="f-name">Имя</label><input id="f-name" name="name" autocomplete="name" placeholder="Как к вам обращаться"><span class="ferr" id="e-name" aria-live="polite"></span></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@school.ru"><span class="ferr" id="e-email" aria-live="polite"></span></div>
+          <div class="field"><label for="f-msg">Сообщение</label><textarea id="f-msg" name="msg" placeholder="Класс, вопрос, идея — пара предложений"></textarea><span class="ferr" id="e-msg" aria-live="polite"></span></div>
+          <button class="btn" type="submit">Отправить</button>
+          <p class="gate-hint">Форма работает без сервера: сообщение соберётся в письмо в вашем почтовом клиенте.</p>
+        </form>
+        <div class="thanks" id="c-thanks" hidden>
+          <span class="ok-ico">${ICONS.check}</span>
+          <h3>Спасибо, <span id="t-name"></span>!</h3>
+          <p style="color:var(--muted);font-size:15px">Сообщение готово к отправке — нажмите кнопку, и откроется ваш почтовый клиент с заполненным письмом.</p>
+          <a class="btn" id="t-mail" href="#">Открыть письмо</a>
+          <button class="btn ghost" id="t-again" type="button">Написать ещё раз</button>
+        </div>
+      </div>
+    </div></section>
+  </main>
+  <footer class="footer"><div class="wrap footer-in">
+    <p>© 2026 Масликов Михаил Михайлович · ЧОУ «Точка будущего»<br>Коды доступа к переходам на ресурсы выдаёт лично учитель.</p>
+    <button class="btn ghost" id="lock-all" type="button">${ICONS.lock}&nbsp;Заблокировать всё</button>
+  </div></footer>
+
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"></div>
+  <div class="modal" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="modal-card" id="gate-card"></div>
+  </div>
+  <div class="modal lb" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр скриншота">
+    <div class="lb-card">
+      <div class="lb-frame" id="lb-frame"></div>
+      <div class="lb-bar">
+        <span id="lb-cap"></span>
+        <span class="lb-nav">
+          <button class="icon-btn" id="lb-prev" type="button" aria-label="Предыдущий">${ICONS.left}</button>
+          <button class="icon-btn" id="lb-next" type="button" aria-label="Следующий">${ICONS.right}</button>
+          <button class="icon-btn" id="lb-close" type="button" aria-label="Закрыть">${ICONS.close}</button>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>`;
+  renderCards();
+  bindImages(document);
+}
+
+/* карточки разработок: описания открыты, бейдж показывает статус ссылки */
+function renderCards(){
+  const box = $("#cards");
+  box.innerHTML = PROJECTS.map(p=>`
+    <article class="card pcard acc-${p.id} rv" data-card="${p.id}" tabindex="-1">
+      <div class="pcard-top">
+        <span class="pcard-ico">${P_ICON[p.id]}</span>
+        <span class="lock-badge" data-badge="${p.id}"></span>
+      </div>
+      <h3>${esc(p.title)}</h3>
+      <p class="tag">${esc(p.tagline)}</p>
+      <div class="pcard-meta"><span class="chip">${esc(p.audience)}</span><span class="chip">${esc(p.volume)}</span><span class="chip">${esc(p.status)}</span></div>
+      <button class="btn secondary pcard-cta" type="button" data-cta="${p.id}">Описание и скриншоты</button>
+    </article>`).join("");
+  syncLockUI();
+  $$(".pcard", box).forEach(card=>{
+    card.addEventListener("click", ()=>openSheet(card.dataset.card));
+  });
+}
+function syncLockUI(){ // бейджи: открыта ли ссылка на ресурс
+  PROJECTS.forEach(p=>{
+    const badge=$(`[data-badge="${p.id}"]`);
+    if(!badge) return;
+    const open = state.unlocked.has(p.id);
+    badge.className = "lock-badge"+(open?" open":"");
+    badge.innerHTML = (open?ICONS.check+" Ссылка открыта":ICONS.lock+" Переход по коду");
+  });
+  const sb = $("#sheet-linkbadge");
+  if (sb && state.sheetId){
+    const open = state.unlocked.has(state.sheetId);
+    sb.className = "lock-badge"+(open?" open":"");
+    sb.innerHTML = (open?ICONS.check+" Ссылка открыта":ICONS.lock+" Переход по коду");
+  }
+}
+
+/* ================= GATE: код для перехода на ресурс ================= */
+async function verifyCode(raw){ // возвращает {key} / {empty} / {}
+  const code = normCode(raw);
+  if (!code) return {empty:true};
+  const sha = await sha256(code);
+  for (const [key,h] of Object.entries(CODE_HASHES)){
+    if (sha ? sha===h.sha : djb2(code)===h.djb2) return {key};
+  }
+  return {};
+}
+function gateInputHTML(p){
+  return `
+    <span class="gate-ico" id="gate-ico">${ICONS.lock}</span>
+    <h3 id="gate-title">Код доступа · ${esc(p.title)}</h3>
+    <p class="gate-hint">Описание и скриншоты открыты всем. Переход на сам ресурс — по коду доступа: его выдаёт лично М. М. Масликов ученикам и сотрудникам.</p>
+    <div class="field"><label for="gate-input">Код</label><input id="gate-input" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Например, WEBD-7K42"><span class="gate-err" id="gate-err" aria-live="polite"></span></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn" id="gate-ok" type="button">Открыть переход</button>
+      <button class="btn ghost" id="gate-cancel" type="button">Отмена</button>
+    </div>`;
+}
+function gateSuccessHTML(p, isMaster){
+  const link = isMaster ? "" : `<a class="btn" id="gate-go" href="${p.url}" target="_blank" rel="noopener">Перейти к ресурсу ${ICONS.ext}</a>`;
+  return `
+    <span class="gate-ico unlocked">${ICONS.check}</span>
+    <h3 id="gate-title">Доступ открыт</h3>
+    <p class="gate-hint">${isMaster ? "Мастер-код принят: переходы доступны ко всем ресурсам." : "Код принят. Переход на ресурс «"+esc(p.title)+"» доступен."}</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      ${link}
+      <button class="btn ghost" id="gate-stay" type="button">Остаться на сайте</button>
+    </div>`;
+}
+function openGate(forId){
+  state.gateFor = forId; state.attempts = 0; stopCooldown();
+  const p = PROJECTS.find(x=>x.id===forId);
+  $("#gate-card").className = "modal-card";
+  $("#gate-card").innerHTML = gateInputHTML(p);
+  $("#gate").classList.add("open"); syncScrollLock();
+  state.lastFocus = document.activeElement;
+  setTimeout(()=>$("#gate-input")?.focus(), 60);
+}
+function closeGate(){
+  state.gateFor = null; stopCooldown();
+  $("#gate").classList.remove("open"); syncScrollLock();
+  state.lastFocus?.focus?.();
+}
+function stopCooldown(){ clearInterval(state.cooldownTimer); state.cooldownTimer=null; state.cooldown=0; }
+async function submitGate(){
+  if (state.cooldown>0 || !state.gateFor) return;
+  const res = await verifyCode($("#gate-input")?.value ?? "");
+  if (res.empty){ $("#gate-err").textContent = "Введите код — поле пустое."; shake(); return; }
+  if (!res.key){
+    state.attempts++;
+    if (state.attempts>=5){ startCooldown(); } else { $("#gate-err").textContent = "Неверный код. Уточните у учителя или проверьте символы."; }
+    shake(); return;
+  }
+  // успех: открываем переход
+  const isMaster = res.key==="master";
+  if (isMaster) PROJECTS.forEach(p=>state.unlocked.add(p.id));
+  else state.unlocked.add(res.key);
+  saveUnlocked(); syncLockUI();
+  if (state.sheetId) renderSheetActions(PROJECTS.find(p=>p.id===state.sheetId));
+  const p = PROJECTS.find(x=>x.id===res.key);
+  $("#gate-card").innerHTML = gateSuccessHTML(p, isMaster);
+  toast(isMaster ? "Мастер-код: открыты все переходы" : "Переход открыт: "+p.title);
+  setTimeout(()=>$("#gate-go")?.focus(), 60);
+}
+function shake(){ const c=$("#gate-card"); c.classList.remove("shake"); void c.offsetWidth; c.classList.add("shake"); }
+function startCooldown(){
+  state.cooldown = 15;
+  const ok=$("#gate-ok"), inp=$("#gate-input");
+  if(ok) ok.disabled = true; if(inp) inp.disabled = true;
+  const tick = ()=>{ const e=$("#gate-err"); if(e) e.textContent = `Слишком много попыток. Повторите через ${state.cooldown} с.`;
+    if (--state.cooldown < 0){ stopCooldown(); state.attempts=0;
+      const e2=$("#gate-err"); if(e2) e2.textContent="";
+      const ok2=$("#gate-ok"), inp2=$("#gate-input");
+      if(ok2) ok2.disabled=false; if(inp2){ inp2.disabled=false; inp2.focus(); } } };
+  tick(); state.cooldownTimer = setInterval(tick, 1000);
+}
+
+/* ================= SHEET: деталка (описание открыто всем) ================= */
+function sheetActionsHTML(p){
+  const open = state.unlocked.has(p.id);
+  return open
+    ? `<a class="btn" id="sheet-open" href="${p.url}" target="_blank" rel="noopener">Открыть ресурс ${ICONS.ext}</a>
+       <button class="btn ghost" id="sheet-lock" type="button">${ICONS.lock}&nbsp;Заблокировать переход</button>`
+    : `<button class="btn" id="sheet-open" type="button">${ICONS.lock}&nbsp;Открыть ресурс — по коду</button>`;
+}
+function renderSheetActions(p){
+  const box = $("#sheet-actions");
+  if (box) box.innerHTML = sheetActionsHTML(p);
+  syncLockUI();
+}
+function openSheet(id){
+  const p = PROJECTS.find(x=>x.id===id); if(!p) return;
+  state.sheetId = id;
+  history.replaceState(null,"","#/dev/"+id);
+  const sheet = $("#sheet");
+  sheet.className = "sheet acc-"+p.id;
+  sheet.innerHTML = `
+    <div class="sheet-bar">
+      <button class="icon-btn" id="sheet-close" type="button" aria-label="Закрыть">${ICONS.close}</button>
+      <strong style="font-size:15px">${esc(p.title)}</strong>
+      <span class="lock-badge" id="sheet-linkbadge" style="margin-left:auto"></span>
+    </div>
+    <div class="sheet-body">
+      <div class="sheet-hero">
+        <span class="sec-kicker">Разработка · ${esc(p.status)}</span>
+        <h2 id="sheet-title">${esc(p.title)}</h2>
+        <p class="sec-lead">${esc(p.tagline)}</p>
+        <div class="chip-row"><span class="chip">${esc(p.audience)}</span><span class="chip">${esc(p.volume)}</span><span class="chip">Автор: Масликов М. М.</span></div>
+      </div>
+      <div class="sheet-sec"><h3>Что это</h3>${p.about.map(t=>`<p style="color:var(--muted);margin-bottom:12px">${esc(t)}</p>`).join("")}</div>
+      <div class="sheet-sec"><h3>Что внутри</h3>
+        <ul style="margin:0;padding-left:20px;color:var(--muted);display:grid;gap:8px">${p.inside.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+      </div>
+      <div class="sheet-sec"><h3>Скриншоты</h3>
+        <div class="shots">${p.shots.map((s,i)=>`
+          <figure class="shot">
+            <div class="shot-frame"><img data-file="${s[0]}" src="${IMG}${s[0]}" alt="${esc(s[1])} — скриншот ресурса «${esc(p.title)}»" loading="lazy" decoding="async" data-lb="${i}">
+              <div class="photo-ph" aria-hidden="true">${ICONS.cam}<span class="ph-file">${IMG}${s[0]}</span></div></div>
+            <figcaption>${esc(s[1])}</figcaption>
+          </figure>`).join("")}</div>
+      </div>
+      <div class="sheet-sec"><div class="note">Описание и скриншоты открыты без кода. Кнопка «Открыть ресурс» становится доступна после ввода кода доступа — код выдаёт лично учитель.</div></div>
+      <div class="sheet-actions" id="sheet-actions"></div>
+    </div>`;
+  renderSheetActions(p);
+  requestAnimationFrame(()=>sheet.classList.add("open"));
+  syncScrollLock(); bindImages(sheet);
+  $$("img[data-lb]", sheet).forEach(img=>img.addEventListener("click", ()=>openLb(id, +img.dataset.lb)));
+  state.lastFocus = document.activeElement;
+  setTimeout(()=>$("#sheet-close").focus(), 80);
+}
+function closeSheet(){
+  const sheet = $("#sheet");
+  if (!state.sheetId) return;
+  state.sheetId = null;
+  sheet.classList.remove("open"); syncScrollLock();
+  history.replaceState(null,"",location.pathname+location.search);
+  setTimeout(()=>{ if(!state.sheetId) sheet.innerHTML=""; }, 450);
+  state.lastFocus?.focus?.();
+}
+
+/* ================= LIGHTBOX ================= */
+function openLb(pid, idx){
+  state.lb = {pid, idx}; state.lastFocus = document.activeElement;
+  drawLb(); $("#lb").classList.add("open"); syncScrollLock(); setTimeout(()=>$("#lb-close").focus(),60);
+}
+function drawLb(){
+  const p = PROJECTS.find(x=>x.id===state.lb.pid); const [file, cap] = p.shots[state.lb.idx];
+  const frame = $("#lb-frame");
+  frame.className = "lb-frame" + (missingFiles.has(file) ? " is-missing" : "");
+  frame.innerHTML = `<img src="${IMG}${file}" alt="${esc(cap)} — увеличенный скриншот">
+    <div class="photo-ph">${ICONS.cam}<span class="ph-file">${IMG}${file}</span></div>`;
+  bindImages(frame);
+  $("#lb-cap").textContent = `${p.title} · ${state.lb.idx+1} / ${p.shots.length} — ${cap}`;
+}
+function stepLb(d){ const p=PROJECTS.find(x=>x.id===state.lb.pid); state.lb.idx=(state.lb.idx+d+p.shots.length)%p.shots.length; drawLb(); }
+function closeLb(){ state.lb=null; $("#lb").classList.remove("open"); syncScrollLock(); state.lastFocus?.focus?.(); }
+
+/* ================= ТЕМА ================= */
+function resolvedTheme(){ return state.theme==="auto" ? (matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light") : state.theme; }
+function applyTheme(){ document.documentElement.dataset.theme = resolvedTheme();
+  $("#theme-btn").innerHTML = resolvedTheme()==="dark" ? ICONS.sun : ICONS.moon;
+  $("#theme-btn").setAttribute("aria-label", resolvedTheme()==="dark"?"Светлая тема":"Тёмная тема"); }
+function toggleTheme(){ state.theme = resolvedTheme()==="dark" ? "light" : "dark";
+  try{ localStorage.setItem(LS_THEME, state.theme); }catch(e){} applyTheme(); }
+
+/* ================= ФОРМА ================= */
+function submitForm(e){
+  e.preventDefault();
+  const name=$("#f-name").value.trim(), email=$("#f-email").value.trim(), msg=$("#f-msg").value.trim();
+  const errs={name:"",email:"",msg:""};
+  if (name.length<2) errs.name="Укажите имя — минимум 2 символа.";
+  if (!/^\S+@\S+\.\S+$/.test(email)) errs.email="Похоже, в email опечатка: нужен вид name@domain.ru.";
+  if (msg.length<10) errs.msg="Расскажите чуть подробнее — минимум 10 символов.";
+  [["name","#e-name","#f-name"],["email","#e-email","#f-email"],["msg","#e-msg","#f-msg"]].forEach(([k,errSel,inSel])=>{
+    $(errSel).textContent = errs[k]; $(inSel).setAttribute("aria-invalid", errs[k]?"true":"false");
+  });
+  const firstBad = ["name","email","msg"].find(k=>errs[k]);
+  if (firstBad){ $("#f-"+firstBad).focus(); return; }
+  // успех: собираем mailto (без сервера)
+  const subject = encodeURIComponent("Сообщение с личного сайта: "+name);
+  const body = encodeURIComponent(msg+"\n\n— "+name+", "+email);
+  $("#t-name").textContent = name;           // только textContent для пользовательского ввода
+  $("#t-mail").setAttribute("href", "mailto:mmmaslikov@gmail.com?subject="+subject+"&body="+body);
+  $("#c-form").hidden = true; $("#c-thanks").hidden = false; $("#t-mail").focus();
+}
+
+/* ================= ROUTER / SCROLLSPY / REVEAL ================= */
+function hashProjectId(){ const m = location.hash.match(/^#\/dev\/([a-z]+)/); return m ? m[1] : null; }
+function syncRoute(){ // деталки открыты всем, код не нужен
+  const id = hashProjectId();
+  if (id && PROJECTS.some(p=>p.id===id)){ if (state.sheetId!==id) openSheet(id); }
+  else if (!id && state.sheetId) closeSheet();
+}
+function initSpy(){
+  const io = new IntersectionObserver(es=>es.forEach(en=>{
+    if (en.isIntersecting){ $$(".nav-links a").forEach(a=>a.classList.toggle("active", a.dataset.spy===en.target.id)); }
+  }), {rootMargin:"-40% 0px -55% 0px"});
+  ["about","principles","works","school","gallery","contacts"].forEach(id=>{ const el=document.getElementById(id); if(el) io.observe(el); });
+}
+function initReveal(){
+  const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } }), {threshold:.12});
+  $$(".rv").forEach(el=>io.observe(el));
+}
+
+/* ================= HANDLERS ================= */
+function bindHandlers(){
+  $("#theme-btn").addEventListener("click", toggleTheme);
+  $("#burger").addEventListener("click", ()=>{ state.menu=!state.menu; $("#menu").classList.toggle("open",state.menu); $("#burger").setAttribute("aria-expanded",String(state.menu)); syncScrollLock(); });
+  $$("#menu a").forEach(a=>a.addEventListener("click", ()=>{ state.menu=false; $("#menu").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); syncScrollLock(); }));
+  // делегирование кликов gate
+  $("#gate-card").addEventListener("click", e=>{
+    if (e.target.closest("#gate-ok")) submitGate();
+    else if (e.target.closest("#gate-cancel")) closeGate();
+    else if (e.target.closest("#gate-stay")) closeGate();
+  });
+  // делегирование кликов sheet
+  $("#sheet").addEventListener("click", e=>{
+    if (e.target.closest("#sheet-close")) closeSheet();
+    else if (e.target.closest("#sheet-open")?.tagName==="BUTTON") openGate(state.sheetId);
+    else if (e.target.closest("#sheet-lock")){
+      const id = state.sheetId; const p = PROJECTS.find(x=>x.id===id);
+      state.unlocked.delete(id); saveUnlocked(); syncLockUI(); renderSheetActions(p);
+      toast("Переход заблокирован: "+p.title);
+    }
+  });
+  $("#lb-close").addEventListener("click", closeLb);
+  $("#lb-prev").addEventListener("click", ()=>stepLb(-1));
+  $("#lb-next").addEventListener("click", ()=>stepLb(1));
+  $("#lock-all").addEventListener("click", ()=>{ if(!state.unlocked.size){ toast("И так всё заблокировано"); return; } state.unlocked.clear(); saveUnlocked(); syncLockUI(); if(state.sheetId) renderSheetActions(PROJECTS.find(p=>p.id===state.sheetId)); toast("Все переходы заблокированы"); });
+  $("#copy-mail").addEventListener("click", async ()=>{
+    try{ await navigator.clipboard.writeText("mmmaslikov@gmail.com"); toast("Email скопирован"); }
+    catch(e){ toast("Email: mmaslikov@gmail.com"); }
+  });
+  $("#c-form").addEventListener("submit", submitForm);
+  $("#t-again").addEventListener("click", ()=>{ $("#c-thanks").hidden=true; const f=$("#c-form"); f.hidden=false; f.reset(); $("#f-name").focus(); });
+  // Escape закрывает верхний слой; Enter в поле кода = отправка
+  document.addEventListener("keydown", e=>{
+    if (e.key==="Escape"){
+      if (state.lb) closeLb();
+      else if (state.gateFor) closeGate();
+      else if (state.sheetId) closeSheet();
+      else if (state.menu){ state.menu=false; $("#menu").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false"); syncScrollLock(); }
+    }
+    if (state.gateFor && e.key==="Enter" && document.activeElement===$("#gate-input")){ e.preventDefault(); submitGate(); }
+    if (state.lb && e.key==="ArrowRight") stepLb(1);
+    if (state.lb && e.key==="ArrowLeft") stepLb(-1);
+    if (state.gateFor) trapTab(e, $("#gate-card"));
+    else if (state.lb) trapTab(e, $(".lb-card"));
+    else if (state.sheetId) trapTab(e, $("#sheet"));
+  });
+  window.addEventListener("hashchange", syncRoute);
+  const mq = matchMedia("(prefers-color-scheme: dark)");
+  mq.addEventListener?.("change", ()=>{ if(state.theme==="auto") applyTheme(); });
+}
+
+/* ================= INIT ================= */
+function init(){
+  try{ const t = localStorage.getItem(LS_THEME); if (t==="light"||t==="dark") state.theme = t; }catch(e){}
+  loadUnlocked();
+  renderApp();
+  bindHandlers();
+  applyTheme();
+  initSpy(); initReveal();
+  syncRoute(); // глубокая ссылка #/dev/<id>
+}
+init();
+</script>
+</body>
+</html>
