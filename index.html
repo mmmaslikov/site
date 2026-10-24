@@ -16,31 +16,37 @@
     scr-turtle-01-hero.png, scr-turtle-02-lessons.png, scr-turtle-03-worksheet.png,
     scr-tpg-01-hero.png, scr-tpg-02-stages.png, scr-tpg-03-team.png
   JPG: галерея, 6 квадратных кадров 1:1 · 1400×1400:
-    photo-gallery-bw.jpg (2.JPG) · photo-teach.jpg (6.JPG) · photo-gallery-code.jpg (9.JPG)
-    photo-school.jpg (4.JPG) · photo-gallery-lesson.jpg (8.JPG) · photo-speak.jpg (3.JPG)
+    photo-about.jpg          (7.JPG) · «Портрет в учебном пространстве школы»
+    photo-teach.jpg          (6.JPG) · «С учениками за компьютерами»
+    photo-gallery-code.jpg   (9.JPG) · «Код на проекции во время занятия»
+    photo-contact.jpg        (5.JPG) · «Неформальный портрет на территории школы»
+    photo-gallery-lesson.jpg (8.JPG) · «Теория без слайдов»
+    photo-speak.jpg          (3.JPG) · «Выступление на интенсиве»
+  (photo-school.jpg и photo-gallery-bw.jpg сейчас не используются)
   КОДЫ ДОСТУПА живут только в памяти вкладки: перезагрузил страницу — снова под кодом.
 -->
 <style>
-/* ============ ПЕРЕМЕННЫЕ: синяя палитра, без белых фонов ============ */
+/* ============ ПЕРЕМЕННЫЕ ============ */
 :root{
   --bg:#e9f0fa;            /* бледно-синий: фон страницы и «светлых» секций */
-  --steel:#d8e3f2;         /* стальной синий */
-  --navy:#0d2b57;          /* глубокий синий для акцентных секций и футера */
-  --surface:#ffffff;       /* только карточки */
+  --steel:#d8e3f2;         /* стальной синий для чередования */
+  --surface:#ffffff;       /* карточки и белая панель hero */
   --surface-2:#f2f6fc;
   --text:#1d1d1f; --muted:#5d6b80;
   --line:rgba(13,43,87,.12);
   --accent:#0071e3; --accent-soft:rgba(0,113,227,.10);
+  --hero-grad:linear-gradient(160deg,#0b3ea8 0%,#0071e3 58%,#3f97f0 100%);
   --radius:24px; --radius-s:16px; --shadow:0 12px 34px rgba(13,43,87,.10);
   --nav-h:64px; --ok:#34c759; --err:#ff3b30;
   --pad:clamp(20px,4vw,48px);
   --wrap:1320px;
 }
 [data-theme="dark"]{
-  --bg:#0f1520; --steel:#182231; --navy:#0a1f3c;
+  --bg:#0f1520; --steel:#182231;
   --surface:#171c26; --surface-2:#1d2430; --text:#f5f5f7; --muted:#9aa7ba;
   --line:rgba(255,255,255,.12); --accent:#2997ff; --accent-soft:rgba(41,151,255,.16);
   --shadow:0 14px 40px rgba(0,0,0,.5);
+  --hero-grad:linear-gradient(160deg,#062a6b 0%,#0a55c4 60%,#1e6ef0 100%);
 }
 /* цвета проектов */
 .acc-webdev{--acc:#ff9f0a;--acc-soft:rgba(255,159,10,.15)}  [data-theme="dark"] .acc-webdev{--acc:#ff9f0a;--acc-soft:rgba(255,159,10,.24)}
@@ -50,10 +56,6 @@
 .acc-turtle{--acc:#34c759;--acc-soft:rgba(52,199,89,.15)}   [data-theme="dark"] .acc-turtle{--acc:#30d158;--acc-soft:rgba(48,209,88,.24)}
 .acc-tpg{--acc:#af52de;--acc-soft:rgba(175,82,222,.15)}     [data-theme="dark"] .acc-tpg{--acc:#bf5af2;--acc-soft:rgba(191,90,242,.24)}
 .sec--steel{background:var(--steel)}
-.sec--navy{background:var(--navy)}
-.sec--navy .sec-kicker{color:#8ec2ff}
-.sec--navy h2{color:#fff}
-.sec--navy .sec-lead{color:rgba(255,255,255,.8)}
 
 /* ============ БАЗА ============ */
 *,*::before,*::after{box-sizing:border-box}
@@ -64,9 +66,9 @@ body{margin:0;background:var(--bg);color:var(--text);
 body.lock{overflow:hidden}
 img{max-width:100%;display:block}
 h1,h2,h3{letter-spacing:-.02em;line-height:1.12;margin:0}
-h1{font-size:clamp(26px,8.4vw,76px);font-weight:700}   /* мобильная граница 26px: слоган не переносится */
+h1{font-size:clamp(26px,8.4vw,76px);font-weight:700}
 h1 .h-line{display:block;white-space:nowrap}
-h1 .h-line.acc{color:#cfe6ff}
+h1 .h-line.acc{color:var(--accent)}
 h2{font-size:clamp(26px,3.4vw,50px);font-weight:700}
 h3{font-size:20px;font-weight:600}
 p{margin:0}
@@ -124,12 +126,11 @@ a{color:var(--accent)}
 .menu a{color:var(--text);text-decoration:none;font-size:18px;font-weight:600;padding:12px 14px;border-radius:14px;min-height:48px;display:flex;align-items:center}
 .menu a:hover{background:var(--accent-soft)}
 
-/* ============ HERO: синий градиент + живые блики ============ */
-.hero{position:relative;overflow:hidden;color:#fff;
-  background:linear-gradient(160deg,#0b3ea8 0%,#0071e3 58%,#3f97f0 100%);
+/* ============ HERO: синий фон + белая панель-подложка ============ */
+.hero{position:relative;overflow:hidden;
+  background:var(--hero-grad);
   min-height:calc(100vh - var(--nav-h));min-height:calc(100svh - var(--nav-h));
-  display:flex;flex-direction:column;justify-content:center;padding:clamp(32px,5vw,72px) 0 clamp(26px,3vw,48px)}
-[data-theme="dark"] .hero{background:linear-gradient(160deg,#062a6b 0%,#0a55c4 60%,#1e6ef0 100%)}
+  display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,64px) 0 clamp(26px,3vw,48px)}
 .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none;filter:blur(72px);opacity:.4}
 .hero::before{width:56vw;height:56vw;max-width:760px;max-height:760px;top:-20%;right:-12%;
   background:radial-gradient(circle at 32% 32%,rgba(255,255,255,.5),transparent 66%);
@@ -140,21 +141,22 @@ a{color:var(--accent)}
 @keyframes drift1{to{transform:translate3d(-7%,5%,0) scale(1.1)}}
 @keyframes drift2{to{transform:translate3d(6%,-6%,0) scale(1.14)}}
 .hero .wrap{position:relative;z-index:1}
+/* белая подложка: та же ширина, что и у плашки ниже */
+.hero-panel{background:var(--surface);color:var(--text);
+  border-radius:clamp(24px,3vw,36px);padding:clamp(22px,4vw,56px);
+  box-shadow:0 30px 80px rgba(4,26,64,.35)}
 .hero-grid{display:grid;gap:clamp(24px,3vw,48px);align-items:center}
 @media (min-width:960px){.hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)}}
 .hero-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:980px;
-  border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.14);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.92)}
-.hero-pill i{width:8px;height:8px;border-radius:50%;background:#cfe6ff;flex:none}
-.hero h1{margin:16px 0 18px;color:#fff}
-.hero-role{font-size:clamp(16px,1.6vw,22px);color:rgba(255,255,255,.85);max-width:580px}
-.hero-school{font-weight:700;color:#fff}
+  border:1px solid var(--line);background:var(--surface-2);
+  font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.hero-pill i{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+.hero-panel h1{margin:16px 0 18px;color:var(--text)}
+.hero-role{font-size:clamp(16px,1.6vw,22px);color:var(--muted);max-width:580px}
+.hero-school{font-weight:700;color:var(--text)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.hero .btn{background:#fff;color:#0b3ea8}
-.hero .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
-.hero-proof{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.88);font-size:15.5px;margin-top:22px}
-.hero-proof svg{color:#8affb1;flex:none;width:22px;height:22px}
+.hero-proof{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:15.5px;margin-top:22px}
+.hero-proof svg{color:var(--ok);flex:none;width:22px;height:22px}
 .hero-stage{position:relative;width:100%;max-width:400px;margin-inline:auto}
 @media (min-width:960px){.hero-stage{max-width:480px;margin-inline:0 0 0 auto}}
 .hero-photo{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:200px 200px 24px 24px}
@@ -164,22 +166,22 @@ a{color:var(--accent)}
 .hero-photo.is-missing img{display:none}
 .photo-ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;
   padding:20px;text-align:center;color:var(--muted);background:var(--surface-2);border:1.5px dashed var(--line);border-radius:20px}
-.hero-photo .photo-ph{color:rgba(255,255,255,.85);background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.45)}
 .is-missing .photo-ph{display:flex}
 .photo-ph svg{opacity:.6}
 .ph-file{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;opacity:.85;word-break:break-all}
-.strip{margin-top:clamp(26px,4vw,56px);padding:20px clamp(16px,2.4vw,32px);border-radius:20px;
-  background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.24);
+/* плашка под панелью — той же ширины */
+.strip{margin-top:clamp(18px,2.4vw,28px);padding:20px clamp(16px,2.4vw,32px);border-radius:20px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.strip>p{text-align:center;font-size:13.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.88)}
+.strip>p{text-align:center;font-size:13.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.9)}
 .marks{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;margin-top:10px}
 @media (min-width:960px){.marks{justify-content:space-between}}
-.mark{display:flex;align-items:center;gap:9px;font:inherit;font-size:15.5px;font-weight:700;color:rgba(255,255,255,.88);
+.mark{display:flex;align-items:center;gap:9px;font:inherit;font-size:15.5px;font-weight:700;color:rgba(255,255,255,.9);
   background:none;border:0;cursor:pointer;padding:8px 12px;border-radius:12px;min-height:46px;transition:color .2s,background .2s}
 .mark svg{width:21px;height:21px;color:#fff}
 .mark:hover{color:#fff;background:rgba(255,255,255,.16)}
 
-/* ============ КАРТОЧКИ «ОБО МНЕ» И «СТАНДАРТЫ»: иконка+заголовок в строку ============ */
+/* ============ КАРТОЧКИ «ОБО МНЕ» / «СТАНДАРТЫ» ============ */
 .two-col{display:grid;gap:16px;max-width:1120px;margin-inline:auto}
 @media (min-width:900px){.two-col{grid-template-columns:1fr 1fr}}
 .three-col{display:grid;gap:16px;max-width:1180px;margin-inline:auto}
@@ -249,12 +251,13 @@ a{color:var(--accent)}
   font-size:14.5px;font-weight:500;color:var(--muted);text-align:center;
   min-height:64px;display:flex;align-items:center;justify-content:center}
 
-/* ============ FOOTER: navy, всё по центру ============ */
-.footer{border-top:1px solid rgba(255,255,255,.14);padding:clamp(40px,5vw,64px) 0;background:var(--navy);color:#fff}
+/* ============ FOOTER: цвет как у главной ============ */
+.footer{border-top:1px solid rgba(255,255,255,.2);padding:clamp(40px,5vw,64px) 0;
+  background:var(--hero-grad);color:#fff}
 .footer-in{display:grid;justify-items:center;gap:22px;text-align:center}
 .f-title{font-size:clamp(20px,2.4vw,28px);font-weight:700;letter-spacing:-.02em;color:#fff}
 .f-contacts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;width:100%}
-.crow{display:flex;align-items:stretch;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:var(--surface);
+.crow{display:flex;align-items:stretch;border:1px solid rgba(255,255,255,.25);border-radius:16px;background:var(--surface);
   overflow:hidden;transition:border-color .2s,transform .2s;flex:0 1 340px;min-width:min(280px,100%)}
 .crow:hover{border-color:var(--cic,var(--accent));transform:translateY(-2px)}
 .crow-a{flex:1;display:flex;align-items:center;gap:14px;padding:12px 16px;min-height:60px;text-decoration:none;color:var(--text)}
@@ -271,7 +274,7 @@ a{color:var(--accent)}
   cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s}
 .copy-mini svg{width:19px;height:19px}
 .copy-mini:hover{color:var(--cic,var(--accent));background:color-mix(in srgb,var(--cic,#0071e3) 12%,transparent)}
-.f-copy{color:rgba(255,255,255,.78);font-size:15.5px}
+.f-copy{color:rgba(255,255,255,.85);font-size:15.5px}
 
 /* ============ SHEET ============ */
 .sheet{position:fixed;inset:0;z-index:80;background:var(--bg);overflow-y:auto;
@@ -334,7 +337,7 @@ a{color:var(--accent)}
 
 /* ============ TOAST ============ */
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,16px);z-index:100;padding:13px 22px;border-radius:980px;
-  background:var(--navy);color:#fff;font-size:15px;font-weight:600;box-shadow:var(--shadow);
+  background:#0d2b57;color:#fff;font-size:15px;font-weight:600;box-shadow:var(--shadow);
   opacity:0;pointer-events:none;transition:.3s;max-width:calc(100vw - 32px);text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 </style>
@@ -391,11 +394,11 @@ const PROJECTS = [
 ];
 const MARKS = [ ["ege","ЕГЭ"], ["oge","ОГЭ"], ["webdev","Веб-разработка"], ["python","Python"], ["turtle","Turtle"], ["tpg","ГенИИ"] ];
 const HERO_PHOTO = ["photo-hero.png","Михаил Масликов, портрет без фона"];
-const GALLERY = [
-  ["photo-gallery-bw.jpg","Ночь перед дедлайном модуля: тренажёр должен работать"],
+const GALLERY = [ // замены: photo-about вместо bw, photo-contact вместо school
+  ["photo-about.jpg","Портрет в учебном пространстве школы"],
   ["photo-teach.jpg","С учениками за компьютерами: консультация по проекту"],
   ["photo-gallery-code.jpg","Код на проекции: объясняю fetch на живом примере"],
-  ["photo-school.jpg","Команда Точки будущего — среда, где возможно всё"],
+  ["photo-contact.jpg","Неформальный портрет на территории школы"],
   ["photo-gallery-lesson.jpg","Теория без слайдов: разбор задания у экрана"],
   ["photo-speak.jpg","Выступление на интенсиве для учителей"]
 ];
@@ -490,22 +493,24 @@ function renderApp(){
   </nav>
   <main id="top">
     <section class="hero"><div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <span class="hero-pill"><i></i>ЧОУ «Точка будущего» · информатика</span>
-          <h1><span class="h-line">Учу создавать,</span><span class="h-line acc">а не пересказывать</span></h1>
-          <p class="hero-role"><span class="hero-school">Масликов Михаил Михайлович</span> — учитель информатики. Курсы, тренажёры и проектные лаборатории, после которых остаются работающие продукты.</p>
-          <div class="hero-cta">
-            <a class="btn" href="#works">Мои разработки</a>
-            <a class="btn ghost" href="#about">Обо мне</a>
+      <div class="hero-panel rv">
+        <div class="hero-grid">
+          <div>
+            <span class="hero-pill"><i></i>ЧОУ «Точка будущего» · информатика</span>
+            <h1><span class="h-line">Учу создавать,</span><span class="h-line acc">а не пересказывать</span></h1>
+            <p class="hero-role"><span class="hero-school">Масликов Михаил Михайлович</span> — учитель информатики. Курсы, тренажёры и проектные лаборатории, после которых остаются работающие продукты.</p>
+            <div class="hero-cta">
+              <a class="btn" href="#works">Мои разработки</a>
+              <a class="btn ghost" href="#about">Обо мне</a>
+            </div>
+            <p class="hero-proof">${ICONS.okc}Все шесть ресурсов опубликованы на GitHub Pages и проверены на реальных уроках</p>
           </div>
-          <p class="hero-proof">${ICONS.okc}Все шесть ресурсов опубликованы на GitHub Pages и проверены на реальных уроках</p>
-        </div>
-        <div class="hero-stage">
-          <figure class="hero-photo" data-photo>
-            <img data-file="${HERO_PHOTO[0]}" src="${IMG}${HERO_PHOTO[0]}" alt="${esc(HERO_PHOTO[1])}" decoding="async">
-            <div class="photo-ph" aria-hidden="true">${ICONS.cam}<span>Сюда встанет фото без фона</span><span class="ph-file">${IMG}${HERO_PHOTO[0]}</span></div>
-          </figure>
+          <div class="hero-stage">
+            <figure class="hero-photo" data-photo>
+              <img data-file="${HERO_PHOTO[0]}" src="${IMG}${HERO_PHOTO[0]}" alt="${esc(HERO_PHOTO[1])}" decoding="async">
+              <div class="photo-ph" aria-hidden="true">${ICONS.cam}<span>Сюда встанет фото без фона</span><span class="ph-file">${IMG}${HERO_PHOTO[0]}</span></div>
+            </figure>
+          </div>
         </div>
       </div>
       <div class="strip rv">
@@ -528,12 +533,12 @@ function renderApp(){
       </div>
     </div></section>
 
-    <section class="sec sec--navy" id="works"><div class="wrap">
+    <section class="sec sec--steel" id="works"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Разработки</span><h2>Каталог образовательных ресурсов</h2><p class="sec-lead">Описания и скриншоты открыты всем; переход на рабочие ресурсы — по коду доступа, код выдаю лично ученикам и сотрудникам.</p></div>
       <div class="cards" id="cards"></div>
     </div></section>
 
-    <section class="sec sec--steel" id="standards"><div class="wrap">
+    <section class="sec" id="standards"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Стандарты</span><h2>Как я учу</h2><p class="sec-lead">Шесть правил, на которых держится каждый ресурс — от первого занятия до защиты проекта.</p></div>
       <div class="three-col rv">
         <article class="tcard a-blue"><div class="t-head"><span class="ai">${ICONS.eye}</span><h3>Видимый результат</h3></div><p>Каждое занятие заканчивается артефактом: рабочая страница, решённая задача, рисунок кодом, рабочий лист. Знания превращаются в продукт, а не в пересказ.</p></article>
@@ -545,7 +550,7 @@ function renderApp(){
       </div>
     </div></section>
 
-    <section class="sec" id="school"><div class="wrap school-cols">
+    <section class="sec sec--steel" id="school"><div class="wrap school-cols">
       <div class="sec-head center rv"><span class="sec-kicker">Школа и ТПГ</span><h2>Точка будущего: среда, где это возможно</h2><p class="sec-lead">ЧОУ «Точка будущего» — школа со статусом инновационной площадки: здесь преподаватель может запустить курс-симулятор профессии, тренажёр на сотню задач или проектную лабораторию для сотрудников — и получить поддержку, а не согласование на полгода.</p></div>
       <div class="tpg rv">
         <div class="tpg-head"><span class="tpg-ico">${ICONS.team}</span><h3>ТПГ «ГенИИ» · 2026/2027</h3></div>
@@ -559,7 +564,7 @@ function renderApp(){
       </div>
     </div></section>
 
-    <section class="sec sec--steel" id="gallery"><div class="wrap">
+    <section class="sec" id="gallery"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Галерея</span><h2>За кадром</h2><p class="sec-lead">Шесть квадратных кадров: уроки, выступления и команда. На телефоне — одна колонка, на планшете — две, на экране — три.</p></div>
       <div class="gal-grid rv" id="gal"></div>
     </div></section>
