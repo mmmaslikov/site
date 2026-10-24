@@ -7,7 +7,7 @@
 <title>Михаил Масликов — учитель информатики · Точка будущего</title>
 <!--
   ═══ ПАМЯТКА ПО ФАЙЛАМ (папка images/ рядом с index.html) ═══
-  PNG: photo-hero.png — 4:5 · 1200×1500 · вырезанный без фона (transparent)
+  PNG: photo-hero.png — 4:5 · 1200×1500 · вырезанный без фона (transparent); на сайте станет ч/б
   PNG: скриншоты, 16:10 · 2880×1800 (или 1440×900):
     scr-webdev-01-hero.png, scr-webdev-02-catalog.png, scr-webdev-03-lesson.png,
     scr-python-01-hero.png, scr-python-02-catalog.png, scr-python-03-task.png,
@@ -16,46 +16,42 @@
     scr-turtle-01-hero.png, scr-turtle-02-lessons.png, scr-turtle-03-worksheet.png,
     scr-tpg-01-hero.png, scr-tpg-02-stages.png, scr-tpg-03-team.png
   JPG: галерея, 6 квадратных кадров 1:1 · 1400×1400:
-    photo-about.jpg          (7.JPG) · «Портрет в учебном пространстве школы»
-    photo-teach.jpg          (6.JPG) · «С учениками за компьютерами»
-    photo-gallery-code.jpg   (9.JPG) · «Код на проекции во время занятия»
-    photo-contact.jpg        (5.JPG) · «Неформальный портрет на территории школы»
-    photo-gallery-lesson.jpg (8.JPG) · «Теория без слайдов»
-    photo-speak.jpg          (3.JPG) · «Выступление на интенсиве»
+    photo-about.jpg (7.JPG) · photo-teach.jpg (6.JPG) · photo-gallery-code.jpg (9.JPG)
+    photo-contact.jpg (5.JPG) · photo-gallery-lesson.jpg (8.JPG) · photo-speak.jpg (3.JPG)
   (photo-school.jpg и photo-gallery-bw.jpg сейчас не используются)
   КОДЫ ДОСТУПА живут только в памяти вкладки: перезагрузил страницу — снова под кодом.
 -->
 <style>
-/* ============ ПЕРЕМЕННЫЕ ============ */
+/* ============ ПЕРЕМЕННЫЕ: монохром + оранжевый акцент, уголь для hero/футера ============ */
 :root{
-  --bg:#e9f0fa;            /* бледно-синий: фон страницы и «светлых» секций */
-  --steel:#d8e3f2;         /* стальной синий для чередования */
-  --surface:#ffffff;       /* карточки и белая панель hero */
-  --surface-2:#f2f6fc;
-  --text:#1d1d1f; --muted:#5d6b80;
-  --line:rgba(13,43,87,.12);
+  --bg:#f2f2f2;            /* монохром m1 */
+  --m2:#e6e6e6;            /* монохром m2 для чередования */
+  --charcoal:#2f2d2c;      /* как на референсе: hero и футер */
+  --hero-acc:#e08b3f;      /* оранжевый акцент hero/футера */
+  --surface:#ffffff;       /* карточки */
+  --surface-2:#fafafa;
+  --text:#1d1d1f; --muted:#6f6f6f;
+  --line:rgba(0,0,0,.10);
   --accent:#0071e3; --accent-soft:rgba(0,113,227,.10);
-  --hero-grad:linear-gradient(160deg,#0b3ea8 0%,#0071e3 58%,#3f97f0 100%);
-  --radius:24px; --radius-s:16px; --shadow:0 12px 34px rgba(13,43,87,.10);
+  --radius:24px; --radius-s:16px; --shadow:0 12px 34px rgba(0,0,0,.10);
   --nav-h:64px; --ok:#34c759; --err:#ff3b30;
   --pad:clamp(20px,4vw,48px);
   --wrap:1320px;
 }
 [data-theme="dark"]{
-  --bg:#0f1520; --steel:#182231;
-  --surface:#171c26; --surface-2:#1d2430; --text:#f5f5f7; --muted:#9aa7ba;
-  --line:rgba(255,255,255,.12); --accent:#2997ff; --accent-soft:rgba(41,151,255,.16);
+  --bg:#161616; --m2:#1d1d1d; --charcoal:#232120;
+  --surface:#222222; --surface-2:#2a2a2a; --text:#f2f2f2; --muted:#9c9c9c;
+  --line:rgba(255,255,255,.12); --accent:#e5924a; --accent-soft:rgba(229,146,74,.16);
   --shadow:0 14px 40px rgba(0,0,0,.5);
-  --hero-grad:linear-gradient(160deg,#062a6b 0%,#0a55c4 60%,#1e6ef0 100%);
 }
-/* цвета проектов */
-.acc-webdev{--acc:#ff9f0a;--acc-soft:rgba(255,159,10,.15)}  [data-theme="dark"] .acc-webdev{--acc:#ff9f0a;--acc-soft:rgba(255,159,10,.24)}
-.acc-python{--acc:#0071e3;--acc-soft:rgba(0,113,227,.12)}   [data-theme="dark"] .acc-python{--acc:#0a84ff;--acc-soft:rgba(10,132,255,.24)}
-.acc-ege{--acc:#ff3b30;--acc-soft:rgba(255,59,48,.12)}      [data-theme="dark"] .acc-ege{--acc:#ff453a;--acc-soft:rgba(255,69,58,.24)}
-.acc-oge{--acc:#ff2d55;--acc-soft:rgba(255,45,85,.12)}      [data-theme="dark"] .acc-oge{--acc:#ff375f;--acc-soft:rgba(255,55,95,.24)}
-.acc-turtle{--acc:#34c759;--acc-soft:rgba(52,199,89,.15)}   [data-theme="dark"] .acc-turtle{--acc:#30d158;--acc-soft:rgba(48,209,88,.24)}
-.acc-tpg{--acc:#af52de;--acc-soft:rgba(175,82,222,.15)}     [data-theme="dark"] .acc-tpg{--acc:#bf5af2;--acc-soft:rgba(191,90,242,.24)}
-.sec--steel{background:var(--steel)}
+/* цвета проектов (иконки) */
+.acc-webdev{--acc-p:#ff9f0a;--acc-soft-p:rgba(255,159,10,.15)}  [data-theme="dark"] .acc-webdev{--acc-p:#ff9f0a;--acc-soft-p:rgba(255,159,10,.24)}
+.acc-python{--acc-p:#0a84ff;--acc-soft-p:rgba(10,132,255,.14)}  [data-theme="dark"] .acc-python{--acc-p:#0a84ff;--acc-soft-p:rgba(10,132,255,.24)}
+.acc-ege{--acc-p:#ff453a;--acc-soft-p:rgba(255,69,58,.13)}      [data-theme="dark"] .acc-ege{--acc-p:#ff453a;--acc-soft-p:rgba(255,69,58,.24)}
+.acc-oge{--acc-p:#ff375f;--acc-soft-p:rgba(255,55,95,.13)}      [data-theme="dark"] .acc-oge{--acc-p:#ff375f;--acc-soft-p:rgba(255,55,95,.24)}
+.acc-turtle{--acc-p:#30d158;--acc-soft-p:rgba(48,209,88,.15)}   [data-theme="dark"] .acc-turtle{--acc-p:#30d158;--acc-soft-p:rgba(48,209,88,.24)}
+.acc-tpg{--acc-p:#bf5af2;--acc-soft-p:rgba(191,90,242,.15)}     [data-theme="dark"] .acc-tpg{--acc-p:#bf5af2;--acc-soft-p:rgba(191,90,242,.24)}
+.sec--m2{background:var(--m2)}
 
 /* ============ БАЗА ============ */
 *,*::before,*::after{box-sizing:border-box}
@@ -65,10 +61,7 @@ body{margin:0;background:var(--bg);color:var(--text);
   -webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
 body.lock{overflow:hidden}
 img{max-width:100%;display:block}
-h1,h2,h3{letter-spacing:-.02em;line-height:1.12;margin:0}
-h1{font-size:clamp(26px,8.4vw,76px);font-weight:700}
-h1 .h-line{display:block;white-space:nowrap}
-h1 .h-line.acc{color:var(--accent)}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.1;margin:0}
 h2{font-size:clamp(26px,3.4vw,50px);font-weight:700}
 h3{font-size:20px;font-weight:600}
 p{margin:0}
@@ -79,7 +72,7 @@ a{color:var(--accent)}
 .sec-head{margin-bottom:clamp(26px,3vw,48px)}
 .sec-head.center{text-align:center;max-width:860px;margin-inline:auto}
 .sec-head.center .sec-lead{margin-inline:auto}
-.sec-kicker{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.sec-kicker{display:inline-block;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
 .sec-lead{color:var(--muted);margin-top:12px;max-width:720px;font-size:clamp(16px,1.5vw,20px)}
 .j{text-align:justify;hyphens:auto}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 26px;
@@ -87,7 +80,7 @@ a{color:var(--accent)}
   cursor:pointer;text-decoration:none;transition:transform .18s,opacity .18s}
 .btn:hover{opacity:.88;transform:translateY(-1px)}
 .btn:active{transform:scale(.98)}
-.btn.secondary{background:var(--accent-soft);color:var(--acc,var(--accent))}
+.btn.secondary{background:var(--acc-soft-p,var(--accent-soft));color:var(--acc-p,var(--accent))}
 .btn.ghost{background:transparent;color:var(--text);border-color:var(--line)}
 .btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:980px;background:var(--surface);
@@ -101,85 +94,86 @@ a{color:var(--accent)}
   *{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
 
-/* ============ NAV ============ */
+/* ============ NAV: тёмная планка как в референсе ============ */
 .nav{position:sticky;top:0;z-index:50;height:var(--nav-h);
-  background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:saturate(180%) blur(20px);
-  -webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+  background:color-mix(in srgb,var(--charcoal) 88%,transparent);backdrop-filter:saturate(140%) blur(18px);
+  -webkit-backdrop-filter:saturate(140%) blur(18px);border-bottom:1px solid rgba(255,255,255,.08)}
 .nav-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad);height:var(--nav-h);display:flex;align-items:center;gap:14px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;text-decoration:none;color:var(--text);min-height:44px}
-.logo-m{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,#0b3ea8,#3f97f0);
-  color:#fff;display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
-.nav-links{display:none;gap:4px;margin-left:auto}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500;padding:10px 14px;border-radius:980px;min-height:44px;display:inline-flex;align-items:center}
-.nav-links a:hover{color:var(--text);background:var(--accent-soft)}
-.nav-links a.active{color:var(--text);background:var(--accent-soft)}
+.logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:16px;text-decoration:none;color:#fff;min-height:44px}
+.logo-m{width:38px;height:38px;border-radius:10px;background:var(--charcoal);border:1px solid rgba(255,255,255,.22);
+  color:var(--hero-acc);display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
+.nav-links{display:none;gap:6px;margin-left:auto}
+.nav-links a{color:rgba(255,255,255,.72);text-decoration:none;font-size:15px;font-weight:500;padding:10px 14px;border-radius:980px;min-height:44px;display:inline-flex;align-items:center;border-bottom:2px solid transparent}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-links a.active{color:#fff;border-bottom-color:var(--hero-acc);border-radius:0}
 .nav-actions{margin-left:auto;display:flex;gap:8px;align-items:center}
 .nav-links + .nav-actions{margin-left:8px}
-.icon-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);
+.icon-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.22);background:transparent;color:#fff;
   display:grid;place-items:center;cursor:pointer;transition:transform .18s;flex:none}
 .icon-btn:hover{transform:scale(1.06)}
 .burger{display:grid}
 @media (min-width:960px){.nav-links{display:flex}.burger{display:none}}
-.menu{position:fixed;inset:var(--nav-h) 0 auto 0;z-index:49;background:var(--bg);border-bottom:1px solid var(--line);
+.menu{position:fixed;inset:var(--nav-h) 0 auto 0;z-index:49;background:var(--charcoal);border-bottom:1px solid rgba(255,255,255,.1);
   padding:12px var(--pad) 20px;display:grid;gap:4px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:.25s}
 .menu.open{transform:none;opacity:1;pointer-events:auto}
-.menu a{color:var(--text);text-decoration:none;font-size:18px;font-weight:600;padding:12px 14px;border-radius:14px;min-height:48px;display:flex;align-items:center}
-.menu a:hover{background:var(--accent-soft)}
+.menu a{color:rgba(255,255,255,.85);text-decoration:none;font-size:18px;font-weight:600;padding:12px 14px;border-radius:14px;min-height:48px;display:flex;align-items:center}
+.menu a:hover{background:rgba(255,255,255,.08);color:#fff}
 
-/* ============ HERO: синий фон + белая панель-подложка ============ */
-.hero{position:relative;overflow:hidden;
-  background:var(--hero-grad);
+/* ============ HERO: уголь, ч/б фото, оранжевый акцент ============ */
+.hero{position:relative;overflow:hidden;background:var(--charcoal);color:#fff;
   min-height:calc(100vh - var(--nav-h));min-height:calc(100svh - var(--nav-h));
-  display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,64px) 0 clamp(26px,3vw,48px)}
-.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none;filter:blur(72px);opacity:.4}
-.hero::before{width:56vw;height:56vw;max-width:760px;max-height:760px;top:-20%;right:-12%;
-  background:radial-gradient(circle at 32% 32%,rgba(255,255,255,.5),transparent 66%);
-  animation:drift1 16s ease-in-out infinite alternate}
-.hero::after{width:44vw;height:44vw;max-width:600px;max-height:600px;bottom:-24%;left:-10%;
-  background:radial-gradient(circle at 60% 60%,rgba(127,240,255,.45),transparent 66%);
-  animation:drift2 21s ease-in-out infinite alternate}
-@keyframes drift1{to{transform:translate3d(-7%,5%,0) scale(1.1)}}
-@keyframes drift2{to{transform:translate3d(6%,-6%,0) scale(1.14)}}
+  display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,64px) 0 clamp(24px,3vw,44px)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 78% 20%,rgba(255,255,255,.06),transparent 60%)}
 .hero .wrap{position:relative;z-index:1}
-/* белая подложка: та же ширина, что и у плашки ниже */
-.hero-panel{background:var(--surface);color:var(--text);
-  border-radius:clamp(24px,3vw,36px);padding:clamp(22px,4vw,56px);
-  box-shadow:0 30px 80px rgba(4,26,64,.35)}
-.hero-grid{display:grid;gap:clamp(24px,3vw,48px);align-items:center}
-@media (min-width:960px){.hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)}}
-.hero-pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:980px;
-  border:1px solid var(--line);background:var(--surface-2);
-  font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.hero-pill i{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
-.hero-panel h1{margin:16px 0 18px;color:var(--text)}
-.hero-role{font-size:clamp(16px,1.6vw,22px);color:var(--muted);max-width:580px}
-.hero-school{font-weight:700;color:var(--text)}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.hero-proof{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:15.5px;margin-top:22px}
-.hero-proof svg{color:var(--ok);flex:none;width:22px;height:22px}
-.hero-stage{position:relative;width:100%;max-width:400px;margin-inline:auto}
-@media (min-width:960px){.hero-stage{max-width:480px;margin-inline:0 0 0 auto}}
-.hero-photo{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:200px 200px 24px 24px}
+.hero-grid{display:grid;gap:clamp(24px,3vw,40px);align-items:end}
+@media (min-width:900px){.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.9fr)}}
+.hero-name{border-left:2px solid var(--hero-acc);padding-left:clamp(16px,2vw,26px)}
+.hero-name h1{font-size:clamp(30px,7vw,84px);font-weight:600;color:#fff;letter-spacing:-.03em}
+.hero-sub{margin-top:10px;font-size:clamp(15px,1.6vw,20px);color:rgba(255,255,255,.66);letter-spacing:.02em}
+.hero-slogan{margin-top:22px;font-size:clamp(16px,1.8vw,22px);color:rgba(255,255,255,.88);max-width:520px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn.line{background:transparent;color:var(--hero-acc);border:1.5px solid var(--hero-acc)}
+.btn.line:hover{background:rgba(224,139,63,.12);opacity:1}
+.btn.dim{background:transparent;color:rgba(255,255,255,.85);border:1.5px solid rgba(255,255,255,.35)}
+.btn.dim:hover{border-color:#fff;color:#fff;opacity:1}
+.hero-scroll{display:flex;align-items:center;gap:14px;margin-top:clamp(30px,4vw,56px);
+  color:rgba(255,255,255,.65);font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+.hero-scroll i{display:block;width:44px;height:1.5px;background:rgba(255,255,255,.4)}
+.hero-scroll .dn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--hero-acc);color:var(--hero-acc);
+  display:grid;place-items:center;transition:transform .2s,background .2s}
+.hero-scroll:hover .dn{transform:translateY(3px);background:rgba(224,139,63,.14)}
+.hero-scroll:hover{color:#fff}
+/* ч/б фото справа, как в референсе */
+.hero-stage{position:relative;width:100%;max-width:420px;margin-inline:auto}
+@media (min-width:900px){.hero-stage{max-width:none;height:min(66vh,620px)}}
+.hero-photo{margin:0;position:relative;height:420px}
+@media (min-width:900px){.hero-photo{height:100%}}
 .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;
-  opacity:0;transition:opacity .6s}
+  filter:grayscale(1) contrast(1.06);opacity:0;transition:opacity .8s}
 .hero-photo.is-loaded img{opacity:1}
 .hero-photo.is-missing img{display:none}
 .photo-ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;
   padding:20px;text-align:center;color:var(--muted);background:var(--surface-2);border:1.5px dashed var(--line);border-radius:20px}
+.hero-photo .photo-ph{color:rgba(255,255,255,.7);background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.3)}
 .is-missing .photo-ph{display:flex}
 .photo-ph svg{opacity:.6}
 .ph-file{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;opacity:.85;word-break:break-all}
-/* плашка под панелью — той же ширины */
-.strip{margin-top:clamp(18px,2.4vw,28px);padding:20px clamp(16px,2.4vw,32px);border-radius:20px;
-  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.strip>p{text-align:center;font-size:13.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.9)}
+/* вертикальные штрихи справа, как в референсе */
+.hero-dashes{position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);display:grid;gap:10px;z-index:1}
+.hero-dashes span{width:2px;height:20px;background:rgba(255,255,255,.3)}
+.hero-dashes span.on{height:34px;background:var(--hero-acc)}
+@media (max-width:959px){.hero-dashes{display:none}}
+/* плашка ресурсов на угле */
+.strip{margin-top:clamp(24px,3.4vw,48px);padding:20px clamp(16px,2.4vw,32px);border-radius:18px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+.strip>p{text-align:center;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75)}
 .marks{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;margin-top:10px}
 @media (min-width:960px){.marks{justify-content:space-between}}
-.mark{display:flex;align-items:center;gap:9px;font:inherit;font-size:15.5px;font-weight:700;color:rgba(255,255,255,.9);
+.mark{display:flex;align-items:center;gap:9px;font:inherit;font-size:15.5px;font-weight:700;color:rgba(255,255,255,.78);
   background:none;border:0;cursor:pointer;padding:8px 12px;border-radius:12px;min-height:46px;transition:color .2s,background .2s}
-.mark svg{width:21px;height:21px;color:#fff}
-.mark:hover{color:#fff;background:rgba(255,255,255,.16)}
+.mark svg{width:21px;height:21px;color:var(--acc-p,#fff)}
+.mark:hover{color:#fff;background:rgba(255,255,255,.1)}
 
 /* ============ КАРТОЧКИ «ОБО МНЕ» / «СТАНДАРТЫ» ============ */
 .two-col{display:grid;gap:16px;max-width:1120px;margin-inline:auto}
@@ -196,9 +190,9 @@ a{color:var(--accent)}
 .tcard .ai svg{width:24px;height:24px}
 .t-head h3{font-size:19px}
 .tcard p{color:var(--muted);font-size:15.5px}
-.a-blue{--aic:#0071e3}.a-slate{--aic:#334155}.a-teal{--aic:#0d9488}.a-terra{--aic:#b45309}
+.a-blue{--aic:#0a84ff}.a-slate{--aic:#57606a}.a-teal{--aic:#0d9488}.a-terra{--aic:#b45309}
 .a-orange{--aic:#ff9f0a}.a-purple{--aic:#af52de}
-[data-theme="dark"] .a-blue{--aic:#0a84ff}[data-theme="dark"] .a-slate{--aic:#94a3b8}
+[data-theme="dark"] .a-blue{--aic:#0a84ff}[data-theme="dark"] .a-slate{--aic:#9aa4b2}
 [data-theme="dark"] .a-teal{--aic:#14b8a6}[data-theme="dark"] .a-terra{--aic:#d97706}
 [data-theme="dark"] .a-orange{--aic:#ff9f0a}[data-theme="dark"] .a-purple{--aic:#bf5af2}
 .chip-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}
@@ -209,9 +203,9 @@ a{color:var(--accent)}
 @media (min-width:1000px){.cards{grid-template-columns:repeat(3,1fr)}}
 .pcard{padding:clamp(20px,2.2vw,26px);display:flex;flex-direction:column;gap:14px;cursor:pointer;position:relative;
   transition:transform .25s,box-shadow .25s,border-color .25s}
-.pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--acc)}
+.pcard:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--acc-p)}
 .pcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.pcard-ico{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:var(--acc-soft);color:var(--acc)}
+.pcard-ico{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:var(--acc-soft-p);color:var(--acc-p)}
 .pcard-ico svg{width:28px;height:28px}
 .lock-badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:7px 12px;border-radius:980px;
   background:var(--surface-2);border:1px solid var(--line);color:var(--muted);white-space:nowrap}
@@ -251,37 +245,35 @@ a{color:var(--accent)}
   font-size:14.5px;font-weight:500;color:var(--muted);text-align:center;
   min-height:64px;display:flex;align-items:center;justify-content:center}
 
-/* ============ FOOTER: цвет как у главной ============ */
-.footer{border-top:1px solid rgba(255,255,255,.2);padding:clamp(40px,5vw,64px) 0;
-  background:var(--hero-grad);color:#fff}
+/* ============ FOOTER: уголь, как hero ============ */
+.footer{border-top:1px solid rgba(255,255,255,.1);padding:clamp(40px,5vw,64px) 0;
+  background:var(--charcoal);color:#fff}
 .footer-in{display:grid;justify-items:center;gap:22px;text-align:center}
 .f-title{font-size:clamp(20px,2.4vw,28px);font-weight:700;letter-spacing:-.02em;color:#fff}
 .f-contacts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;width:100%}
-.crow{display:flex;align-items:stretch;border:1px solid rgba(255,255,255,.25);border-radius:16px;background:var(--surface);
+.crow{display:flex;align-items:stretch;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(255,255,255,.05);
   overflow:hidden;transition:border-color .2s,transform .2s;flex:0 1 340px;min-width:min(280px,100%)}
-.crow:hover{border-color:var(--cic,var(--accent));transform:translateY(-2px)}
-.crow-a{flex:1;display:flex;align-items:center;gap:14px;padding:12px 16px;min-height:60px;text-decoration:none;color:var(--text)}
+.crow:hover{border-color:var(--hero-acc);transform:translateY(-2px)}
+.crow-a{flex:1;display:flex;align-items:center;gap:14px;padding:12px 16px;min-height:60px;text-decoration:none;color:#fff}
 .ci{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;flex:none;font-weight:800;font-size:14px;
-  background:color-mix(in srgb,var(--cic) 15%,transparent);color:var(--cic)}
+  background:rgba(224,139,63,.16);color:var(--hero-acc)}
 .ci svg{width:21px;height:21px}
-.ci-mail{--cic:#b45309}.ci-tg{--cic:#0071e3}.ci-vk{--cic:#334155}
-[data-theme="dark"] .ci-mail{--cic:#d97706}[data-theme="dark"] .ci-tg{--cic:#0a84ff}[data-theme="dark"] .ci-vk{--cic:#94a3b8}
 .ct{display:grid;line-height:1.3;min-width:0;text-align:left}
-.ct small{font-size:12.5px;color:var(--muted);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-.ct b{font-size:16px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.cext{color:var(--muted);margin-left:auto;flex:none}
-.copy-mini{width:54px;flex:none;border:0;border-left:1px solid var(--line);background:transparent;color:var(--muted);
+.ct small{font-size:12.5px;color:rgba(255,255,255,.55);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.ct b{font-size:16px;font-weight:600;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cext{color:rgba(255,255,255,.55);margin-left:auto;flex:none}
+.copy-mini{width:54px;flex:none;border:0;border-left:1px solid rgba(255,255,255,.16);background:transparent;color:rgba(255,255,255,.6);
   cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s}
 .copy-mini svg{width:19px;height:19px}
-.copy-mini:hover{color:var(--cic,var(--accent));background:color-mix(in srgb,var(--cic,#0071e3) 12%,transparent)}
-.f-copy{color:rgba(255,255,255,.85);font-size:15.5px}
+.copy-mini:hover{color:var(--hero-acc);background:rgba(224,139,63,.14)}
+.f-copy{color:rgba(255,255,255,.6);font-size:15.5px}
 
 /* ============ SHEET ============ */
 .sheet{position:fixed;inset:0;z-index:80;background:var(--bg);overflow-y:auto;
   transform:translateY(100%);transition:transform .42s cubic-bezier(.32,.72,0,1);visibility:hidden}
 .sheet.open{transform:none;visibility:visible}
 .sheet-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;height:var(--nav-h);padding:0 16px;
-  background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--line)}
 .sheet-body{max-width:1040px;margin:0 auto;padding:32px 18px 90px}
 @media (min-width:700px){.sheet-body{padding:36px 24px 90px}}
@@ -302,11 +294,11 @@ a{color:var(--accent)}
 .shot-frame.is-missing .photo-ph{display:flex}
 .shot figcaption{font-size:14.5px;color:var(--muted)}
 .sheet-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.note{padding:18px 20px;border-radius:14px;background:var(--acc-soft,var(--accent-soft));font-size:15.5px;color:var(--text)}
+.note{padding:18px 20px;border-radius:14px;background:var(--acc-soft-p,var(--accent-soft));font-size:15.5px;color:var(--text)}
 
 /* ============ МОДАЛКИ ============ */
 .modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;
-  background:rgba(6,20,44,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  background:rgba(20,18,17,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   opacity:0;pointer-events:none;transition:opacity .28s}
 .modal.open{opacity:1;pointer-events:auto}
 .modal-card{width:min(480px,100%);padding:clamp(20px,5vw,30px);border-radius:26px;background:var(--surface);border:1px solid var(--line);
@@ -314,7 +306,7 @@ a{color:var(--accent)}
 .modal.open .modal-card{transform:none}
 .modal-card.shake{animation:shake .4s}
 @keyframes shake{20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
-.gate-ico{width:60px;height:60px;border-radius:18px;background:var(--acc-soft,var(--accent-soft));color:var(--acc,var(--accent));display:grid;place-items:center}
+.gate-ico{width:60px;height:60px;border-radius:18px;background:var(--acc-soft-p,var(--accent-soft));color:var(--acc-p,var(--accent));display:grid;place-items:center}
 .gate-ico svg{width:26px;height:26px}
 .gate-ico.unlocked{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
 .gate-err{font-size:14px;color:var(--err);min-height:20px}
@@ -325,19 +317,19 @@ a{color:var(--accent)}
   border-radius:12px;padding:12px 16px;min-height:50px;width:100%}
 .field input:focus{outline:3px solid var(--accent);outline-offset:2px}
 .lb{z-index:95}
-.lb-card{width:min(1440px,100%);padding:14px;border-radius:22px;background:rgba(10,20,38,.92);border:1px solid rgba(255,255,255,.14)}
-.lb-frame{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;max-height:76vh;background:#0a1424}
+.lb-card{width:min(1440px,100%);padding:14px;border-radius:22px;background:rgba(20,18,17,.94);border:1px solid rgba(255,255,255,.14)}
+.lb-frame{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;max-height:76vh;background:#141211}
 .lb-frame img{width:100%;height:100%;object-fit:contain}
-.lb-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#bcd3ee;border:0;background:transparent}
+.lb-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#c9c4c0;border:0;background:transparent}
 .lb-frame.is-missing img{display:none}
 .lb-frame.is-missing .photo-ph{display:flex}
-.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 4px 2px;color:#eaf2ff;font-size:15px}
+.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 4px 2px;color:#efeae6;font-size:15px}
 .lb-nav{display:flex;gap:8px}
 .lb .icon-btn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#fff}
 
 /* ============ TOAST ============ */
 .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,16px);z-index:100;padding:13px 22px;border-radius:980px;
-  background:#0d2b57;color:#fff;font-size:15px;font-weight:600;box-shadow:var(--shadow);
+  background:var(--charcoal);color:#fff;font-size:15px;font-weight:600;box-shadow:var(--shadow);
   opacity:0;pointer-events:none;transition:.3s;max-width:calc(100vw - 32px);text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 </style>
@@ -393,8 +385,8 @@ const PROJECTS = [
     shots:[["scr-tpg-01-hero.png","Титул проекта и команда"],["scr-tpg-02-stages.png","Этапы, цели и метрики"],["scr-tpg-03-team.png","Состав группы и график года"]]}
 ];
 const MARKS = [ ["ege","ЕГЭ"], ["oge","ОГЭ"], ["webdev","Веб-разработка"], ["python","Python"], ["turtle","Turtle"], ["tpg","ГенИИ"] ];
-const HERO_PHOTO = ["photo-hero.png","Михаил Масликов, портрет без фона"];
-const GALLERY = [ // замены: photo-about вместо bw, photo-contact вместо school
+const HERO_PHOTO = ["photo-hero.png","Михаил Масликов, ч/б портрет без фона"];
+const GALLERY = [
   ["photo-about.jpg","Портрет в учебном пространстве школы"],
   ["photo-teach.jpg","С учениками за компьютерами: консультация по проекту"],
   ["photo-gallery-code.jpg","Код на проекции: объясняю fetch на живом примере"],
@@ -405,8 +397,8 @@ const GALLERY = [ // замены: photo-about вместо bw, photo-contact в
 const ICONS = {
   lock:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
   check:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
-  okc:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.2 2.4 2.4 4.6-4.8"/></svg>',
   cam:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg>',
+  down:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>',
   sun:'<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.4"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M19.4 4.6l-1.7 1.7M6.3 17.7l-1.7 1.7"/></svg>',
   moon:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 14.2A8.6 8.6 0 0 1 9.8 3.4a8.6 8.6 0 1 0 10.8 10.8z"/></svg>',
   burger:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
@@ -492,32 +484,35 @@ function renderApp(){
     <a href="#school">Школа и ТПГ</a><a href="#gallery">Галерея</a><a href="#contacts">Контакты</a>
   </nav>
   <main id="top">
-    <section class="hero"><div class="wrap">
-      <div class="hero-panel rv">
+    <section class="hero">
+      <span class="hero-dashes" aria-hidden="true"><span class="on"></span><span></span><span></span></span>
+      <div class="wrap">
         <div class="hero-grid">
           <div>
-            <span class="hero-pill"><i></i>ЧОУ «Точка будущего» · информатика</span>
-            <h1><span class="h-line">Учу создавать,</span><span class="h-line acc">а не пересказывать</span></h1>
-            <p class="hero-role"><span class="hero-school">Масликов Михаил Михайлович</span> — учитель информатики. Курсы, тренажёры и проектные лаборатории, после которых остаются работающие продукты.</p>
-            <div class="hero-cta">
-              <a class="btn" href="#works">Мои разработки</a>
-              <a class="btn ghost" href="#about">Обо мне</a>
+            <div class="hero-name rv">
+              <h1>Михаил Масликов</h1>
+              <p class="hero-sub">учитель информатики · ЧОУ «Точка будущего»</p>
             </div>
-            <p class="hero-proof">${ICONS.okc}Все шесть ресурсов опубликованы на GitHub Pages и проверены на реальных уроках</p>
+            <p class="hero-slogan rv">Учу создавать, а не пересказывать: курсы, тренажёры и проектные лаборатории, после которых остаются работающие продукты.</p>
+            <div class="hero-cta rv">
+              <a class="btn line" href="#works">Мои разработки</a>
+              <a class="btn dim" href="#about">Обо мне</a>
+            </div>
+            <a class="hero-scroll rv" href="#works"><i></i>смотреть проекты<span class="dn">${ICONS.down}</span></a>
           </div>
-          <div class="hero-stage">
+          <div class="hero-stage rv">
             <figure class="hero-photo" data-photo>
               <img data-file="${HERO_PHOTO[0]}" src="${IMG}${HERO_PHOTO[0]}" alt="${esc(HERO_PHOTO[1])}" decoding="async">
               <div class="photo-ph" aria-hidden="true">${ICONS.cam}<span>Сюда встанет фото без фона</span><span class="ph-file">${IMG}${HERO_PHOTO[0]}</span></div>
             </figure>
           </div>
         </div>
+        <div class="strip rv">
+          <p>Ресурсы уже в строю — используются на уроках и во внеурочке</p>
+          <div class="marks" id="marks"></div>
+        </div>
       </div>
-      <div class="strip rv">
-        <p>Ресурсы уже в строю — используются на уроках и во внеурочке</p>
-        <div class="marks" id="marks"></div>
-      </div>
-    </div></section>
+    </section>
 
     <section class="sec" id="about"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Обо мне</span><h2>Учитель, который строит продукты вместе с учениками</h2></div>
@@ -533,7 +528,7 @@ function renderApp(){
       </div>
     </div></section>
 
-    <section class="sec sec--steel" id="works"><div class="wrap">
+    <section class="sec sec--m2" id="works"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Разработки</span><h2>Каталог образовательных ресурсов</h2><p class="sec-lead">Описания и скриншоты открыты всем; переход на рабочие ресурсы — по коду доступа, код выдаю лично ученикам и сотрудникам.</p></div>
       <div class="cards" id="cards"></div>
     </div></section>
@@ -550,7 +545,7 @@ function renderApp(){
       </div>
     </div></section>
 
-    <section class="sec sec--steel" id="school"><div class="wrap school-cols">
+    <section class="sec sec--m2" id="school"><div class="wrap school-cols">
       <div class="sec-head center rv"><span class="sec-kicker">Школа и ТПГ</span><h2>Точка будущего: среда, где это возможно</h2><p class="sec-lead">ЧОУ «Точка будущего» — школа со статусом инновационной площадки: здесь преподаватель может запустить курс-симулятор профессии, тренажёр на сотню задач или проектную лабораторию для сотрудников — и получить поддержку, а не согласование на полгода.</p></div>
       <div class="tpg rv">
         <div class="tpg-head"><span class="tpg-ico">${ICONS.team}</span><h3>ТПГ «ГенИИ» · 2026/2027</h3></div>
@@ -573,21 +568,21 @@ function renderApp(){
   <footer class="footer" id="contacts"><div class="wrap footer-in">
     <div class="f-title">Написать мне</div>
     <div class="f-contacts">
-      <div class="crow ci-mail">
+      <div class="crow">
         <a class="crow-a" href="mailto:${ME}@gmail.com">
           <span class="ci">${ICONS.mail}</span>
           <span class="ct"><small>Email</small><b>${ME}@gmail.com</b></span>
         </a>
         <button class="copy-mini" id="copy-mail" type="button" aria-label="Скопировать email">${ICONS.copy}</button>
       </div>
-      <div class="crow ci-tg">
+      <div class="crow">
         <a class="crow-a" href="https://t.me/${ME}" target="_blank" rel="noopener">
           <span class="ci">${ICONS.send}</span>
           <span class="ct"><small>Telegram</small><b>t.me/${ME}</b></span>
           <span class="cext">${ICONS.ext}</span>
         </a>
       </div>
-      <div class="crow ci-vk">
+      <div class="crow">
         <a class="crow-a" href="https://vk.ru/${ME}" target="_blank" rel="noopener">
           <span class="ci">VK</span>
           <span class="ct"><small>ВКонтакте</small><b>vk.ru/${ME}</b></span>
