@@ -6,19 +6,6 @@
 <meta name="description" content="Масликов Михаил Михайлович — учитель информатики ЧОУ «Точка будущего». Курсы, тренажёры и проектные лаборатории: веб-разработка, Python, ЕГЭ и ОГЭ, Turtle, ТПГ «ГенИИ».">
 <title>Михаил Масликов — учитель информатики · Точка будущего</title>
 <!--
-  ═══ ПАМЯТКА ПО ФАЙЛАМ (папка images/ рядом с index.html) ═══
-  PNG: photo-hero.png — 1:1 · 2000×2000 · вырезанный без фона (transparent); на сайте ч/б, квадратный
-  PNG: скриншоты, 16:10 · 2880×1800 (или 1440×900):
-    scr-webdev-01-hero.png, scr-webdev-02-catalog.png, scr-webdev-03-lesson.png,
-    scr-python-01-hero.png, scr-python-02-catalog.png, scr-python-03-task.png,
-    scr-ege-01-overview.png, scr-ege-02-catalog.png, scr-ege-03-task.png,
-    scr-oge-01-overview.png, scr-oge-02-catalog.png, scr-oge-03-task.png,
-    scr-turtle-01-hero.png, scr-turtle-02-lessons.png, scr-turtle-03-worksheet.png,
-    scr-tpg-01-hero.png, scr-tpg-02-stages.png, scr-tpg-03-team.png
-  JPG: галерея, 6 квадратных кадров 1:1 · 1400×1400:
-    photo-about.jpg (7.JPG) · photo-teach.jpg (6.JPG) · photo-gallery-code.jpg (9.JPG)
-    photo-contact.jpg (5.JPG) · photo-gallery-lesson.jpg (8.JPG) · photo-speak.jpg (3.JPG)
-  (photo-school.jpg и photo-gallery-bw.jpg сейчас не используются)
   МАСШТАБ: на экранах ≥1800px сайт автоматически крупнее (zoom 1.25), на ≥2300px — как при 150% (zoom 1.5).
   КОДЫ ДОСТУПА живут только в памяти вкладки: перезагрузил страницу — снова под кодом.
 -->
@@ -39,7 +26,7 @@
   --pad:clamp(20px,4vw,48px);
   --wrap:1320px;
   --dock-h:64px;
-  --zoom:1;                 /* масштаб корня: 100% выглядит как понравившиеся 150% на широких экранах */
+  --zoom:1;
 }
 @media (min-width:1800px){:root{--zoom:1.25}}
 @media (min-width:2300px){:root{--zoom:1.5}}
@@ -308,7 +295,7 @@ a{color:var(--accent)}
 .shot-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;
   padding:12px;text-align:center;color:var(--muted);background:var(--surface-2);border:0;border-radius:0}
 .shot-frame.is-missing .photo-ph{display:flex}
-.shot figcaption{font-size:14.5px;color:var(--muted)}
+.shot figcaption{font-size:14.5px;color:var(--muted);text-align:center}
 .sheet-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
 .note{padding:18px 20px;border-radius:14px;background:var(--acc-soft-p,var(--accent-soft));font-size:15.5px;color:var(--text)}
 
@@ -335,7 +322,8 @@ a{color:var(--accent)}
 .lb{z-index:95}
 .lb-card{width:min(1440px,100%);padding:14px;border-radius:22px;background:rgba(20,18,17,.94);border:1px solid rgba(255,255,255,.14)}
 .lb-frame{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/10;max-height:calc(76vh/var(--zoom));background:#141211}
-.lb-frame img{width:100%;height:100%;object-fit:contain}
+.lb-frame{display:flex;align-items:center;justify-content:center}
+.lb-frame img{width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
 .lb-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#c9c4c0;border:0;background:transparent}
 .lb-frame.is-missing img{display:none}
 .lb-frame.is-missing .photo-ph{display:flex}
@@ -357,7 +345,7 @@ a{color:var(--accent)}
 <script>
 "use strict";
 /* ================= КОНСТАНТЫ ================= */
-const ME = "mmmaslikov";            // три «m» — единый источник правды для всех ссылок
+const ME = "mmmaslikov";
 const IMG = "images/";
 const CODE_HASHES = { // только хеши; коды живут в памяти вкладки, без localStorage
   webdev: { sha: "aa13e98223d87d87ab54cdca89e8a6bccad5ec44a4d5d0472866f02ae0667612", djb2: "5fa8c326" },
@@ -370,8 +358,8 @@ const CODE_HASHES = { // только хеши; коды живут в памя�
 };
 const LS_THEME = "mm_site_theme_v1";
 const PROJECTS = [
-  { id:"webdev", title:"Веб-разработка", tagline:"Курс дополнительного образования: от первой страницы в блокноте до публичной защиты собственного Dashboard.",
-    audience:"10–11 класс", volume:"24 занятия × 90 мин", status:"", url:"https://"+ME+".github.io/webdev/",
+  { id:"webdev", title:"Веб-разработка", tagline:"Курс дополнительного образования: от первой страницы в блокноте до разработки и деплоя собственного сайта.",
+    audience:"10–11 класс", volume:"24 занятия", status:"", url:"https://"+ME+".github.io/webdev/",
     about:["Курс для старшей школы, симулирующий работу Junior Frontend Developer: девять модулей от семантики HTML и CSS-сеток до Git, деплоя, промпт-инжиниринга и Agile.","Сквозной продукт: каждый модуль — шаг к собственному Dashboard, который ученик публикует по публичной ссылке и защищает перед группой. ИИ — штатный инструмент: пользоваться можно всем, сдавать — только то, что понимаешь."],
     inside:["9 модулей и 24 занятия: теория у кода, практика, мини-демо в конце","Сквозной проект Dashboard и публичная защита по 5 критериям","Git, Pull Request и ревью кода как в настоящей команде","Модуль Vibe Coding: промпт-инжиниринг и аудит ИИ-кода","Портфолио выпускника: сайт, репозиторий, README, защита"],
     shots:[["scr-webdev-01-hero.png","Главный экран курса"],["scr-webdev-02-catalog.png","Каталог модулей и занятий"],["scr-webdev-03-lesson.png","Страница урока с практикой"]]},
@@ -381,35 +369,35 @@ const PROJECTS = [
     inside:["6 блоков теории: основы, ветвление, циклы, массивы, строки, функции","8 разделов практики и 186 задач с автопроверкой ответа","Экран «Ваш прогресс»: тренажёр помнит открытые и пройденные разделы","Разборы типовых задач перед самостоятельной практикой"],
     shots:[["scr-python-01-hero.png","Главный экран с примером кода"],["scr-python-02-catalog.png","Каталог теории и практики"],["scr-python-03-task.png","Задача тренажёра с проверкой"]]},
   { id:"ege", title:"Подготовка к ЕГЭ", tagline:"Все 27 заданий экзамена: теория, разборы и тренажёры по каждому номеру.",
-    audience:"10–11 класс", volume:"27 заданий · шкала 2026", status:"", url:"https://"+ME+".github.io/ege/",
-    about:["Кабинет подготовки к ЕГЭ по информатике: каталог всех 27 заданий с уровнем сложности, максимальным баллом и рекомендуемым временем.","По каждому заданию — страница с теорией, разборами и тренажёром. Внутри шкала перевода первичного балла в тестовый (2026) и стратегии тайминга."],
+    audience:"11 класс", volume:"27 заданий", status:"", url:"https://"+ME+".github.io/ege/",
+    about:["Подготовка к ЕГЭ по информатике: каталог всех 27 заданий с уровнем сложности, максимальным баллом и рекомендуемым временем.","По каждому заданию — страница с теорией, разборами и тренажёром. Внутри шкала перевода первичного балла в тестовый и стратегии тайминга."],
     inside:["27 заданий: 10 базовых, 13 повышенных, 4 высокого уровня","Страницы заданий: теория, разбор, тренажёр, формат ответа","Шкала первичный → тестовый балл и ориентиры для вузов","Памятки по файлам *.ods, *.txt и ПО на экзамене"],
     shots:[["scr-ege-01-overview.png","Обзор экзамена и шкала"],["scr-ege-02-catalog.png","Меню из 27 заданий"],["scr-ege-03-task.png","Задание с теорией и тренажёром"]]},
   { id:"oge", title:"Подготовка к ОГЭ", tagline:"16 заданий двух частей, включая четыре практических за компьютером.",
-    audience:"8–9 класс", volume:"16 заданий · 21 балл", status:"", url:"https://"+ME+".github.io/oge/",
+    audience:"9 класс", volume:"16 заданий", status:"", url:"https://"+ME+".github.io/oge/",
     about:["Подготовка к ОГЭ по информатике: часть 1 с кратким ответом и часть 2 с практическими заданиями на компьютере — презентации, документы, таблицы, программы.","По каждому заданию — теория, разборы и тренажёры; плюс шкала перевода первичного балла в отметку и советы по таймингу."],
     inside:["16 заданий: 12 с кратким ответом + 4 практических за ПК","Поддержка заданий 13–16: .odp, .odt, .ods, «Робот», программа","Шкала перевода балла в отметку вплоть до «5»","Чек-листы формата ответа и распределения времени"],
     shots:[["scr-oge-01-overview.png","Обзор работы и шкала отметок"],["scr-oge-02-catalog.png","Меню частей 1 и 2"],["scr-oge-03-task.png","Задание с теорией и разбором"]]},
-  { id:"turtle", title:"Черепашка Python", tagline:"Курс «Я — исследователь» для 5–6 классов: рисуем кодом в браузере, без установки Python.",
-    audience:"5–6 класс", volume:"6 уроков × 40 мин", status:"", url:"https://"+ME+".github.io/turtle/",
+  { id:"turtle", title:"Turtle Python", tagline:"Курс «Я — исследователь» для 5–6 классов: рисуем кодом в браузере, без установки Python.",
+    audience:"5–6 класс", volume:"6 уроков", status:"", url:"https://"+ME+".github.io/turtle/",
     about:["Курс для 5–6 классов: черепашка-художник, которой ученик командует на настоящем Python. Шесть уроков по четыре шага: теория, проверка, практика в тренажёре, мини-проект.","Рабочие листы работают прямо в браузере и сохраняются в PDF для учителя. Финал — собственный проект: открытка, узор, персонаж или эмблема."],
     inside:["6 уроков: от первой команды до защиты проекта","Встроенный тренажёр черепашки прямо в браузере","Рабочий лист урока с экспортом в PDF для учителя","Итоговый мини-проект «Графический рисунок в Turtle»"],
     shots:[["scr-turtle-01-hero.png","Главный экран курса"],["scr-turtle-02-lessons.png","Карточки шести уроков"],["scr-turtle-03-worksheet.png","Рабочий лист с тренажёром"]]},
   { id:"tpg", title:"ТПГ «ГенИИ»", tagline:"Творческая проектировочная группа сотрудников: исследование ИИ и создание образовательных продуктов.",
-    audience:"Сотрудники школы", volume:"12 участников · 7 этапов", status:"2026/2027", url:"https://"+ME+".github.io/tpg/",
+    audience:"12 участников", volume:"7 этапов", status:"2026/2027", url:"https://"+ME+".github.io/tpg/",
     about:["Проектная лаборатория ЧОУ «Точка будущего»: 12 участников из десяти методических объединений и служб проектируют систему использования ИИ в школе.","Семь этапов — от анализа проблемы до защиты и масштабирования: банк промптов, ИИ-методички, реестр инструментов и методический конструктор персонализированных маршрутов. Куратор группы — М. М. Масликов."],
     inside:["12 участников из 10 МО и служб комплекса","7 этапов: проблема → тема → цели → продукт → защита","Банк промптов, ИИ-методичек и шаблонов автоматизации","Карта применения ИИ для каждой сферы школы"],
-    shots:[["scr-tpg-01-hero.png","Титул проекта и команда"],["scr-tpg-02-stages.png","Этапы, цели и метрики"],["scr-tpg-03-team.png","Состав группы и график года"]]}
+    shots:[["scr-tpg-01-hero.png","Титул проекта"],["scr-tpg-02-stages.png","Этапы, цели и метрики"],["scr-tpg-03-team.png","Использование ИИ"]]}
 ];
 const MARKS = [ ["ege","ЕГЭ"], ["oge","ОГЭ"], ["webdev","Веб-разработка"], ["python","Python"], ["turtle","Turtle"], ["tpg","ГенИИ"] ];
 const HERO_PHOTO = ["photo-hero.png","Михаил Масликов, ч/б портрет без фона"];
 const GALLERY = [
-  ["photo-about.jpg","Портрет в учебном пространстве школы"],
-  ["photo-teach.jpg","С учениками за компьютерами: консультация по проекту"],
-  ["photo-gallery-code.jpg","Код на проекции: объясняю fetch на живом примере"],
-  ["photo-contact.jpg","Неформальный портрет на территории школы"],
-  ["photo-gallery-lesson.jpg","Теория без слайдов: разбор задания у экрана"],
-  ["photo-speak.jpg","Выступление на интенсиве для учителей"]
+  ["photo-about.jpg","Курсы повышения квалификации"],
+  ["photo-teach.jpg","Участие в практическом семинаре"],
+  ["photo-gallery-code.jpg","Подготовка к уроку в кабинете"],
+  ["photo-contact.jpg","Байкальская методическая школа"],
+  ["photo-gallery-lesson.jpg","Мастер-класс для сотрудников"],
+  ["photo-speak.jpg","Защита разработанного проекта"]
 ];
 const ICONS = {
   lock:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
@@ -525,52 +513,52 @@ function renderApp(){
     </div></section>
 
     <section class="sec" id="about"><div class="wrap">
-      <div class="sec-head center rv"><span class="sec-kicker">Обо мне</span><h2>Учитель, который строит продукты вместе с учениками</h2></div>
+      <div class="sec-head center rv"><span class="sec-kicker">Обо мне</span><h2>Учитель, который создает продукты вместе с учениками</h2></div>
       <div class="two-col rv">
-        <article class="tcard a-blue"><div class="t-head"><span class="ai">${ICONS.dev}</span><h3>Практика руками</h3></div><p class="j">Я преподаю информатику в ЧОУ «Точка будущего» и верю в простую вещь: программирование и веб-разработка осваиваются только руками. Поэтому вместо пересказа параграфов ученики с первого занятия получают видимый результат — страницу, тренажёр, коммит, публичную ссылку.</p></article>
-        <article class="tcard a-slate"><div class="t-head"><span class="ai">${ICONS.layers}</span><h3>Рабочие среды, а не презентации</h3></div><p class="j">Мои разработки — это не слайды, а рабочие среды: курс веб-разработки с защитой проекта, Python-тренажёр на 186 задач, кабинеты подготовки к ЕГЭ и ОГЭ, курс черепашки для младших классов и проектная лаборатория для сотрудников школы.</p></article>
-        <article class="tcard a-teal"><div class="t-head"><span class="ai">${ICONS.scale}</span><h3>Одинаковые правила для всех продуктов</h3></div><p class="j">Каждый ресурс живёт по тем же правилам, по которым я учу: адаптивность, тёмная тема, честные критерии оценки и возможность объяснить каждую строку кода — своего и учеников.</p></article>
+        <article class="tcard a-blue"><div class="t-head"><span class="ai">${ICONS.dev}</span><h3>Практика руками</h3></div><p class="j">Я преподаю информатику в ЧОУ «Точка будущего» и верю в простую вещь: программирование и веб-разработка осваиваются только руками. Поэтому вместо пересказа параграфов ученики получают видимый результат — отчет, страницу, код, наглядный продукт.</p></article>
+        <article class="tcard a-slate"><div class="t-head"><span class="ai">${ICONS.layers}</span><h3>Рабочие продукты, а не конспекты</h3></div><p class="j">Мои разработки — это не слайды, а рабочие среды: курс веб-разработки с защитой проекта, Python-тренажёр на 186 задач, кабинеты подготовки к ЕГЭ и ОГЭ, курс черепашки для младших классов и проектная лаборатория для сотрудников школы.</p></article>
+        <article class="tcard a-teal"><div class="t-head"><span class="ai">${ICONS.scale}</span><h3>Одинаковые правила для всех продуктов</h3></div><p class="j">Каждый ресурс живёт по тем же правилам, по которым я учу: адаптивность, персонализация, честные критерии оценки и возможность объяснить каждую строку кода — своего и учеников.</p></article>
         <article class="tcard a-terra"><div class="t-head"><span class="ai">${ICONS.team}</span><h3>ТПГ «ГенИИ» и коллеги</h3></div><p class="j">Я куратор ТПГ «ГенИИ» — группы сотрудников, которая превращает ИИ из «дальнего знакомого» в штатный инструмент учителя: от банка промптов до собственных образовательных сайтов и методических конструкторов.</p></article>
       </div>
       <div class="chip-row rv">
-        <span class="chip">Информатика и программирование</span><span class="chip">Дополнительное образование</span>
-        <span class="chip">Куратор ТПГ «ГенИИ»</span><span class="chip">МО математики, информатики, физики и труда</span>
+        <span class="chip">МО математики, информатики, физики и труда</span><span class="chip">Информатика и программирование</span>
+        <span class="chip">Дополнительное образование</span><span class="chip">Куратор ТПГ «ГенИИ»</span>
       </div>
     </div></section>
 
     <section class="sec sec--m2" id="works"><div class="wrap">
-      <div class="sec-head center rv"><span class="sec-kicker">Разработки</span><h2>Каталог образовательных ресурсов</h2><p class="sec-lead">Описания и скриншоты открыты всем; переход на рабочие ресурсы — по коду доступа, код выдаю лично ученикам и сотрудникам.</p></div>
+      <div class="sec-head center rv"><span class="sec-kicker">Разработки</span><h2>Каталог образовательных ресурсов</h2><p class="sec-lead">Описания и скриншоты открыты всем, переход на рабочие ресурсы — по коду доступа. Код выдаю лично ученикам и сотрудникам.</p></div>
       <div class="cards" id="cards"></div>
     </div></section>
 
     <section class="sec" id="standards"><div class="wrap">
-      <div class="sec-head center rv"><span class="sec-kicker">Стандарты</span><h2>Как я учу</h2><p class="sec-lead">Шесть правил, на которых держится каждый ресурс — от первого занятия до защиты проекта.</p></div>
+      <div class="sec-head center rv"><span class="sec-kicker">Стандарты</span><h2>Как я учу</h2><p class="sec-lead">Шесть правил, на которых базируется каждый урок и каждая разработка.</p></div>
       <div class="three-col rv">
         <article class="tcard a-blue"><div class="t-head"><span class="ai">${ICONS.eye}</span><h3>Видимый результат</h3></div><p>Каждое занятие заканчивается артефактом: рабочая страница, решённая задача, рисунок кодом, рабочий лист. Знания превращаются в продукт, а не в пересказ.</p></article>
-        <article class="tcard a-teal"><div class="t-head"><span class="ai">${ICONS.route}</span><h3>Единый маршрут обучения</h3></div><p>Все ресурсы устроены одинаково: короткая теория, сразу практика, проверки и видимый прогресс. Ученик всегда понимает, где он и какой следующий шаг.</p></article>
+        <article class="tcard a-teal"><div class="t-head"><span class="ai">${ICONS.route}</span><h3>Единый маршрут обучения</h3></div><p>Все ресурсы создаются по одному принципу: короткая теория, сразу практика, проверки и видимый прогресс. Ученик всегда понимает, где он и какой следующий шаг.</p></article>
         <article class="tcard a-orange"><div class="t-head"><span class="ai">${ICONS.bot}</span><h3>ИИ — штатный инструмент</h3></div><p>Нейросети — легальный инструмент учёбы и работы. Правило одно: любой результат, который ты сдаёшь как свой, ты обязан уметь объяснить.</p></article>
-        <article class="tcard a-slate"><div class="t-head"><span class="ai">${ICONS.scale}</span><h3>Честные критерии</h3></div><p>Критерии оценки известны заранее и подтверждаются показом: засчитывается то, что работает и объясняется. Публичная защита — самая честная проверка.</p></article>
-        <article class="tcard a-purple"><div class="t-head"><span class="ai">${ICONS.dev}</span><h3>Инструменты, а не параграфы</h3></div><p>Тренажёры, рабочие листы и среды вместо конспектов: ошибка в коде видна сразу и становится учебным материалом, а не приговором.</p></article>
+        <article class="tcard a-slate"><div class="t-head"><span class="ai">${ICONS.scale}</span><h3>Честные критерии</h3></div><p>Критерии оценки известны заранее: засчитывается то, что работает и объясняется. Публичная защита — способ подтвердить глубину своих знаний.</p></article>
+        <article class="tcard a-purple"><div class="t-head"><span class="ai">${ICONS.dev}</span><h3>Инструменты, а не параграфы</h3></div><p>Тренажёры, рабочие листы и интерактивные сервисы вместо конспектов: ошибка в коде видна сразу и становится точкой роста, а не приговором.</p></article>
         <article class="tcard a-teal"><div class="t-head"><span class="ai">${ICONS.team}</span><h3>Команда и взаимное ревью</h3></div><p>Пары, код-ревью и командные доски: ученики и сотрудники учатся давать и принимать обратную связь по строкам кода и по продукту в целом.</p></article>
       </div>
     </div></section>
 
     <section class="sec sec--m2" id="school"><div class="wrap school-cols">
-      <div class="sec-head center rv"><span class="sec-kicker">Школа и ТПГ</span><h2>Точка будущего: среда, где это возможно</h2><p class="sec-lead">ЧОУ «Точка будущего» — школа со статусом инновационной площадки: здесь преподаватель может запустить курс-симулятор профессии, тренажёр на сотню задач или проектную лабораторию для сотрудников — и получить поддержку, а не согласование на полгода.</p></div>
+      <div class="sec-head center rv"><span class="sec-kicker">Школа и ТПГ</span><h2>Точка будущего: среда, где это возможно</h2><p class="sec-lead">ЧОУ «Точка будущего» — школа со статусом инновационной площадки: здесь преподаватель может запустить курс-симулятор профессии, тренажёр на сотню задач или проектную лабораторию для сотрудников — и получить поддержку и ресурсное обеспечение.</p></div>
       <div class="tpg rv">
         <div class="tpg-head"><span class="tpg-ico">${ICONS.team}</span><h3>ТПГ «ГенИИ» · 2026/2027</h3></div>
         <p class="j" style="color:var(--muted);font-size:16px;margin-top:14px">Творческая проектировочная группа сотрудников: исследование сервисов ИИ и создание современных образовательных продуктов. Куратор группы — М. М. Масликов, заказчик — руководитель старшей школы.</p>
         <ul>
           <li>${ICONS.spark}12 участников из 10 методических объединений и служб</li>
-          <li>${ICONS.route}7 этапов: от анализа проблемы до защиты и масштабирования</li>
-          <li>${ICONS.layers}Продукты: банк промптов, ИИ-методички, конструктор персонализации</li>
+          <li>${ICONS.route}7 этапов: от анализа проблемы до собственных сайтов и масштабирования</li>
+          <li>${ICONS.layers}Продукты: банк промптов, интерактивные сайты, ИИ-методички</li>
         </ul>
         <div class="tpg-stats"><span class="chip">−40% времени на рутину</span><span class="chip">50+ продуктов за год</span><span class="chip">80% сотрудников с ИИ</span></div>
       </div>
     </div></section>
 
     <section class="sec" id="gallery"><div class="wrap">
-      <div class="sec-head center rv"><span class="sec-kicker">Галерея</span><h2>За кадром</h2><p class="sec-lead">Шесть квадратных кадров: уроки, выступления и команда. На телефоне — одна колонка, на планшете — две, на экране — три.</p></div>
+      <div class="sec-head center rv"><span class="sec-kicker">Галерея</span><h2>За кадром</h2><p class="sec-lead">Моменты, которые хочется сохранить в памяти</p></div>
       <div class="gal-grid rv" id="gal"></div>
     </div></section>
   </main>
