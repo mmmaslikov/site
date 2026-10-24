@@ -320,21 +320,27 @@ a{color:var(--accent)}
   border-radius:12px;padding:12px 16px;min-height:50px;width:100%}
 .field input:focus{outline:3px solid var(--accent);outline-offset:2px}
 .lb{z-index:95}
-.lb-card{display:flex;flex-direction:column;align-items:center;gap:0;
-  width:min(1440px,100%);padding:14px;border-radius:22px;
-  background:rgba(20,18,17,.94);border:1px solid rgba(255,255,255,.14)}
-.lb-frame{display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
-  border-radius:14px;background:#141211;
-  height:calc(76vh/var(--zoom));
-  width:min(100%, calc((76vh/var(--zoom)) * 1.6));
-  max-width:100%}
-.lb-frame img{flex:0 0 auto;margin:auto;width:auto;height:auto;
-  max-width:100%;max-height:100%;object-fit:contain}
+/* окно облегает содержимое: ширина = картинка + padding */
+.lb-card{display:flex;flex-direction:column;width:fit-content;
+  max-width:min(1440px,calc(100vw/var(--zoom) - 32px));
+  padding:14px;border-radius:22px;background:rgba(20,18,17,.94);border:1px solid rgba(255,255,255,.14)}
+/* колонка шириной ровно с картинку: по ней выравниваются подпись и кнопки */
+.lb-body{display:flex;flex-direction:column;gap:10px;width:100%}
+/* кадр без своего aspect-ratio: обёртка по размеру изображения */
+.lb-frame{position:relative;display:block;width:fit-content;max-width:100%;margin:0 auto;
+  border-radius:14px;overflow:hidden;background:#141211}
+.lb-frame img{display:block;width:auto;height:auto;object-fit:contain;
+  max-width:min(calc(100vw/var(--zoom) - 92px),1412px);
+  max-height:calc(78vh/var(--zoom))}
+/* если файла нет — показываем заглушку разумного размера */
+.lb-frame.is-missing{width:min(calc(100vw/var(--zoom) - 92px),1412px);aspect-ratio:16/10}
 .lb-frame .photo-ph{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#c9c4c0;border:0;background:transparent}
 .lb-frame.is-missing img{display:none}
 .lb-frame.is-missing .photo-ph{display:flex}
-.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 4px 2px;color:#efeae6;font-size:15px}
-.lb-nav{display:flex;gap:8px}
+/* подпись слева внизу картинки, кнопки справа на том же краю */
+.lb-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  width:100%;padding:2px 2px 0;color:#efeae6;font-size:15px}
+.lb-nav{display:flex;gap:8px;flex:none}
 .lb .icon-btn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#fff}
 
 /* ============ TOAST ============ */
@@ -609,14 +615,16 @@ function renderApp(){
   </div>
   <div class="modal lb" id="lb" role="dialog" aria-modal="true" aria-label="Просмотр скриншота">
     <div class="lb-card">
-      <div class="lb-frame" id="lb-frame"></div>
-      <div class="lb-bar">
-        <span id="lb-cap"></span>
-        <span class="lb-nav">
-          <button class="icon-btn" id="lb-prev" type="button" aria-label="Предыдущий">${ICONS.left}</button>
-          <button class="icon-btn" id="lb-next" type="button" aria-label="Следующий">${ICONS.right}</button>
-          <button class="icon-btn" id="lb-close" type="button" aria-label="Закрыть">${ICONS.close}</button>
-        </span>
+      <div class="lb-body">
+        <div class="lb-frame" id="lb-frame"></div>
+        <div class="lb-bar">
+          <span id="lb-cap"></span>
+          <span class="lb-nav">
+            <button class="icon-btn" id="lb-prev" type="button" aria-label="Предыдущий">${ICONS.left}</button>
+            <button class="icon-btn" id="lb-next" type="button" aria-label="Следующий">${ICONS.right}</button>
+            <button class="icon-btn" id="lb-close" type="button" aria-label="Закрыть">${ICONS.close}</button>
+          </span>
+        </div>
       </div>
     </div>
   </div>
