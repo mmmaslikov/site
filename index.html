@@ -7,7 +7,7 @@
 <title>Михаил Масликов — учитель информатики · Точка будущего</title>
 <!--
   ═══ ПАМЯТКА ПО ФАЙЛАМ (папка images/ рядом с index.html) ═══
-  PNG: photo-hero.png — 4:5 · 1200×1500 · вырезанный без фона (transparent); на сайте станет ч/б
+  PNG: photo-hero.png — 4:5 · 1600×2000 · вырезанный без фона (transparent); на сайте станет ч/б и крупным
   PNG: скриншоты, 16:10 · 2880×1800 (или 1440×900):
     scr-webdev-01-hero.png, scr-webdev-02-catalog.png, scr-webdev-03-lesson.png,
     scr-python-01-hero.png, scr-python-02-catalog.png, scr-python-03-task.png,
@@ -22,12 +22,12 @@
   КОДЫ ДОСТУПА живут только в памяти вкладки: перезагрузил страницу — снова под кодом.
 -->
 <style>
-/* ============ ПЕРЕМЕННЫЕ: монохром + оранжевый акцент, уголь для hero/футера ============ */
+/* ============ ПЕРЕМЕННЫЕ: монохром + синий акцент, уголь для hero/футера ============ */
 :root{
   --bg:#f2f2f2;            /* монохром m1 */
   --m2:#e6e6e6;            /* монохром m2 для чередования */
-  --charcoal:#2f2d2c;      /* как на референсе: hero и футер */
-  --hero-acc:#e08b3f;      /* оранжевый акцент hero/футера */
+  --charcoal:#2f2d2c;      /* уголь: hero, nav, футер */
+  --hero-acc:#4da3ff;      /* синий акцент на угле */
   --surface:#ffffff;       /* карточки */
   --surface-2:#fafafa;
   --text:#1d1d1f; --muted:#6f6f6f;
@@ -37,11 +37,13 @@
   --nav-h:64px; --ok:#34c759; --err:#ff3b30;
   --pad:clamp(20px,4vw,48px);
   --wrap:1320px;
+  --dock-h:64px;
 }
 [data-theme="dark"]{
   --bg:#161616; --m2:#1d1d1d; --charcoal:#232120;
+  --hero-acc:#2997ff;
   --surface:#222222; --surface-2:#2a2a2a; --text:#f2f2f2; --muted:#9c9c9c;
-  --line:rgba(255,255,255,.12); --accent:#e5924a; --accent-soft:rgba(229,146,74,.16);
+  --line:rgba(255,255,255,.12); --accent:#2997ff; --accent-soft:rgba(41,151,255,.16);
   --shadow:0 14px 40px rgba(0,0,0,.5);
 }
 /* цвета проектов (иконки) */
@@ -94,14 +96,14 @@ a{color:var(--accent)}
   *{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
 
-/* ============ NAV: тёмная планка как в референсе ============ */
+/* ============ NAV: тёмная планка ============ */
 .nav{position:sticky;top:0;z-index:50;height:var(--nav-h);
   background:color-mix(in srgb,var(--charcoal) 88%,transparent);backdrop-filter:saturate(140%) blur(18px);
   -webkit-backdrop-filter:saturate(140%) blur(18px);border-bottom:1px solid rgba(255,255,255,.08)}
 .nav-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad);height:var(--nav-h);display:flex;align-items:center;gap:14px}
 .logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:16px;text-decoration:none;color:#fff;min-height:44px}
-.logo-m{width:38px;height:38px;border-radius:10px;background:var(--charcoal);border:1px solid rgba(255,255,255,.22);
-  color:var(--hero-acc);display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
+.logo-m{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#0b3ea8,#3f97f0);
+  color:#fff;display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
 .nav-links{display:none;gap:6px;margin-left:auto}
 .nav-links a{color:rgba(255,255,255,.72);text-decoration:none;font-size:15px;font-weight:500;padding:10px 14px;border-radius:980px;min-height:44px;display:inline-flex;align-items:center;border-bottom:2px solid transparent}
 .nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
@@ -119,34 +121,35 @@ a{color:var(--accent)}
 .menu a{color:rgba(255,255,255,.85);text-decoration:none;font-size:18px;font-weight:600;padding:12px 14px;border-radius:14px;min-height:48px;display:flex;align-items:center}
 .menu a:hover{background:rgba(255,255,255,.08);color:#fff}
 
-/* ============ HERO: уголь, ч/б фото, оранжевый акцент ============ */
+/* ============ HERO: уголь, ч/б фото в полный рост, низ фото = низ блока ============ */
 .hero{position:relative;overflow:hidden;background:var(--charcoal);color:#fff;
   min-height:calc(100vh - var(--nav-h));min-height:calc(100svh - var(--nav-h));
-  display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,64px) 0 clamp(24px,3vw,44px)}
+  display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,64px) 0 0}
 .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(120% 90% at 78% 20%,rgba(255,255,255,.06),transparent 60%)}
-.hero .wrap{position:relative;z-index:1}
+.hero .wrap{position:relative;z-index:1;width:100%}
 .hero-grid{display:grid;gap:clamp(24px,3vw,40px);align-items:end}
-@media (min-width:900px){.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,.9fr)}}
+@media (min-width:900px){.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}}
+.hero-left{padding-bottom:clamp(36px,4vw,64px)}
 .hero-name{border-left:2px solid var(--hero-acc);padding-left:clamp(16px,2vw,26px)}
-.hero-name h1{font-size:clamp(30px,7vw,84px);font-weight:600;color:#fff;letter-spacing:-.03em}
+.hero-name h1{font-size:clamp(34px,6.4vw,92px);font-weight:600;color:#fff;letter-spacing:-.03em}
 .hero-sub{margin-top:10px;font-size:clamp(15px,1.6vw,20px);color:rgba(255,255,255,.66);letter-spacing:.02em}
 .hero-slogan{margin-top:22px;font-size:clamp(16px,1.8vw,22px);color:rgba(255,255,255,.88);max-width:520px}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .btn.line{background:transparent;color:var(--hero-acc);border:1.5px solid var(--hero-acc)}
-.btn.line:hover{background:rgba(224,139,63,.12);opacity:1}
+.btn.line:hover{background:rgba(77,163,255,.14);opacity:1}
 .btn.dim{background:transparent;color:rgba(255,255,255,.85);border:1.5px solid rgba(255,255,255,.35)}
 .btn.dim:hover{border-color:#fff;color:#fff;opacity:1}
-.hero-scroll{display:flex;align-items:center;gap:14px;margin-top:clamp(30px,4vw,56px);
+.hero-scroll{display:inline-flex;align-items:center;gap:14px;margin-top:clamp(28px,4vw,52px);
   color:rgba(255,255,255,.65);font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
 .hero-scroll i{display:block;width:44px;height:1.5px;background:rgba(255,255,255,.4)}
 .hero-scroll .dn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--hero-acc);color:var(--hero-acc);
   display:grid;place-items:center;transition:transform .2s,background .2s}
-.hero-scroll:hover .dn{transform:translateY(3px);background:rgba(224,139,63,.14)}
+.hero-scroll:hover .dn{transform:translateY(3px);background:rgba(77,163,255,.16)}
 .hero-scroll:hover{color:#fff}
-/* ч/б фото справа, как в референсе */
-.hero-stage{position:relative;width:100%;max-width:420px;margin-inline:auto}
-@media (min-width:900px){.hero-stage{max-width:none;height:min(66vh,620px)}}
+/* фото: крупное, низ совпадает с низом секции */
+.hero-stage{position:relative;width:100%;max-width:440px;margin-inline:auto}
+@media (min-width:900px){.hero-stage{max-width:none;height:min(78vh,720px);align-self:end}}
 .hero-photo{margin:0;position:relative;height:420px}
 @media (min-width:900px){.hero-photo{height:100%}}
 .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%;
@@ -155,24 +158,25 @@ a{color:var(--accent)}
 .hero-photo.is-missing img{display:none}
 .photo-ph{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;
   padding:20px;text-align:center;color:var(--muted);background:var(--surface-2);border:1.5px dashed var(--line);border-radius:20px}
-.hero-photo .photo-ph{color:rgba(255,255,255,.7);background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.3)}
+.hero-photo .photo-ph{color:rgba(255,255,255,.7);background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.3);border-radius:0}
 .is-missing .photo-ph{display:flex}
 .photo-ph svg{opacity:.6}
 .ph-file{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;opacity:.85;word-break:break-all}
-/* вертикальные штрихи справа, как в референсе */
-.hero-dashes{position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);display:grid;gap:10px;z-index:1}
-.hero-dashes span{width:2px;height:20px;background:rgba(255,255,255,.3)}
-.hero-dashes span.on{height:34px;background:var(--hero-acc)}
-@media (max-width:959px){.hero-dashes{display:none}}
-/* плашка ресурсов на угле */
-.strip{margin-top:clamp(24px,3.4vw,48px);padding:20px clamp(16px,2.4vw,32px);border-radius:18px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
-.strip>p{text-align:center;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75)}
-.marks{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 8px;margin-top:10px}
-@media (min-width:960px){.marks{justify-content:space-between}}
-.mark{display:flex;align-items:center;gap:9px;font:inherit;font-size:15.5px;font-weight:700;color:rgba(255,255,255,.78);
-  background:none;border:0;cursor:pointer;padding:8px 12px;border-radius:12px;min-height:46px;transition:color .2s,background .2s}
-.mark svg{width:21px;height:21px;color:var(--acc-p,#fff)}
+
+/* ============ DOCK: плашка ресурсов закреплена внизу экрана ============ */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:45;min-height:var(--dock-h);
+  background:color-mix(in srgb,var(--charcoal) 90%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid rgba(255,255,255,.14)}
+.dock-in{max-width:var(--wrap);margin:0 auto;padding:8px var(--pad);display:flex;align-items:center;gap:16px;min-height:var(--dock-h)}
+.dock-label{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.62);white-space:nowrap}
+@media (max-width:759px){.dock-label{display:none}}
+.marks{display:flex;align-items:center;gap:4px;flex:1;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:2px}
+.marks::-webkit-scrollbar{display:none}
+.mark{display:flex;align-items:center;gap:9px;font:inherit;font-size:15px;font-weight:700;color:rgba(255,255,255,.8);
+  background:none;border:0;cursor:pointer;padding:8px 12px;border-radius:12px;min-height:44px;white-space:nowrap;
+  transition:color .2s,background .2s}
+.mark svg{width:20px;height:20px;color:var(--acc-p,#fff);flex:none}
 .mark:hover{color:#fff;background:rgba(255,255,255,.1)}
 
 /* ============ КАРТОЧКИ «ОБО МНЕ» / «СТАНДАРТЫ» ============ */
@@ -245,8 +249,9 @@ a{color:var(--accent)}
   font-size:14.5px;font-weight:500;color:var(--muted);text-align:center;
   min-height:64px;display:flex;align-items:center;justify-content:center}
 
-/* ============ FOOTER: уголь, как hero ============ */
-.footer{border-top:1px solid rgba(255,255,255,.1);padding:clamp(40px,5vw,64px) 0;
+/* ============ FOOTER: уголь + отступ под dock ============ */
+.footer{border-top:1px solid rgba(255,255,255,.1);
+  padding:clamp(40px,5vw,64px) 0 calc(clamp(40px,5vw,64px) + var(--dock-h) + 12px);
   background:var(--charcoal);color:#fff}
 .footer-in{display:grid;justify-items:center;gap:22px;text-align:center}
 .f-title{font-size:clamp(20px,2.4vw,28px);font-weight:700;letter-spacing:-.02em;color:#fff}
@@ -256,7 +261,7 @@ a{color:var(--accent)}
 .crow:hover{border-color:var(--hero-acc);transform:translateY(-2px)}
 .crow-a{flex:1;display:flex;align-items:center;gap:14px;padding:12px 16px;min-height:60px;text-decoration:none;color:#fff}
 .ci{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;flex:none;font-weight:800;font-size:14px;
-  background:rgba(224,139,63,.16);color:var(--hero-acc)}
+  background:rgba(77,163,255,.16);color:var(--hero-acc)}
 .ci svg{width:21px;height:21px}
 .ct{display:grid;line-height:1.3;min-width:0;text-align:left}
 .ct small{font-size:12.5px;color:rgba(255,255,255,.55);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
@@ -265,7 +270,7 @@ a{color:var(--accent)}
 .copy-mini{width:54px;flex:none;border:0;border-left:1px solid rgba(255,255,255,.16);background:transparent;color:rgba(255,255,255,.6);
   cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s}
 .copy-mini svg{width:19px;height:19px}
-.copy-mini:hover{color:var(--hero-acc);background:rgba(224,139,63,.14)}
+.copy-mini:hover{color:var(--hero-acc);background:rgba(77,163,255,.14)}
 .f-copy{color:rgba(255,255,255,.6);font-size:15.5px}
 
 /* ============ SHEET ============ */
@@ -275,8 +280,8 @@ a{color:var(--accent)}
 .sheet-bar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:12px;height:var(--nav-h);padding:0 16px;
   background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid var(--line)}
-.sheet-body{max-width:1040px;margin:0 auto;padding:32px 18px 90px}
-@media (min-width:700px){.sheet-body{padding:36px 24px 90px}}
+.sheet-body{max-width:1040px;margin:0 auto;padding:32px 18px calc(90px + var(--dock-h))}
+@media (min-width:700px){.sheet-body{padding:36px 24px calc(90px + var(--dock-h))}}
 .sheet-hero{display:grid;gap:8px;margin-bottom:28px}
 .sheet-hero .chip-row{justify-content:flex-start;margin-top:10px}
 .sheet-sec{margin-top:34px}
@@ -328,8 +333,9 @@ a{color:var(--accent)}
 .lb .icon-btn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.18);color:#fff}
 
 /* ============ TOAST ============ */
-.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,16px);z-index:100;padding:13px 22px;border-radius:980px;
-  background:var(--charcoal);color:#fff;font-size:15px;font-weight:600;box-shadow:var(--shadow);
+.toast{position:fixed;left:50%;bottom:calc(var(--dock-h) + 18px);transform:translate(-50%,16px);z-index:100;
+  padding:13px 22px;border-radius:980px;background:var(--charcoal);color:#fff;border:1px solid rgba(255,255,255,.18);
+  font-size:15px;font-weight:600;box-shadow:var(--shadow);
   opacity:0;pointer-events:none;transition:.3s;max-width:calc(100vw - 32px);text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 </style>
@@ -484,35 +490,28 @@ function renderApp(){
     <a href="#school">Школа и ТПГ</a><a href="#gallery">Галерея</a><a href="#contacts">Контакты</a>
   </nav>
   <main id="top">
-    <section class="hero">
-      <span class="hero-dashes" aria-hidden="true"><span class="on"></span><span></span><span></span></span>
-      <div class="wrap">
-        <div class="hero-grid">
-          <div>
-            <div class="hero-name rv">
-              <h1>Михаил Масликов</h1>
-              <p class="hero-sub">учитель информатики · ЧОУ «Точка будущего»</p>
-            </div>
-            <p class="hero-slogan rv">Учу создавать, а не пересказывать: курсы, тренажёры и проектные лаборатории, после которых остаются работающие продукты.</p>
-            <div class="hero-cta rv">
-              <a class="btn line" href="#works">Мои разработки</a>
-              <a class="btn dim" href="#about">Обо мне</a>
-            </div>
-            <a class="hero-scroll rv" href="#works"><i></i>смотреть проекты<span class="dn">${ICONS.down}</span></a>
+    <section class="hero"><div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="hero-name rv">
+            <h1>Михаил Масликов</h1>
+            <p class="hero-sub">учитель информатики · ЧОУ «Точка будущего»</p>
           </div>
-          <div class="hero-stage rv">
-            <figure class="hero-photo" data-photo>
-              <img data-file="${HERO_PHOTO[0]}" src="${IMG}${HERO_PHOTO[0]}" alt="${esc(HERO_PHOTO[1])}" decoding="async">
-              <div class="photo-ph" aria-hidden="true">${ICONS.cam}<span>Сюда встанет фото без фона</span><span class="ph-file">${IMG}${HERO_PHOTO[0]}</span></div>
-            </figure>
+          <p class="hero-slogan rv">Учу создавать, а не пересказывать: курсы, тренажёры и проектные лаборатории, после которых остаются работающие продукты.</p>
+          <div class="hero-cta rv">
+            <a class="btn line" href="#works">Мои разработки</a>
+            <a class="btn dim" href="#about">Обо мне</a>
           </div>
+          <a class="hero-scroll rv" href="#works"><i></i>смотреть проекты<span class="dn">${ICONS.down}</span></a>
         </div>
-        <div class="strip rv">
-          <p>Ресурсы уже в строю — используются на уроках и во внеурочке</p>
-          <div class="marks" id="marks"></div>
+        <div class="hero-stage rv">
+          <figure class="hero-photo" data-photo>
+            <img data-file="${HERO_PHOTO[0]}" src="${IMG}${HERO_PHOTO[0]}" alt="${esc(HERO_PHOTO[1])}" decoding="async">
+            <div class="photo-ph" aria-hidden="true">${ICONS.cam}<span>Сюда встанет фото без фона</span><span class="ph-file">${IMG}${HERO_PHOTO[0]}</span></div>
+          </figure>
         </div>
       </div>
-    </section>
+    </div></section>
 
     <section class="sec" id="about"><div class="wrap">
       <div class="sec-head center rv"><span class="sec-kicker">Обо мне</span><h2>Учитель, который строит продукты вместе с учениками</h2></div>
@@ -592,6 +591,13 @@ function renderApp(){
     </div>
     <p class="f-copy">© 2026 Масликов Михаил Михайлович · ЧОУ «Точка будущего»<br>Код доступа для перехода на ресурс выдаёт лично учитель.</p>
   </div></footer>
+
+  <div class="dock" role="navigation" aria-label="Быстрый доступ к ресурсам">
+    <div class="dock-in">
+      <span class="dock-label">© mmmaslikov</span>
+      <div class="marks" id="marks"></div>
+    </div>
+  </div>
 
   <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"></div>
   <div class="modal" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
