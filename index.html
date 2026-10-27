@@ -5,10 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Масликов Михаил Михайлович — учитель информатики ЧОУ «Точка будущего». Курсы, тренажёры и проектные лаборатории: веб-разработка, Python, ЕГЭ и ОГЭ, Turtle, ТПГ «ГенИИ».">
 <title>Михаил Масликов — учитель информатики · Точка будущего</title>
-<!--
-  МАСШТАБ: на экранах ≥1800px сайт автоматически крупнее (zoom 1.25), на ≥2300px — как при 150% (zoom 1.5).
-  КОДЫ ДОСТУПА живут только в памяти вкладки: перезагрузил страницу — снова под кодом.
--->
+
 <style>
 /* ============ ПЕРЕМЕННЫЕ ============ */
 :root{
@@ -319,6 +316,11 @@ a{color:var(--accent)}
 .field input{font:inherit;font-size:16px;color:var(--text);background:var(--surface-2);border:1px solid var(--line);
   border-radius:12px;padding:12px 16px;min-height:50px;width:100%}
 .field input:focus{outline:3px solid var(--accent);outline-offset:2px}
+/* кнопка «Показать / Скрыть» под полем кода */
+.gate-eye{min-height:38px;padding:6px 18px;font:inherit;font-size:13.5px;font-weight:600;border-radius:980px;
+  background:transparent;border:1px solid var(--line);color:var(--muted);cursor:pointer;
+  justify-self:start;transition:color .2s,border-color .2s}
+.gate-eye:hover{color:var(--accent);border-color:var(--accent)}
 .lb{z-index:95}
 /* окно облегает содержимое: ширина = картинка + padding */
 .lb-card{display:flex;flex-direction:column;width:fit-content;
@@ -359,7 +361,10 @@ a{color:var(--accent)}
 /* ================= КОНСТАНТЫ ================= */
 const ME = "mmmaslikov";
 const IMG = "images/";
-const CODE_HASHES = { // только хеши; коды живут в памяти вкладки, без localStorage
+const LS_THEME = "mm_site_theme_v1";
+const LS_UNLOCK = "mm_site_unlocked_v1"; 
+const resUrl = id => "https://" + ME + ".github.io/" + id + "/";
+const CODE_HASHES = { // только хеши кодов
   webdev: { sha: "aa13e98223d87d87ab54cdca89e8a6bccad5ec44a4d5d0472866f02ae0667612", djb2: "5fa8c326" },
   python: { sha: "e8b08498829a8ae2ee3154a41bf0bdf59b8a92c34936ced0c319f210ac0970ce", djb2: "fe278c4f" },
   ege:    { sha: "aabf620886006f4b5293c4da7a11338a18b45f8e6b937fd4fca016cf2254dd81", djb2: "580aacea" },
@@ -368,35 +373,34 @@ const CODE_HASHES = { // только хеши; коды живут в памя�
   tpg:    { sha: "9290729915a110d0b9a681e2f683f388aac394ecef0c0e67f9509fa2529b9d07", djb2: "8292b370" },
   master: { sha: "b84fc84fc849baee524d95187a72b545e01222477c2a69438f4ee27ca5b24353", djb2: "dc761796" }
 };
-const LS_THEME = "mm_site_theme_v1";
 const PROJECTS = [
   { id:"webdev", title:"Веб-разработка", tagline:"Курс дополнительного образования: от первой страницы в блокноте до разработки и деплоя собственного сайта.",
-    audience:"10–11 класс", volume:"24 занятия", status:"", url:"https://"+ME+".github.io/webdev/",
+    audience:"10–11 класс", volume:"24 занятия", status:"",
     about:["Курс для старшей школы, симулирующий работу Junior Frontend Developer: девять модулей от семантики HTML и CSS-сеток до Git, деплоя, промпт-инжиниринга и Agile.","Сквозной продукт: каждый модуль — шаг к собственному Dashboard, который ученик публикует по публичной ссылке и защищает перед группой. ИИ — штатный инструмент: пользоваться можно всем, сдавать — только то, что понимаешь."],
     inside:["9 модулей и 24 занятия: теория у кода, практика, мини-демо в конце","Сквозной проект Dashboard и публичная защита по 5 критериям","Git, Pull Request и ревью кода как в настоящей команде","Модуль Vibe Coding: промпт-инжиниринг и аудит ИИ-кода","Портфолио выпускника: сайт, репозиторий, README, защита"],
     shots:[["scr-webdev-01-hero.png","Главный экран курса"],["scr-webdev-02-catalog.png","Каталог модулей и занятий"],["scr-webdev-03-lesson.png","Страница урока с практикой"]]},
   { id:"python", title:"Python-тренажёр", tagline:"От первых строк до продвинутых задач: теория, тесты и 186 задач с проверкой в браузере.",
-    audience:"9–11 класс", volume:"6 блоков теории · 186 задач", status:"", url:"https://"+ME+".github.io/python/",
+    audience:"9–11 класс", volume:"6 блоков теории · 186 задач", status:"",
     about:["Тренажёр Python: шесть теоретических блоков с конспектами, тестами и разобранными задачами — от переменных до функций.","Практика — восемь разделов и 186 задач по сборнику Бена Стивенсона: от разминки до рекурсии. Прогресс разделов запоминается прямо в браузере ученика."],
     inside:["6 блоков теории: основы, ветвление, циклы, массивы, строки, функции","8 разделов практики и 186 задач с автопроверкой ответа","Экран «Ваш прогресс»: тренажёр помнит открытые и пройденные разделы","Разборы типовых задач перед самостоятельной практикой"],
     shots:[["scr-python-01-hero.png","Главный экран с примером кода"],["scr-python-02-catalog.png","Каталог теории и практики"],["scr-python-03-task.png","Задача тренажёра с проверкой"]]},
   { id:"ege", title:"Подготовка к ЕГЭ", tagline:"Все 27 заданий экзамена: теория, разборы и тренажёры по каждому номеру.",
-    audience:"11 класс", volume:"27 заданий", status:"", url:"https://"+ME+".github.io/ege/",
+    audience:"11 класс", volume:"27 заданий", status:"",
     about:["Подготовка к ЕГЭ по информатике: каталог всех 27 заданий с уровнем сложности, максимальным баллом и рекомендуемым временем.","По каждому заданию — страница с теорией, разборами и тренажёром. Внутри шкала перевода первичного балла в тестовый и стратегии тайминга."],
     inside:["27 заданий: 10 базовых, 13 повышенных, 4 высокого уровня","Страницы заданий: теория, разбор, тренажёр, формат ответа","Шкала первичный → тестовый балл и ориентиры для вузов","Памятки по файлам *.ods, *.txt и ПО на экзамене"],
     shots:[["scr-ege-01-overview.png","Обзор экзамена и шкала"],["scr-ege-02-catalog.png","Меню из 27 заданий"],["scr-ege-03-task.png","Задание с теорией и тренажёром"]]},
   { id:"oge", title:"Подготовка к ОГЭ", tagline:"16 заданий двух частей, включая четыре практических за компьютером.",
-    audience:"9 класс", volume:"16 заданий", status:"", url:"https://"+ME+".github.io/oge/",
+    audience:"9 класс", volume:"16 заданий", status:"",
     about:["Подготовка к ОГЭ по информатике: часть 1 с кратким ответом и часть 2 с практическими заданиями на компьютере — презентации, документы, таблицы, программы.","По каждому заданию — теория, разборы и тренажёры; плюс шкала перевода первичного балла в отметку и советы по таймингу."],
     inside:["16 заданий: 12 с кратким ответом + 4 практических за ПК","Поддержка заданий 13–16: .odp, .odt, .ods, «Робот», программа","Шкала перевода балла в отметку вплоть до «5»","Чек-листы формата ответа и распределения времени"],
     shots:[["scr-oge-01-overview.png","Обзор работы и шкала отметок"],["scr-oge-02-catalog.png","Меню частей 1 и 2"],["scr-oge-03-task.png","Задание с теорией и разбором"]]},
   { id:"turtle", title:"Turtle Python", tagline:"Курс «Я — исследователь» для 5–6 классов: рисуем кодом в браузере, без установки Python.",
-    audience:"5–6 класс", volume:"6 уроков", status:"", url:"https://"+ME+".github.io/turtle/",
+    audience:"5–6 класс", volume:"6 уроков", status:"",
     about:["Курс для 5–6 классов: черепашка-художник, которой ученик командует на настоящем Python. Шесть уроков по четыре шага: теория, проверка, практика в тренажёре, мини-проект.","Рабочие листы работают прямо в браузере и сохраняются в PDF для учителя. Финал — собственный проект: открытка, узор, персонаж или эмблема."],
     inside:["6 уроков: от первой команды до защиты проекта","Встроенный тренажёр черепашки прямо в браузере","Рабочий лист урока с экспортом в PDF для учителя","Итоговый мини-проект «Графический рисунок в Turtle»"],
     shots:[["scr-turtle-01-hero.png","Главный экран курса"],["scr-turtle-02-lessons.png","Карточки шести уроков"],["scr-turtle-03-worksheet.png","Рабочий лист с тренажёром"]]},
   { id:"tpg", title:"ТПГ «ГенИИ»", tagline:"Творческая проектировочная группа сотрудников: исследование ИИ и создание образовательных продуктов.",
-    audience:"12 участников", volume:"10 объединений", status:"", url:"https://"+ME+".github.io/tpg/",
+    audience:"12 участников", volume:"10 объединений", status:"",
     about:["Проектная лаборатория ЧОУ «Точка будущего»: 12 участников из десяти методических объединений и служб проектируют систему использования ИИ в школе.","Семь этапов — от анализа проблемы до защиты и масштабирования: банк промптов, ИИ-методички, реестр инструментов и методический конструктор персонализированных маршрутов."],
     inside:["Банк промптов для педагогов и сотрудников","Пакет ИИ-методичек и интерактивных сайтов","Реестр ИИ-инструментов для автоматизации отчетности, характеристик и документооборота","Карта применения ИИ для каждой сферы школы"],
     shots:[["scr-tpg-01-hero.png","Титул проекта"],["scr-tpg-02-stages.png","Этапы, цели и метрики"],["scr-tpg-03-team.png","Использование ИИ"]]}
@@ -442,7 +446,7 @@ const P_ICON = { webdev:ICONS.dev, python:ICONS.py, ege:ICONS.target, oge:ICONS.
 
 /* ================= STATE ================= */
 const state = {
-  unlocked: new Set(),   // только в памяти вкладки
+  unlocked: new Set(),   // теперь дублируется в localStorage
   sheetId: null, gateFor: null,
   attempts: 0, cooldown: 0, cooldownTimer: null,
   lb: null, menu: false, theme: "auto", lastFocus: null
@@ -460,6 +464,15 @@ async function sha256(s){
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
 }
 const normCode = s => s.trim().toUpperCase().replace(/\s+/g,"");
+function loadUnlocked(){ // восстанавливаем открытые разработки после перезагрузки
+  try{
+    const arr = JSON.parse(localStorage.getItem(LS_UNLOCK)) || [];
+    arr.forEach(id=>{ if (PROJECTS.some(p=>p.id===id)) state.unlocked.add(id); });
+  }catch(e){}
+}
+function saveUnlocked(){
+  try{ localStorage.setItem(LS_UNLOCK, JSON.stringify([...state.unlocked])); }catch(e){}
+}
 function toast(msg){ const t=$("#toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),2600); }
 function bindImages(root){
   $$("img[data-file]", root).forEach(img=>{
@@ -696,14 +709,15 @@ function gateInputHTML(p){
     <span class="gate-ico acc-${p.id}">${ICONS.lock}</span>
     <h3 id="gate-title">Код доступа · ${esc(p.title)}</h3>
     <p class="gate-hint">Описание и скриншоты открыты всем. Переход на сам ресурс — по коду доступа: его выдаёт лично М. М. Масликов ученикам и сотрудникам.</p>
-    <div class="field"><label for="gate-input">Код</label><input id="gate-input" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Введите код доступа"><span class="gate-err" id="gate-err" aria-live="polite"></span></div>
+    <div class="field"><label for="gate-input">Код</label><input id="gate-input" type="password" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Введите код доступа"><span class="gate-err" id="gate-err" aria-live="polite"></span></div>
+    <button class="gate-eye" id="gate-eye" type="button" aria-pressed="false">Показать</button>
     <div style="display:flex;gap:10px;flex-wrap:wrap">
       <button class="btn" id="gate-ok" type="button">Открыть переход</button>
       <button class="btn ghost" id="gate-cancel" type="button">Отмена</button>
     </div>`;
 }
 function gateSuccessHTML(p, isMaster){
-  const link = isMaster ? "" : `<a class="btn" id="gate-go" href="${p.url}" target="_blank" rel="noopener">Перейти к ресурсу ${ICONS.ext}</a>`;
+  const link = isMaster ? "" : `<a class="btn" id="gate-go" href="${resUrl(p.id)}" target="_blank" rel="noopener">Перейти к ресурсу ${ICONS.ext}</a>`;
   return `
     <span class="gate-ico unlocked">${ICONS.check}</span>
     <h3 id="gate-title">Доступ открыт</h3>
@@ -739,7 +753,7 @@ async function submitGate(){
   const isMaster = res.key==="master";
   if (isMaster) PROJECTS.forEach(p=>state.unlocked.add(p.id));
   else state.unlocked.add(res.key);
-  syncLockUI();
+  saveUnlocked(); syncLockUI();
   if (state.sheetId) renderSheetActions(PROJECTS.find(p=>p.id===state.sheetId));
   const p = PROJECTS.find(x=>x.id===res.key);
   $("#gate-card").innerHTML = gateSuccessHTML(p, isMaster);
@@ -762,7 +776,7 @@ function startCooldown(){
 /* ================= SHEET ================= */
 function sheetActionsHTML(p){
   return state.unlocked.has(p.id)
-    ? `<a class="btn" id="sheet-open" href="${p.url}" target="_blank" rel="noopener">Открыть ресурс ${ICONS.ext}</a>`
+    ? `<a class="btn" id="sheet-open" href="${resUrl(p.id)}" target="_blank" rel="noopener">Открыть ресурс ${ICONS.ext}</a>`
     : `<button class="btn acc-${p.id}" id="sheet-open" type="button">${ICONS.lock}&nbsp;Открыть ресурс — по коду</button>`;
 }
 function renderSheetActions(p){
@@ -878,6 +892,14 @@ function bindHandlers(){
     if (e.target.closest("#gate-ok")) submitGate();
     else if (e.target.closest("#gate-cancel")) closeGate();
     else if (e.target.closest("#gate-stay")) closeGate();
+    else if (e.target.closest("#gate-eye")){ // показать / скрыть код
+      const inp=$("#gate-input"), btn=e.target.closest("#gate-eye");
+      const show = inp.type==="password";
+      inp.type = show ? "text" : "password";
+      btn.textContent = show ? "Скрыть" : "Показать";
+      btn.setAttribute("aria-pressed", String(show));
+      inp.focus();
+    }
   });
   $("#sheet").addEventListener("click", e=>{
     if (e.target.closest("#sheet-close")) closeSheet();
@@ -912,6 +934,7 @@ function bindHandlers(){
 /* ================= INIT ================= */
 function init(){
   try{ const t = localStorage.getItem(LS_THEME); if (t==="light"||t==="dark") state.theme = t; }catch(e){}
+  loadUnlocked();
   renderApp();
   bindHandlers();
   applyTheme();
